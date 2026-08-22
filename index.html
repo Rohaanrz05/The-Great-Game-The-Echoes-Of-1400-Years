@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The Great Game & The Echoes of 1400 Years — the rise and fall of Muslim civilization, global geopolitics, and the future in light of the Qur'an. By Muhammad Rohaan Zahid.">
+<title>The Great Game &amp; The Echoes of 1400 Years — Muhammad Rohaan Zahid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07080b; --bg2:#0d1117; --panel:rgba(14,18,25,.82); --panel-soft:rgba(255,255,255,.03);
+  --gold:#c9a227; --gold2:#f0cf7a; --teal:#2c8f92; --ox:#8a2f2f;
+  --cream:#efe8d8; --muted:#989ba3; --line:rgba(201,162,39,.22);
+  --display:'Cinzel',Georgia,serif; --head:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',Arial,sans-serif; --arabic:'Amiri',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font:15px/1.75 var(--sans);overflow-x:hidden}
+::selection{background:var(--gold);color:#0a0a0a}
+a{color:inherit}
+.container{width:min(1180px,92%);margin:0 auto}
+section{padding:110px 0}
+@media(max-width:680px){section{padding:72px 0}}
+
+/* ---------- background ---------- */
+#bgcanvas{position:fixed;inset:0;z-index:-10;background:
+  radial-gradient(ellipse 900px 600px at 82% 6%,#4a30111f,transparent 60%),
+  radial-gradient(ellipse 800px 700px at 6% 90%,#0d3a3d24,transparent 60%),
+  linear-gradient(160deg,#050608,#0b0e14 55%,#050607)}
+.grain{position:fixed;inset:0;z-index:-9;opacity:.035;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;z-index:1000;left:0;right:0;top:0;background:#05060ade;backdrop-filter:blur(16px);border-bottom:1px solid #ffffff0c}
+.navin{min-height:68px;display:flex;align-items:center;justify-content:space-between}
+.brand{color:var(--gold2);font:700 .82rem var(--display);letter-spacing:2.5px;text-decoration:none}
+.links{display:flex;gap:2px;list-style:none}
+.links a{color:#b7b8bd;text-decoration:none;font-size:.7rem;letter-spacing:.4px;padding:9px 10px;border-radius:7px;transition:.25s;text-transform:uppercase}
+.links a:hover{color:var(--gold2);background:#c9a22712}
+.menu{display:none;background:none;border:0;color:#eee;font-size:1.4rem;cursor:pointer}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh;padding-top:150px;display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:7px 14px;color:var(--gold2);background:#c9a2270a;text-transform:uppercase;letter-spacing:2px;font-size:.62rem;font-weight:700}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);box-shadow:0 0 8px var(--gold2);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.35}}
+h1{font:800 clamp(2.4rem,5vw,4.7rem)/1.06 var(--display);margin-top:22px;letter-spacing:-.5px}
+h1 em{display:block;color:var(--gold2);font-style:normal}
+.lead{max-width:620px;color:#bdbec4;font:400 1.02rem/1.8 var(--head);font-style:italic;margin:22px 0 30px}
+.buttons{display:flex;gap:11px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:49px;padding:0 22px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.78rem;letter-spacing:.3px;transition:.3s;border:1px solid transparent;cursor:pointer}
+.gold{background:linear-gradient(135deg,#f0cf7a,#b9821f);color:#100b02;box-shadow:0 14px 34px #c9a22730}
+.gold:hover{transform:translateY(-3px);box-shadow:0 18px 40px #c9a2274a}
+.outline{border-color:var(--line);color:#eee;background:#ffffff03}
+.outline:hover{background:#c9a22712}
+.hero-sub{color:#787b83;font-size:.72rem;margin-top:20px;letter-spacing:.3px}
+
+.bookscene{display:flex;justify-content:center;align-items:center;position:relative;perspective:1600px}
+.astro{position:absolute;width:560px;height:560px;opacity:.5;animation:spin 90s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.book3d{width:min(320px,72vw);aspect-ratio:2/3;position:relative;transform-style:preserve-3d;transform:rotateY(-14deg) rotateX(3deg);transition:.6s;box-shadow:-28px 34px 62px #000c,0 0 90px #c9a2271f;border-radius:3px 14px 14px 3px;z-index:2}
+.book3d:hover{transform:rotateY(-4deg) rotateX(0) translateY(-9px)}
+.book3d img{width:100%;height:100%;object-fit:cover;border-radius:3px 14px 14px 3px;display:block}
+.book3d:before{content:"";position:absolute;left:-13px;top:4px;bottom:4px;width:13px;background:linear-gradient(90deg,#160f04,#7a5a1d,#1f150a);transform:skewY(-2deg);transform-origin:right;z-index:-1}
+.book3d:after{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(90deg,#31220c,#a3812f,#241a09);border-radius:3px 0 0 3px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#ffffff02}
+.stat{text-align:center;padding:24px 10px;border-right:1px solid #ffffff0a}
+.stat:last-child{border:0}
+.stat b{display:block;color:var(--gold2);font:600 1.05rem var(--display)}
+.stat span{color:#7b7e86;font-size:.62rem;text-transform:uppercase;letter-spacing:1.6px}
+
+/* ---------- shared section chrome ---------- */
+.label{color:var(--gold2);font-size:.65rem;text-transform:uppercase;letter-spacing:4px;font-weight:700}
+.title{font:600 clamp(1.9rem,3.6vw,3.1rem)/1.2 var(--head);margin-top:8px;font-style:italic}
+.divider{width:100%;display:flex;align-items:center;gap:16px;margin:22px 0 34px}
+.divider .ln{height:1px;flex:1;background:linear-gradient(90deg,var(--gold2),transparent)}
+.divider svg{width:22px;height:22px;flex-shrink:0;opacity:.8;animation:spin 40s linear infinite}
+.panel{background:linear-gradient(150deg,#121722d4,#080a0fbd);border:1px solid var(--line);border-radius:18px;padding:34px;box-shadow:0 28px 80px #0009;backdrop-filter:blur(14px)}
+.text{color:#c1c2c8;font-size:.95rem}
+.text+.text{margin-top:15px}
+
+/* ---------- author ---------- */
+.author{display:grid;grid-template-columns:.68fr 1.32fr;gap:55px;align-items:center}
+.photo{aspect-ratio:4/5;max-width:380px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px #0009;position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.94) contrast(1.03)}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,#07080bcc);pointer-events:none}
+.photo-cap{position:absolute;left:18px;right:18px;bottom:16px;font:600 .68rem var(--display);letter-spacing:1.5px;color:var(--gold2);text-transform:uppercase}
+.signature{font-family:var(--head);font-style:italic;color:var(--gold2);font-size:1.35rem;margin-top:22px}
+.pull{padding:22px 26px;border-left:3px solid var(--gold);background:linear-gradient(90deg,#c9a2270f,transparent);border-radius:0 12px 12px 0;color:#e3ddce;font:italic 500 1.02rem/1.8 var(--head);margin:22px 0}
+
+/* ---------- vision / goals ---------- */
+.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.goal{padding:27px;border-radius:15px;border:1px solid #c9a2271e;background:#ffffff02;transition:.3s}
+.goal:hover{transform:translateY(-4px);border-color:#c9a22750}
+.goal .gi{width:38px;height:38px;margin-bottom:14px;color:var(--gold2)}
+.goal b{display:block;color:var(--gold2);font:600 1.08rem var(--head);font-style:italic;margin-bottom:8px}
+.goal p{color:#989ba2;font-size:.8rem;line-height:1.7}
+
+/* ---------- 3D reader ---------- */
+.reader{display:flex;justify-content:center;align-items:center;gap:22px;flex-direction:column}
+.book-reader{width:min(680px,100%);height:520px;perspective:1700px;position:relative}
+.page{position:absolute;inset:0;background:linear-gradient(115deg,#eee6d3,#fffbf1);color:#231f16;border-radius:4px 12px 12px 4px;box-shadow:0 22px 58px #000a;border:1px solid #c9bfa8;padding:36px 40px;transform-origin:left center;transition:transform .85s cubic-bezier(.2,.7,.2,1);backface-visibility:hidden;overflow-y:auto}
+.page.cover{padding:0;overflow:hidden;background:#111}
+.page.cover img{width:100%;height:100%;object-fit:cover}
+.page h4{font:700 .72rem var(--display);letter-spacing:2.5px;color:#7d5c26;margin-bottom:10px}
+.page h3{font:700 1.4rem var(--head);color:#372710;margin-bottom:12px;font-style:italic}
+.page p,.page li{font:400 .84rem/1.8 Georgia,serif;color:#2c2718}
+.page ul{padding-left:18px;margin-top:8px}
+.page ul li{margin-bottom:6px}
+.page small{display:block;margin-top:16px;color:#7c735d;font-style:italic}
+.reader-controls{display:flex;gap:10px;align-items:center}
+.reader-controls button{border:1px solid var(--line);background:#ffffff06;color:#eee;padding:10px 16px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:600;transition:.25s}
+.reader-controls button:hover{background:#c9a2271c}
+.reader-status{color:#8c8f96;font-size:.68rem;text-transform:uppercase;letter-spacing:1.6px;min-width:140px;text-align:center}
+
+/* ---------- toc ---------- */
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.part{border:1px solid #c9a2271f;border-radius:14px;background:#ffffff02;overflow:hidden}
+.part-head{padding:18px 20px;background:linear-gradient(90deg,#c9a2270f,transparent);border-bottom:1px solid #ffffff0a;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.part-head b{color:var(--gold2);font:600 .82rem var(--display);letter-spacing:1px}
+.part-head span{color:#83868e;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;white-space:nowrap}
+.chapters{padding:14px 20px}
+.chapters li{list-style:none;padding:8px 0;border-bottom:1px solid #ffffff06;color:#b6b7bc;font-size:.76rem;display:flex;gap:10px}
+.chapters li:last-child{border:0}
+.chapters strong{color:var(--gold2);flex-shrink:0}
+
+/* ---------- six parts explained ---------- */
+.parts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard{padding:26px;border-radius:15px;border:1px solid #c9a2271e;background:linear-gradient(160deg,#ffffff03,transparent);position:relative;overflow:hidden}
+.pcard .roman{position:absolute;right:14px;top:8px;font:800 3.6rem var(--display);color:#ffffff07;line-height:1}
+.pcard b{display:block;color:var(--gold2);font:600 1.02rem var(--head);font-style:italic;margin-bottom:9px;position:relative}
+.pcard p{color:#989ba2;font-size:.79rem;line-height:1.75;position:relative}
+
+/* ---------- quran ---------- */
+.quran-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.verse{padding:25px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(150deg,#c9a2270c,#ffffff01)}
+.arabic{font:700 1.25rem var(--arabic);color:var(--gold2);text-align:right;direction:rtl;margin-bottom:12px;line-height:1.9}
+.verse p{font:400 .86rem/1.75 Georgia,serif;color:#dcd6c9;font-style:italic}
+.ref{display:block;color:#8c8f97;font:600 .6rem var(--sans);letter-spacing:1.5px;text-transform:uppercase;margin-top:13px}
+
+/* ---------- decline ---------- */
+.trap-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
+.trap{padding:26px;border-radius:15px;border:1px solid #c9a2271e;background:#ffffff02}
+.trap h3{font:600 1.05rem var(--head);font-style:italic;color:var(--gold2);margin-bottom:10px}
+.trap p{color:#a9abb1;font-size:.83rem;line-height:1.8}
+
+/* ---------- echoes / quotes ---------- */
+.quote-strip{display:flex;flex-direction:column;gap:18px}
+.eq{padding:26px 30px;border-radius:14px;border:1px solid #c9a2271c;background:#ffffff02;display:flex;gap:20px;align-items:flex-start}
+.eq .mk{font:italic 700 2.4rem Georgia,serif;color:var(--gold);line-height:.6;flex-shrink:0}
+.eq p{font:italic 400 1.02rem/1.85 var(--head);color:#ddd7ca}
+.eq cite{display:block;margin-top:10px;color:var(--gold2);font:600 .65rem var(--sans);letter-spacing:1.6px;text-transform:uppercase;font-style:normal}
+
+/* ---------- purchase ---------- */
+.purchase{text-align:center}
+.purchase h2{font:600 clamp(1.9rem,4vw,3rem) var(--head);font-style:italic}
+.purchase p{max-width:640px;margin:14px auto 30px;color:#9b9ea5}
+.release-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px;margin:0 auto 32px}
+.release{padding:22px;border-radius:13px;border:1px solid var(--line);background:#ffffff03;text-align:left}
+.release b{display:block;color:var(--gold2);font:600 .92rem var(--head);font-style:italic;margin-bottom:5px}
+.release span{color:#93959c;font-size:.76rem}
+.release .tag{display:inline-block;margin-top:9px;padding:3px 10px;border-radius:999px;font-size:.6rem;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.tag.live{background:#2c8f9224;color:#7fd6d9}
+.tag.soon{background:#c9a22724;color:var(--gold2)}
+
+footer{text-align:center;padding:50px 0 30px;border-top:1px solid #ffffff0a;color:#6f727a;font-size:.7rem}
+.footerbrand{font:600 .86rem var(--display);color:var(--gold2);letter-spacing:2px;margin-bottom:10px}
+
+@media(max-width:950px){
+  .hero,.author,.toc-grid,.trap-grid,.release-grid{grid-template-columns:1fr}
+  .hero{text-align:center}
+  .lead{margin-left:auto;margin-right:auto}
+  .buttons{justify-content:center}
+  .bookscene{order:-1}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .goal-grid,.parts-grid,.quran-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:680px){
+  .menu{display:block}
+  .links{display:none;position:absolute;top:68px;left:0;right:0;background:#05060af7;padding:12px;flex-direction:column}
+  .links.open{display:flex}
+  .goal-grid,.parts-grid,.quran-grid{grid-template-columns:1fr}
+  .panel{padding:22px}
+  .book-reader{height:460px}
+  .page{padding:24px}
+  .astro{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001s !important; transition-duration:0.001s !important}
+}
+</style>
+</head>
+<body>
+
+<canvas id="bgcanvas"></canvas>
+<div class="grain"></div>
+
+<nav class="nav"><div class="container navin">
+<a class="brand" href="#home">ROHAAN ZAHID</a>
+<button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
+<ul class="links">
+<li><a href="#author">Author</a></li>
+<li><a href="#vision">Vision</a></li>
+<li><a href="#preview">Preview</a></li>
+<li><a href="#toc">Contents</a></li>
+<li><a href="#parts">The Six Parts</a></li>
+<li><a href="#quran">Qur'anic Wisdom</a></li>
+<li><a href="#decline">The Fall</a></li>
+<li><a href="#buy">Get the Book</a></li>
+</ul></div></nav>
+
+<!-- ================= HERO ================= -->
+<header id="home" class="container hero">
+<div>
+<span class="badge"><span class="dot"></span>Official Author Website</span>
+<h1>The Great Game <em>&amp; The Echoes of 1400 Years</em></h1>
+<p class="lead">The rise and fall of Muslim civilization, global geopolitics, and the future in the light of the Qur'an.</p>
+<div class="buttons">
+<a class="btn gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Buy on Amazon ↗</a>
+<a class="btn outline" href="#preview">Enter the Book ↓</a>
+</div>
+<p class="hero-sub">Muhammad Rohaan Zahid &nbsp;•&nbsp; First Edition &nbsp;•&nbsp; Independently Published &nbsp;•&nbsp; Written in Pakistan</p>
+</div>
+<div class="bookscene">
+<svg class="astro" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="#c9a227" stroke-width="0.5" opacity="0.55">
+    <circle cx="100" cy="100" r="96"/>
+    <circle cx="100" cy="100" r="80"/>
+    <circle cx="100" cy="100" r="64"/>
+    <g stroke-width="0.4">
+      <line x1="100" y1="4" x2="100" y2="196"/><line x1="4" y1="100" x2="196" y2="100"/>
+      <line x1="30" y1="30" x2="170" y2="170"/><line x1="170" y1="30" x2="30" y2="170"/>
+    </g>
+    <polygon points="100,20 111,80 172,80 122,116 141,176 100,140 59,176 78,116 28,80 89,80" stroke="#f0cf7a" stroke-width="0.6"/>
+  </g>
+</svg>
+<div class="book3d">
+  <img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="The Great Game & The Echoes of 1400 Years — book cover">
+</div>
+</div>
+</header>
+
+<div class="container"><div class="stats">
+<div class="stat"><b>26 Chapters</b><span>Full Volume</span></div>
+<div class="stat"><b>6 Parts</b><span>Structured Journey</span></div>
+<div class="stat"><b>1400 Years</b><span>Of History Traced</span></div>
+<div class="stat"><b>Qur'anic Lens</b><span>Central Perspective</span></div>
+</div></div>
+
+<!-- ================= AUTHOR ================= -->
+<section id="author"><div class="container">
+<div class="label">The Author</div><h2 class="title">A voice from within the Ummah, asking an old question again.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="author">
+<div>
+  <div class="photo">
+    <img src= "https://res.cloudinary.com/bpqdnyog/image/upload/v1786877340/004.jpg" alt="Muhammad Rohaan Zahid, author">
+    <span class="photo-cap">Muhammad Rohaan Zahid</span>
+  </div>
+</div>
+<div>
+<p class="text">Muhammad Rohaan Zahid is an independent writer and researcher from Pakistan, working at the intersection of Islamic history, geopolitics, and Qur'anic reflection. <em>The Great Game &amp; The Echoes of 1400 Years</em> is his first full-length work — a fourteen-century journey undertaken not as a professional historian's monograph, but as the sustained inquiry of someone who refused to accept the decline of the Muslim world as a closed question.</p>
+<p class="text">The book grew out of a simple, uncomfortable observation: a civilization that once led the world in knowledge, justice, and power now finds itself fragmented and dependent — and very few accounts of how that happened manage to be both historically serious and spiritually honest at the same time. Rohaan set out to write the account he wished existed: one that treats colonialism and internal decay, geopolitics and scripture, evidence and faith, as parts of a single, coherent story.</p>
+<div class="pull">"Any strengths found within these pages belong ultimately to Allah and to the knowledge passed down by those who came before us. Any shortcomings or mistakes are entirely my own."</div>
+<p class="text">The manuscript is dedicated to his parents, "whose sacrifices, prayers, and guidance shaped my journey," and to the Muslim Ummah — past, present, and future — "with the hope that we may rediscover the principles that once illuminated the world through faith, knowledge, justice, and excellence."</p>
+<div class="signature">— Muhammad Rohaan Zahid</div>
+</div>
+</div>
+</div></section>
+
+<!-- ================= VISION / GOALS ================= -->
+<section id="vision" style="background:linear-gradient(180deg,transparent,#c9a22706,transparent)"><div class="container">
+<div class="label">Goals &amp; Vision</div><h2 class="title">Why this book exists, and the two traps it refuses to fall into.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="panel" style="margin-bottom:22px"><p class="text">Every civilization asks itself a question when confronted by decline: <em>how did we get here?</em> For nearly two billion Muslims spread across some of the world's most strategically vital territory, that question is more urgent today than at any time in recent history. This book is neither an attempt to romanticize the past nor to condemn the present — it is an attempt to understand the forces that shaped both, combining historical inquiry, geopolitical analysis, and Qur'anic reflection into a single narrative.</p></div>
+<div class="goal-grid">
+<div class="goal"><svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><b>Understand, without romanticizing</b><p>Fourteen centuries traced honestly — from the birth of Islam and the Golden Age through colonialism, the Ottoman collapse, and the modern order — without turning history into nostalgia.</p></div>
+<div class="goal"><svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7z"/></svg><b>Reject both traps</b><p>Decline is never explained by external aggression alone, nor by hidden actors alone. The book insists on documented facts, reasonable analysis, and honest speculation, clearly labeled as such.</p></div>
+<div class="goal"><svg class="gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M4 8l8-5 8 5M4 16l8 5 8-5"/></svg><b>See through a Qur'anic lens</b><p>The Qur'an presents history as recognizable patterns, not random events — power as a test, wealth as a test, victory and defeat as tests. Those patterns anchor every chapter.</p></div>
+</div>
+</div></section>
+
+<!-- ================= 3D PREVIEW (ALL 6 PARTS INCLUDED) ================= -->
+<section id="preview"><div class="container">
+<div class="label">Live Cinematic Preview</div><h2 class="title">Turn through the opening pages &amp; full table of contents.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="panel reader">
+<div class="book-reader" id="bookReader">
+  <!-- Page 0: Cover -->
+  <div class="page cover" id="pg0" style="z-index:6">
+    <img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="Book cover">
+  </div>
+
+  <!-- Page 1: Title Page -->
+  <div class="page" id="pg1" style="z-index:5">
+    <h4>THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS</h4>
+    <h3>Title Page</h3>
+    <p>The Rise and Fall of Muslim Civilization, Global Geopolitics, and the Future in the Light of the Qur'an</p>
+    <small>By Muhammad Rohaan Zahid — First Edition, written in Pakistan</small>
+  </div>
+
+  <!-- Page 2: Preface -->
+  <div class="page" id="pg2" style="z-index:4">
+    <h4>PREFACE</h4>
+    <h3>Why This Book?</h3>
+    <p>Every civilization asks itself a question when confronted by decline: <em>how did we get here?</em></p>
+    <p style="margin-top:10px">There was a time when Muslim scholars led humanity in science, medicine, mathematics, astronomy, philosophy, architecture, and trade. This book asks how the heirs of that Golden Age became spectators in an age they once helped create.</p>
+  </div>
+
+  <!-- Page 3: TOC (Part I & II) -->
+  <div class="page" id="pg3" style="z-index:3">
+    <h4>TABLE OF CONTENTS</h4>
+    <h3>Part I &amp; Part II</h3>
+    <ul>
+      <li><strong>Part I: Islam — From Deserts to Superpowers</strong> (Ch. 01–05)</li>
+      <li><strong>Part II: Why Superpowers Collapse From Their Peaks</strong> (Ch. 06–09)</li>
+    </ul>
+    <p style="margin-top:10px; font-size:0.8rem; color:#6b5a3e;">Covering the pre-Islamic collapse, the Qur'anic blueprint for change, intellectual unity, and civilizational fracture.</p>
+  </div>
+
+  <!-- Page 4: TOC (Part III & IV) -->
+  <div class="page" id="pg4" style="z-index:2">
+    <h4>TABLE OF CONTENTS</h4>
+    <h3>Part III &amp; Part IV</h3>
+    <ul>
+      <li><strong>Part III: The Great Game</strong> (Ch. 10–14)</li>
+      <li><strong>Part IV: Hidden Powers</strong> (Ch. 15–18)</li>
+    </ul>
+    <p style="margin-top:10px; font-size:0.8rem; color:#6b5a3e;">Covering nation-states, multipolarity, global finance, secret societies, and the dismantling of the Khilafats.</p>
+  </div>
+
+  <!-- Page 5: TOC (Part V & VI) -->
+  <div class="page" id="pg5" style="z-index:1">
+    <h4>TABLE OF CONTENTS</h4>
+    <h3>Part V &amp; Part VI</h3>
+    <ul>
+      <li><strong>Part V: The Need of Khilafat</strong> (Ch. 19–23)</li>
+      <li><strong>Part VI: Escape and Future</strong> (Ch. 24–26)</li>
+    </ul>
+    <p style="margin-top:10px; font-size:0.8rem; color:#6b5a3e;">Covering institutional revival, strategic leadership, modern Qur'anic warnings, and the path toward a new dawn.</p>
+  </div>
+</div>
+</div>
+<div class="reader-controls">
+<button onclick="flipPage(-1)" aria-label="Previous page">← Previous</button>
+<span class="reader-status" id="readerStatus">Cover • 1 / 6</span>
+<button onclick="flipPage(1)" aria-label="Next page">Next →</button>
+</div>
+</div>
+</div></section>
+
+<!-- ================= TOC ================= -->
+<section id="toc"><div class="container">
+<div class="label">Table of Contents</div><h2 class="title">Six parts. Twenty-six chapters. One argument.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="toc-grid">
+
+<div class="part"><div class="part-head"><b>PART I — ISLAM: FROM DESERTS TO SUPERPOWERS</b><span>Ch. 01–05</span></div><ul class="chapters">
+<li><strong>01</strong>The Pre-Islamic World in Collapse</li>
+<li><strong>02</strong>How Allah Changes History</li>
+<li><strong>03</strong>The Qur'anic Blueprint for Change</li>
+<li><strong>04</strong>Jihad, Justice, and the Expansion of Muslim Power</li>
+<li><strong>05</strong>How the Qur'an Paved the Way for the Islamic Golden Age</li>
+</ul></div>
+
+<div class="part"><div class="part-head"><b>PART II — WHY SUPERPOWERS COLLAPSE FROM THEIR PEAKS</b><span>Ch. 06–09</span></div><ul class="chapters">
+<li><strong>06</strong>When Power &amp; Knowledge Were United</li>
+<li><strong>07</strong>When a Nation Forgets the Legacy of Its Ancestors</li>
+<li><strong>08</strong>Political Fragmentation and Loss of Learning</li>
+<li><strong>09</strong>Qur'anic Warnings About the Fall of Nations</li>
+</ul></div>
+
+<div class="part"><div class="part-head"><b>PART III — THE GREAT GAME</b><span>Ch. 10–14</span></div><ul class="chapters">
+<li><strong>10</strong>From Empire to Nation-State</li>
+<li><strong>11</strong>Multipolar World: A Chance or a Threat</li>
+<li><strong>12</strong>The Creation of Israel: Why &amp; How They Are Working in Shadows</li>
+<li><strong>13</strong>Banking, Interest, and Economic Dependence</li>
+<li><strong>14</strong>How They Are Normalizing It in the World</li>
+</ul></div>
+
+<div class="part"><div class="part-head"><b>PART IV — HIDDEN POWERS</b><span>Ch. 15–18</span></div><ul class="chapters">
+<li><strong>15</strong>Secret Societies, Illuminati, Freemasons &amp; New World Order</li>
+<li><strong>16</strong>The New World Order: Dismantling the Khilafats</li>
+<li><strong>17</strong>What Satanism Really Is: Symbols, Prophecies &amp; Normalization</li>
+<li><strong>18</strong>Why Muslims Feel Strategically Contained</li>
+</ul></div>
+
+<div class="part"><div class="part-head"><b>PART V — THE NEED OF KHILAFAT</b><span>Ch. 19–23</span></div><ul class="chapters">
+<li><strong>19</strong>What Khilafat Means in Islam</li>
+<li><strong>20</strong>Khilafat &amp; the Mission of Allah</li>
+<li><strong>21</strong>Leadership, Jihad, and Collective Responsibility</li>
+<li><strong>22</strong>Why a Renewed Islamic Order Is Needed</li>
+<li><strong>23</strong>Pakistan and the Question of Revival</li>
+</ul></div>
+
+<div class="part"><div class="part-head"><b>PART VI — ESCAPE AND FUTURE</b><span>Ch. 24–26</span></div><ul class="chapters">
+<li><strong>24</strong>Qur'anic Warnings for Today</li>
+<li><strong>25</strong>The End of the Game: Qur'anic Prophecy &amp; the Ultimate Reckoning</li>
+<li><strong>26</strong>Conclusion: Toward a New Dawn</li>
+</ul></div>
+
+</div>
+</div></section>
+
+<!-- ================= SIX PARTS EXPLAINED ================= -->
+<section id="parts" style="background:linear-gradient(180deg,transparent,#c9a22706,transparent)"><div class="container">
+<div class="label">The Six Parts</div><h2 class="title">One civilization's arc, told in six movements.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="parts-grid">
+<div class="pcard"><span class="roman">I</span><b>From Deserts to Superpowers</b><p>How a fractured seventh-century world — exhausted by empire, injustice, and superstition — gave rise to a message that would defeat Persia, confront Rome, and build one of history's greatest civilizations.</p></div>
+<div class="pcard"><span class="roman">II</span><b>Why Superpowers Collapse From Their Peaks</b><p>The internal story: how a civilization that once united power and knowledge began forgetting the legacy of its ancestors, fragmenting politically, and losing the intellectual leadership it had built.</p></div>
+<div class="pcard"><span class="roman">III</span><b>The Great Game</b><p>Empires give way to nation-states, a unipolar world gives way to a multipolar one, and new battlegrounds — banking, interest, media, and the creation of Israel — reshape the Muslim world's position on the board.</p></div>
+<div class="pcard"><span class="roman">IV</span><b>Hidden Powers</b><p>Secret societies, alleged networks of influence, and the dismantling of the Khilafats — examined with the discipline the book insists on throughout: evidence first, speculation clearly labeled.</p></div>
+<div class="pcard"><span class="roman">V</span><b>The Need of Khilafat</b><p>What Khilafat actually means in Islamic law and thought, why collective leadership and responsibility matter, and what a renewed Islamic order — including Pakistan's own question of revival — could look like.</p></div>
+<div class="pcard"><span class="roman">VI</span><b>Escape and Future</b><p>Qur'anic warnings for today, read against the present moment, closing with a conclusion aimed not at prediction, but at the principles that could guide genuine renewal.</p></div>
+</div>
+</div></section>
+
+<!-- ================= QURAN ================= -->
+<section id="quran"><div class="container">
+<div class="label">Qur'anic Wisdom</div><h2 class="title">Ancient guidance for recurring human patterns.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="quran-grid">
+
+<div class="verse"><div class="arabic">لَقَدْ كَانَ فِي قَصَصِهِمْ عِبْرَةٌ لِأُولِي الْأَلْبَابِ</div>
+<p>"Indeed, there has been for you in their stories a lesson for those of understanding."</p><span class="ref">Surah Yusuf 12:111</span></div>
+
+<div class="verse"><div class="arabic">اللَّهُ أَعْلَمُ حَيْثُ يَجْعَلُ رِسَالَتَهُ</div>
+<p>"Allah knows best where to place His message."</p><span class="ref">Surah Al-An'am 6:124</span></div>
+
+<div class="verse"><div class="arabic">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ</div>
+<p>"Indeed, Allah will not change the condition of a people until they change what is within themselves."</p><span class="ref">Surah Ar-Ra'd 13:11</span></div>
+
+<div class="verse"><div class="arabic">وَلَا تَكُونُوا كَالَّذِينَ تَفَرَّقُوا وَاخْتَلَفُوا مِن بَعْدِ مَا جَاءَهُمُ الْبَيِّنَاتُ</div>
+<p>"And do not be like those who became divided and differed after the clear proofs had come to them."</p><span class="ref">Surah Aal-i-Imran 3:105</span></div>
+
+<div class="verse"><div class="arabic">وَإِذَا أَرَدْنَا أَن نُّهْلِكَ قَرْيَةً أَمَرْنَا مُتْرَفِيهَا فَفَسَقُوا فِيهَا</div>
+<p>"And when We intend to destroy a city, We command its affluent people, but they defiantly disobey therein — so the word comes into effect and We destroy it completely."</p><span class="ref">Surah Al-Isra 17:16</span></div>
+
+<div class="verse"><div class="arabic">وَاصْبِرُوا ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ</div>
+<p>"And be patient. Indeed, Allah is with the patient."</p><span class="ref">Surah Al-Anfal 8:46</span></div>
+
+</div>
+</div></section>
+
+<!-- ================= DECLINE ================= -->
+<section id="decline" style="background:linear-gradient(180deg,transparent,#8a2f2f08,transparent)"><div class="container">
+<div class="label">The Pattern of Decline</div><h2 class="title">Two traps this book refuses to fall into.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="panel"><p class="text">History shows that powerful civilizations are rarely defeated from the outside until they have first weakened from within. Yet the Qur'an also directs attention to real, documentable forces — invasion, colonization, and geopolitical manipulation — that accelerated what internal fracture had already begun. This book holds both truths at once, refusing the two traps that make most accounts of Muslim decline incomplete.</p></div>
+<div class="trap-grid">
+<div class="trap"><h3>The Trap of Victimhood</h3><p>Colonialism, foreign intervention, and geopolitical manipulation undeniably shaped the modern world — but external forces alone cannot explain civilizational decline. Division, complacency, political fragmentation, and the gradual loss of intellectual leadership came first.</p></div>
+<div class="trap"><h3>The Trap of Conspiracy</h3><p>History certainly contains secret diplomacy, intelligence operations, and competing elite interests. But serious analysis requires evidence and intellectual discipline — this book distinguishes documented fact from reasonable analysis, and reasonable analysis from speculation.</p></div>
+</div>
+</div></section>
+
+<!-- ================= ECHOES / QUOTES ================= -->
+<section id="echoes"><div class="container">
+<div class="label">Echoes Through Time</div><h2 class="title">Voices the book is in conversation with.</h2>
+<div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227" opacity="0.7"/></svg><div class="ln" style="background:linear-gradient(90deg,transparent,var(--gold2))"></div></div>
+<div class="quote-strip">
+<div class="eq"><span class="mk">"</span><div><p>Dynasties, like living things, are born, mature, and inevitably decline — a civilization's decay begins long before its enemies ever arrive at the gate.</p><cite>Paraphrased from Ibn Khaldun, 14th-century historian &amp; father of the science of civilizational decline</cite></div></div>
+<div class="eq"><span class="mk">"</span><div><p>We are a people whom Allah has honored through Islam. Whenever we seek honor in anything else, Allah will humiliate us.</p><cite>Attributed to Umar ibn al-Khattab, second Caliph of Islam</cite></div></div>
+<div class="eq"><span class="mk">"</span><div><p>Power is a test. Wealth is a test. Victory is a test. Defeat is a test.</p><cite>From the Preface of this book</cite></div></div>
+</div>
+</div></section>
+
+<!-- ================= PURCHASE ================= -->
+<section id="buy"><div class="container purchase">
+<div class="label">Get the Book</div>
+<h2>Own the full 1400-year journey.</h2>
+<p>Available now through Amazon KDP. The paperback releases worldwide on September 1, 2026 — the e-book edition is coming soon.</p>
+
+<div class="release-grid">
+<div class="release"><b>Paperback</b><span>6 × 9 independently published edition</span><br><span class="tag soon">Releasing Sept 1, 2026</span></div>
+<div class="release"><b>Kindle E-Book</b><span>Full digital edition for Kindle &amp; app readers</span><br><span class="tag soon">Coming Soon</span></div>
+</div>
+
+<div class="buttons" style="justify-content:center">
+<a class="btn gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">View on Amazon ↗</a>
+<a class="btn outline" href="#toc">Read the Contents ↑</a>
+</div>
+</div></section>
+
+<footer><div class="container">
+<div class="footerbrand">THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS</div>
+<p>By Muhammad Rohaan Zahid &nbsp;•&nbsp; © 2026 &nbsp;•&nbsp; All rights reserved &nbsp;•&nbsp; Written in Pakistan</p>
+</div></footer>
+
+<script>
+// ---------- tiny particle field ----------
+(function(){
+  const c = document.getElementById('bgcanvas');
+  const ctx = c.getContext('2d');
+  let w,h,particles;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function resize(){ w=c.width=window.innerWidth; h=c.height=window.innerHeight; }
+  function init(){
+    resize();
+    const count = Math.min(70, Math.floor(w/22));
+    particles = Array.from({length:count},()=>({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*1.4+0.3,
+      s: Math.random()*0.35+0.08,
+      o: Math.random()*0.5+0.15,
+      d: Math.random()*0.6-0.3
+    }));
+  }
+  function tick(){
+    ctx.clearRect(0,0,w,h);
+    ctx.fillStyle = '#f0cf7a';
+    particles.forEach(p=>{
+      ctx.globalAlpha = p.o;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+      p.y -= p.s;
+      p.x += p.d*0.15;
+      if(p.y < -5){ p.y = h+5; p.x = Math.random()*w; }
+      if(p.x < -5) p.x = w+5;
+      if(p.x > w+5) p.x = -5;
+    });
+    ctx.globalAlpha = 1;
+    if(!reduced) requestAnimationFrame(tick);
+  }
+  window.addEventListener('resize', resize);
+  init();
+  tick();
+})();
+
+// ---------- 3D book reader (Updated to 6 Pages) ----------
+const readerPages = ['pg0','pg1','pg2','pg3','pg4','pg5'];
+const readerLabels = ['Cover','Title Page','Preface','TOC (Part I & II)','TOC (Part III & IV)','TOC (Part V & VI)'];
+let readerIndex = 0;
+function renderReader(){
+  readerPages.forEach((id,i)=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    if(i < readerIndex){ el.style.transform = 'rotateY(-165deg)'; el.style.zIndex = i; }
+    else { el.style.transform = 'rotateY(0deg)'; el.style.zIndex = readerPages.length - i; }
+  });
+  const status = document.getElementById('readerStatus');
+  if(status) status.textContent = readerLabels[readerIndex] + ' • ' + (readerIndex+1) + ' / ' + readerPages.length;
+}
+function flipPage(dir){
+  readerIndex = Math.max(0, Math.min(readerPages.length-1, readerIndex+dir));
+  renderReader();
+}
+renderReader();
+</script>
+</body>
+</html>
