@@ -61,7 +61,7 @@ a{color:inherit;text-decoration:none}
 .text+.text{margin-top:16px}
 .lead{font:400 1.15rem/1.8 var(--head);font-style:italic;color:#d8d9df}
 
-/* 1. CINEMATIC APPEARING BOOK TITLE ANIMATION */
+/* Cinematic Appearing Book Title Animation */
 .animated-title-box{margin:22px 0}
 .title-line-1{
   display:block;
@@ -104,7 +104,7 @@ a{color:inherit;text-decoration:none}
 .btn.outline{border-color:var(--panel-border);color:#eee;background:rgba(255,255,255,.03)}
 .btn.outline:hover{background:rgba(201,162,39,.12);border-color:var(--gold2)}
 
-/* 2. CIRCLE DESIGN WITH SECRET SOCIETY SYMBOLS ON STAR CORNERS */
+/* Astrolabe Geometric Circle with Secret Societies Sigils */
 .bookscene{display:flex;justify-content:center;align-items:center;position:relative;perspective:1600px;min-height:480px}
 .astro-portal{position:absolute;width:580px;height:580px;animation:spin 90s linear infinite;z-index:1;pointer-events:none}
 .sigil-label{font:700 7px var(--display);fill:#f0cf7a;letter-spacing:1px}
@@ -115,15 +115,16 @@ a{color:inherit;text-decoration:none}
 .hero-book-3d:before{content:"";position:absolute;left:-14px;top:4px;bottom:4px;width:14px;background:linear-gradient(90deg,#120c03,#684d19,#120c03);transform:skewY(-2deg);transform-origin:right;z-index:-1}
 .hero-book-3d:after{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,#241907,#876922,#1b1305);border-radius:4px 0 0 4px}
 
-/* LIVE COUNTDOWN TIMERS */
+/* Launch Cards: Countdown for Paperback, Coming Soon Badge for E-Book */
 .countdown-container{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:25px}
-.timer-card{background:linear-gradient(145deg,rgba(201,162,39,.08),rgba(0,0,0,.4));border:1px solid var(--panel-border);border-radius:14px;padding:22px;text-align:center}
+.timer-card{background:linear-gradient(145deg,rgba(201,162,39,.08),rgba(0,0,0,.4));border:1px solid var(--panel-border);border-radius:14px;padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
 .timer-card h4{font:700 .75rem var(--display);letter-spacing:2px;color:var(--gold2);margin-bottom:6px;text-transform:uppercase}
 .timer-card p{font-size:.75rem;color:var(--muted);margin-bottom:14px}
 .clock-digits{display:flex;justify-content:center;gap:10px}
 .clock-unit{background:rgba(0,0,0,.6);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:54px}
 .clock-unit .num{display:block;font:800 1.25rem var(--display);color:#fff}
 .clock-unit .lbl{display:block;font-size:.55rem;text-transform:uppercase;color:var(--gold2);letter-spacing:1px}
+.coming-soon-badge{display:inline-block;padding:10px 24px;border-radius:8px;background:rgba(201,162,39,.12);border:1px solid var(--line);color:var(--gold2);font:700 .82rem var(--display);letter-spacing:2.5px;text-transform:uppercase}
 
 /* Interactive Previewer */
 .preview-viewer{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;margin-top:20px}
@@ -199,6 +200,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
 <canvas id="bgcanvas"></canvas>
 <div class="grain"></div>
 
+<!-- NAVIGATION WITH TABS -->
 <nav class="nav">
   <div class="container navin">
     <a class="brand" href="javascript:void(0)" onclick="switchTab('tab-overview')">
@@ -217,11 +219,13 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </nav>
 
+<!-- ================= TAB 1: OVERVIEW ================= -->
 <main id="tab-overview" class="tab-content active container">
   <div class="hero-layout">
     <div>
       <span class="badge"><span class="dot"></span>Official Author Edition • Independently Published</span>
       
+      <!-- CINEMATIC APPEARING TITLE ANIMATION -->
       <div class="animated-title-box">
         <span class="title-line-1">THE GREAT GAME</span>
         <span class="title-line-2">&amp; The Echoes of 1400 Years</span>
@@ -235,29 +239,30 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
         <button class="btn outline" onclick="switchTab('tab-preview')">Examine Preview ↓</button>
       </div>
 
+      <!-- LAUNCH STATUS: LIVE COUNTDOWN FOR PAPERBACK & STATIC COMING SOON FOR E-BOOK -->
       <div class="countdown-container">
         <div class="timer-card">
-        <h4>Paperback Global Launch</h4>
-        <p>Releases worldwide on Sept 23, 2026</p>
+          <h4>Paperback Global Launch</h4>
+          <p>Releases worldwide on Sept 23, 2026</p>
           <div class="clock-digits" id="paperbackClock">
-          <div class="clock-unit"><span class="num" id="pDays">00</span><span class="lbl">Days</span></div>
-          <div class="clock-unit"><span class="num" id="pHours">00</span><span class="lbl">Hours</span></div>
-          <div class="clock-unit"><span class="num" id="pMins">00</span><span class="lbl">Mins</span></div>
-          <div class="clock-unit"><span class="num" id="pSecs">00</span><span class="lbl">Secs</span></div>
+            <div class="clock-unit"><span class="num" id="pDays">00</span><span class="lbl">Days</span></div>
+            <div class="clock-unit"><span class="num" id="pHours">00</span><span class="lbl">Hours</span></div>
+            <div class="clock-unit"><span class="num" id="pMins">00</span><span class="lbl">Mins</span></div>
+            <div class="clock-unit"><span class="num" id="pSecs">00</span><span class="lbl">Secs</span></div>
+          </div>
         </div>
-      </div>
 
-      <div class="timer-card">
-        <h4>Kindle E-Book Edition</h4>
-        <p>Full digital version for Kindle & e-readers</p>
-        <div style="margin-top: 10px;">
-          <span style="display:inline-block; padding: 10px 24px; border-radius: 8px; background: rgba(201,162,39,0.12); border: 1px solid var(--line); color: var(--gold2); font: 700 0.82rem var(--display); letter-spacing: 2.5px; text-transform: uppercase;">
-            Coming Soon
-          </span>
+        <div class="timer-card">
+          <h4>Kindle E-Book Edition</h4>
+          <p>Full digital version for Kindle &amp; e-readers</p>
+          <div>
+            <span class="coming-soon-badge">Coming Soon</span>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- ASTROLABE CIRCLE WITH SECRET SOCIETIES AT STAR CORNERS -->
     <div class="bookscene">
       <svg class="astro-portal" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
         <g fill="none" stroke="#c9a227" stroke-width="0.6" opacity="0.6">
@@ -270,21 +275,26 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
           <line x1="255" y1="45" x2="45" y2="255" stroke-width="0.4"/>
         </g>
 
+        <!-- Dynamic Star Polygon -->
         <polygon points="150,22 168,110 258,110 185,162 212,248 150,198 88,248 115,162 42,110 132,110" 
                  stroke="#f0cf7a" stroke-width="1" fill="rgba(201,162,39,0.02)"/>
 
+        <!-- SECRET SOCIETIES SYMBOLS AT THE STAR CORNERS & VERTICES -->
+        <!-- Corner 1: All-Seeing Eye (Top Apex) -->
         <g transform="translate(150,22)">
           <polygon points="0,-12 12,8 -12,8" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
           <circle cx="0" cy="0" r="2.5" fill="#f0cf7a"/>
           <text x="0" y="-16" text-anchor="middle" class="sigil-label">EYE OF PROVIDENCE</text>
         </g>
 
+        <!-- Corner 2: Masonic Square & Compasses (Top Right Star Point) -->
         <g transform="translate(258,110)">
           <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
           <path d="M-6,6 L0,-7 L6,6 M-6,-3 L6,-3" stroke="#f0cf7a" stroke-width="0.7"/>
           <text x="14" y="3" text-anchor="start" class="sigil-label">MASONIC LODGE</text>
         </g>
 
+        <!-- Corner 3: Skull & Crossbones / Order 322 (Bottom Right Star Point) -->
         <g transform="translate(212,248)">
           <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
           <path d="M-4,-4 L4,4 M-4,4 L4,-4" stroke="#f0cf7a" stroke-width="0.6"/>
@@ -292,18 +302,21 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
           <text x="14" y="3" text-anchor="start" class="sigil-label">SKULL &amp; BONES 322</text>
         </g>
 
+        <!-- Corner 4: Seal of Solomon / Hexagram (Bottom Inner Apex) -->
         <g transform="translate(150,198)">
           <polygon points="0,-7 6,4 -6,4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
           <polygon points="0,7 6,-4 -6,-4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
           <text x="0" y="16" text-anchor="middle" class="sigil-label">HEXAGRAM</text>
         </g>
 
+        <!-- Corner 5: The Illuminati Pyramid (Bottom Left Star Point) -->
         <g transform="translate(88,248)">
           <polygon points="0,-9 9,7 -9,7" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
           <line x1="-5" y1="-1" x2="5" y2="-1" stroke="#f0cf7a" stroke-width="0.6"/>
           <text x="-14" y="3" text-anchor="end" class="sigil-label">ILLUMINATI ORDER</text>
         </g>
 
+        <!-- Corner 6: Ouroboros / Central Bank Usury (Top Left Star Point) -->
         <g transform="translate(42,110)">
           <circle cx="0" cy="0" r="9" stroke="#f0cf7a" stroke-width="0.8" stroke-dasharray="2,2" fill="#040507"/>
           <circle cx="0" cy="0" r="3" fill="#f0cf7a"/>
@@ -325,6 +338,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </main>
 
+<!-- ================= TAB 2: AUTHOR NOTE ================= -->
 <section id="tab-author" class="tab-content container">
   <div class="label">Author's Desk</div>
   <h2 class="title">A voice from within the Ummah, refusing historical amnesia.</h2>
@@ -350,6 +364,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- ================= TAB 3: THE TWO TRAPS ================= -->
 <section id="tab-thesis" class="tab-content container">
   <div class="label">Diagnostic Philosophy</div>
   <h2 class="title">The Two Traps Every Book Falls Into — And How This Work Escapes Them.</h2>
@@ -381,6 +396,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- ================= TAB 4: QURANIC CORRECTION & MISSION ================= -->
 <section id="tab-quran" class="tab-content container">
   <div class="label">Divine Blueprint</div>
   <h2 class="title">The Qur'an as the Diagnostic Mirror: Correcting Society &amp; The Forgotten Mission.</h2>
@@ -421,6 +437,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- ================= TAB 5: THE GREAT GAME EXPLAINED ================= -->
 <section id="tab-greatgame" class="tab-content container">
   <div class="label">Geopolitical Deconstruction</div>
   <h2 class="title">What "The Great Game" Really Is &amp; Why This Work Was Needed.</h2>
@@ -448,6 +465,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- ================= TAB 6: INTERACTIVE 3D PREVIEW ================= -->
 <section id="tab-preview" class="tab-content container">
   <div class="label">Interactive Reader Experience</div>
   <h2 class="title">Inspect the opening pages &amp; structured volume summaries.</h2>
@@ -519,6 +537,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- ================= TAB 7: CONTENTS & BUY ================= -->
 <section id="tab-contents" class="tab-content container">
   <div class="label">Full Structure &amp; Distribution</div>
   <h2 class="title">Complete Table of Contents &amp; Acquisition Channels.</h2>
@@ -599,6 +618,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footerbrand">THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS</div>
@@ -606,6 +626,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   </div>
 </footer>
 
+<!-- SCRIPTS -->
 <script>
 // --- Tab Switcher Logic ---
 function switchTab(tabId){
@@ -657,7 +678,6 @@ function turnReaderPage(delta){
 }
 updateReader();
 
-// --- Live Countdown Timers Engine ---
 // --- Live Countdown Timer for Paperback Only ---
 const paperbackDate = new Date('September 23, 2026 00:00:00').getTime();
 
@@ -675,8 +695,6 @@ function updateTimers() {
   }
 }
 
-setInterval(updateTimers, 1000);
-updateTimers();
 setInterval(updateTimers, 1000);
 updateTimers();
 
