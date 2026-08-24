@@ -8,6 +8,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 <style>
 :root{
   --bg:#040507; --bg2:#090d14; --panel:rgba(12,16,24,.85); --panel-border:rgba(201,162,39,.22);
@@ -27,7 +31,7 @@ a{color:inherit;text-decoration:none}
 .grain{position:fixed;inset:0;z-index:-9;opacity:.035;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* Navigation & Tabs Header (Fixed spacing so tabs never get cut off) */
+/* Navigation Header */
 .nav{position:fixed;z-index:1000;left:0;right:0;top:0;background:rgba(4,5,7,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,162,39,.2)}
 .navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{color:var(--gold2);font:800 .85rem var(--display);letter-spacing:2px;white-space:nowrap;display:flex;align-items:center;gap:8px;flex-shrink:0}
@@ -39,7 +43,7 @@ a{color:inherit;text-decoration:none}
 .tab-btn.active{color:#07080b;background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:var(--gold2);font-weight:700;box-shadow:0 0 14px rgba(201,162,39,.3)}
 .menu-btn{display:none;background:none;border:0;color:var(--gold2);font-size:1.4rem;cursor:pointer;flex-shrink:0}
 
-/* Tab Switcher Logic */
+/* Tab Content Visibility */
 .tab-content{display:none;padding:110px 0 70px;animation:fadeSlide .45s cubic-bezier(.16,1,.3,1) forwards}
 .tab-content.active{display:block}
 @keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
@@ -91,7 +95,7 @@ a{color:inherit;text-decoration:none}
 @keyframes appearTitle{to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
 @keyframes appearSubtitle{to{opacity:1;transform:translateY(0);filter:blur(0)}}
 
-/* Hero Layout */
+/* Hero Section */
 .hero-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center}
 .buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:8px;font:700 .78rem var(--display);letter-spacing:1px;transition:.3s;border:1px solid transparent;cursor:pointer}
@@ -216,7 +220,7 @@ a{color:inherit;text-decoration:none}
 footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,39,.15);color:var(--muted);font-size:.7rem}
 .footerbrand{font:700 .9rem var(--display);color:var(--gold2);letter-spacing:2px;margin-bottom:10px}
 
-/* Responsive adjustments */
+/* Responsive Rules */
 @media(max-width:1080px){
   .tabs{gap:2px}
   .tab-btn{padding:6px 8px;font-size:.64rem}
@@ -654,21 +658,21 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
     <div>
       <div class="panel summary-card">
         <div class="score-display">
-          <span class="big-score" id="avgScoreDisplay">4.9</span>
+          <span class="big-score" id="avgScoreDisplay">5.0</span>
           <div class="stars-gold" id="avgStarsHeader">★★★★★</div>
-          <p class="score-sub"><span id="totalReviewsCount">3</span> Verified Ratings</p>
+          <p class="score-sub"><span id="totalReviewsCount">0</span> Verified Ratings</p>
         </div>
 
         <div class="breakdown-bars">
           <div class="bar-row">
             <span>5 ★</span>
-            <div class="progress-track"><div class="progress-fill" id="bar5" style="width: 85%"></div></div>
-            <span class="bar-count" id="count5">85%</span>
+            <div class="progress-track"><div class="progress-fill" id="bar5" style="width: 0%"></div></div>
+            <span class="bar-count" id="count5">0%</span>
           </div>
           <div class="bar-row">
             <span>4 ★</span>
-            <div class="progress-track"><div class="progress-fill" id="bar4" style="width: 15%"></div></div>
-            <span class="bar-count" id="count4">15%</span>
+            <div class="progress-track"><div class="progress-fill" id="bar4" style="width: 0%"></div></div>
+            <span class="bar-count" id="count4">0%</span>
           </div>
           <div class="bar-row">
             <span>3 ★</span>
@@ -702,7 +706,7 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
               <span class="star-btn" data-val="4">★</span>
               <span class="star-btn" data-val="5">★</span>
             </div>
-            <span class="rating-text" id="ratingText">Select stars</span>
+            <span class="rating-text" id="ratingText">5/5 - Masterpiece</span>
           </div>
 
           <div class="input-field">
@@ -715,7 +719,7 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
             <textarea id="reviewerComment" rows="4" placeholder="Write your reflection, critique, or inquiry on the manuscript..." required></textarea>
           </div>
 
-          <button type="submit" class="btn gold" style="width:100%">Post Reflection ↗</button>
+          <button type="submit" id="submitReviewBtn" class="btn gold" style="width:100%">Post Reflection ↗</button>
         </form>
       </div>
     </div>
@@ -732,45 +736,68 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
 </footer>
 
 <script>
-// --- Tab Switcher Logic ---
+// --- 1. Firebase Initialization (Compat Mode) ---
+var firebaseConfig = {
+  apiKey: "AIzaSyBxDqv7hE4LOoPF32agDN-sdlZ-pAPDCJ4",
+  authDomain: "book-review-handler.firebaseapp.com",
+  projectId: "book-review-handler",
+  storageBucket: "book-review-handler.firebasestorage.app",
+  messagingSenderId: "570886462510",
+  appId: "1:570886462510:web:295a2943c37660f1a453bf",
+  measurementId: "G-85YKPG4T4Y"
+};
+
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+var reviewsCollection = db.collection("reviews");
+
+// --- 2. Tab Switcher Logic ---
 function switchTab(tabId){
-  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  var tabs = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
   
-  const target = document.getElementById(tabId);
+  var btns = document.querySelectorAll('.tab-btn');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('active');
+  }
+  
+  var target = document.getElementById(tabId);
   if(target){
     target.classList.add('active');
     window.scrollTo({top:0, behavior:'smooth'});
   }
 
-  const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => {
-    const attr = b.getAttribute('onclick');
-    return attr && attr.includes(tabId);
-  });
-  if(activeBtn) activeBtn.classList.add('active');
+  for (var k = 0; k < btns.length; k++) {
+    var attr = btns[k].getAttribute('onclick');
+    if(attr && attr.indexOf(tabId) !== -1){
+      btns[k].classList.add('active');
+    }
+  }
 
-  const menu = document.querySelector('.tabs');
+  var menu = document.querySelector('.tabs');
   if(menu) menu.classList.remove('open');
 }
 
-// --- 3D Interactive Preview Engine ---
-const previewPages = ['p0','p1','p2','p3','p4','p5'];
-const previewTitles = ['Cover','Title Page','Preface','Parts I & II','Parts III & IV','Parts V & VI'];
-let activePageIndex = 0;
+// --- 3. 3D Interactive Preview Engine ---
+var previewPages = ['p0','p1','p2','p3','p4','p5'];
+var previewTitles = ['Cover','Title Page','Preface','Parts I & II','Parts III & IV','Parts V & VI'];
+var activePageIndex = 0;
 
 function updateReader(){
-  previewPages.forEach((id, idx) => {
-    const pageEl = document.getElementById(id);
-    if(!pageEl) return;
-    if(idx < activePageIndex){
+  for(var i = 0; i < previewPages.length; i++){
+    var pageEl = document.getElementById(previewPages[i]);
+    if(!pageEl) continue;
+    if(i < activePageIndex){
       pageEl.style.transform = 'rotateY(-165deg)';
-      pageEl.style.zIndex = idx;
+      pageEl.style.zIndex = i;
     } else {
       pageEl.style.transform = 'rotateY(0deg)';
-      pageEl.style.zIndex = previewPages.length - idx;
+      pageEl.style.zIndex = previewPages.length - i;
     }
-  });
-  const indicator = document.getElementById('pageIndicator');
+  }
+  var indicator = document.getElementById('pageIndicator');
   if(indicator){
     indicator.textContent = previewTitles[activePageIndex].toUpperCase() + ' • ' + (activePageIndex+1) + ' / ' + previewPages.length;
   }
@@ -782,269 +809,180 @@ function turnReaderPage(delta){
 }
 updateReader();
 
-// --- Live Countdown Timer for Paperback ---
-const paperbackDate = new Date('September 23, 2026 00:00:00').getTime();
+// --- 4. Live Countdown Timer for Paperback ---
+var paperbackDate = new Date('September 23, 2026 00:00:00').getTime();
 
 function updateTimers() {
-  const now = new Date().getTime();
-  const diffP = paperbackDate - now;
+  var now = new Date().getTime();
+  var diffP = paperbackDate - now;
 
   if (diffP > 0) {
-    document.getElementById('pDays').innerText = String(Math.floor(diffP / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    document.getElementById('pHours').innerText = String(Math.floor((diffP % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    document.getElementById('pMins').innerText = String(Math.floor((diffP % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    document.getElementById('pSecs').innerText = String(Math.floor((diffP % (1000 * 60)) / 1000)).padStart(2, '0');
+    var d = document.getElementById('pDays');
+    var h = document.getElementById('pHours');
+    var m = document.getElementById('pMins');
+    var s = document.getElementById('pSecs');
+    if (d) d.innerText = String(Math.floor(diffP / (1000 * 60 * 60 * 24))).padStart(2, '0');
+    if (h) h.innerText = String(Math.floor((diffP % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+    if (m) m.innerText = String(Math.floor((diffP % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+    if (s) s.innerText = String(Math.floor((diffP % (1000 * 60)) / 1000)).padStart(2, '0');
   } else {
-    document.getElementById('paperbackClock').innerHTML = '<span style="color:var(--gold2);font-weight:700;letter-spacing:1px">NOW AVAILABLE WORLDWIDE</span>';
+    var clock = document.getElementById('paperbackClock');
+    if (clock) clock.innerHTML = '<span style="color:var(--gold2);font-weight:700;letter-spacing:1px">NOW AVAILABLE WORLDWIDE</span>';
   }
 }
 setInterval(updateTimers, 1000);
 updateTimers();
 
-<!-- Load Firebase SDK Modules -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } 
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// --- 5. Star Rating Selector ---
+var selectedRating = 5;
 
-  // 1. Paste YOUR actual Firebase config values from Step 2:
-  <!-- COMPLETE SCRIPT ENGINE (FIREBASE + TABS + PREVIEW + TIMERS) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } 
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+function initStarPicker() {
+  var stars = document.querySelectorAll('.star-btn');
+  var ratingText = document.getElementById('ratingText');
+  var labels = ["1/5 - Needs Work", "2/5 - Fair", "3/5 - Good", "4/5 - Excellent", "5/5 - Masterpiece"];
 
-  // --- 1. Your Firebase Configuration ---
-  const firebaseConfig = {
-    apiKey: "AIzaSyBxDqv7hE4LOoPF32agDN-sdlZ-pAPDCJ4",
-    authDomain: "book-review-handler.firebaseapp.com",
-    projectId: "book-review-handler",
-    storageBucket: "book-review-handler.firebasestorage.app",
-    messagingSenderId: "570886462510",
-    appId: "1:570886462510:web:295a2943c37660f1a453bf",
-    measurementId: "G-85YKPG4T4Y"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const reviewsCollection = collection(db, "reviews");
-
-  // --- 2. Global Tab Switcher (Attached to Window) ---
-  window.switchTab = function(tabId) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    
-    const target = document.getElementById(tabId);
-    if(target) {
-      target.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => {
-      const attr = b.getAttribute('onclick');
-      return attr && attr.includes(tabId);
-    });
-    if(activeBtn) activeBtn.classList.add('active');
-
-    const menu = document.querySelector('.tabs');
-    if(menu) menu.classList.remove('open');
-  };
-
-  // --- 3. 3D Preview Engine (Attached to Window) ---
-  const previewPages = ['p0', 'p1', 'p2', 'p3', 'p4', 'p5'];
-  const previewTitles = ['Cover', 'Title Page', 'Preface', 'Parts I & II', 'Parts III & IV', 'Parts V & VI'];
-  let activePageIndex = 0;
-
-  function updateReader() {
-    previewPages.forEach((id, idx) => {
-      const pageEl = document.getElementById(id);
-      if(!pageEl) return;
-      if(idx < activePageIndex) {
-        pageEl.style.transform = 'rotateY(-165deg)';
-        pageEl.style.zIndex = idx;
-      } else {
-        pageEl.style.transform = 'rotateY(0deg)';
-        pageEl.style.zIndex = previewPages.length - idx;
-      }
-    });
-    const indicator = document.getElementById('pageIndicator');
-    if(indicator) {
-      indicator.textContent = previewTitles[activePageIndex].toUpperCase() + ' • ' + (activePageIndex + 1) + ' / ' + previewPages.length;
-    }
-  }
-
-  window.turnReaderPage = function(delta) {
-    activePageIndex = Math.max(0, Math.min(previewPages.length - 1, activePageIndex + delta));
-    updateReader();
-  };
-  updateReader();
-
-  // --- 4. Live Countdown Timer for Paperback ---
-  const paperbackDate = new Date('September 23, 2026 00:00:00').getTime();
-  function updateTimers() {
-    const now = new Date().getTime();
-    const diffP = paperbackDate - now;
-
-    if (diffP > 0) {
-      const d = document.getElementById('pDays');
-      const h = document.getElementById('pHours');
-      const m = document.getElementById('pMins');
-      const s = document.getElementById('pSecs');
-      if (d) d.innerText = String(Math.floor(diffP / (1000 * 60 * 60 * 24))).padStart(2, '0');
-      if (h) h.innerText = String(Math.floor((diffP % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      if (m) m.innerText = String(Math.floor((diffP % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      if (s) s.innerText = String(Math.floor((diffP % (1000 * 60)) / 1000)).padStart(2, '0');
-    } else {
-      const clock = document.getElementById('paperbackClock');
-      if (clock) clock.innerHTML = '<span style="color:var(--gold2);font-weight:700;letter-spacing:1px">NOW AVAILABLE WORLDWIDE</span>';
-    }
-  }
-  setInterval(updateTimers, 1000);
-  updateTimers();
-
-  // --- 5. Star Rating Selector ---
-  let selectedRating = 5;
-
-  function initStarPicker() {
-    const stars = document.querySelectorAll('.star-btn');
-    const ratingText = document.getElementById('ratingText');
-    const labels = ["1/5 - Needs Work", "2/5 - Fair", "3/5 - Good", "4/5 - Excellent", "5/5 - Masterpiece"];
-
-    stars.forEach(star => {
-      star.addEventListener('mouseenter', () => {
-        const val = parseInt(star.dataset.val);
-        highlightStars(val);
-        if (ratingText) ratingText.innerText = labels[val - 1];
-      });
-
-      star.addEventListener('mouseleave', () => {
-        highlightStars(selectedRating);
-        if (ratingText) ratingText.innerText = labels[selectedRating - 1];
-      });
-
-      star.addEventListener('click', () => {
-        selectedRating = parseInt(star.dataset.val);
-        highlightStars(selectedRating);
-      });
+  stars.forEach(function(star) {
+    star.addEventListener('mouseenter', function() {
+      var val = parseInt(star.dataset.val);
+      highlightStars(val);
+      if(ratingText) ratingText.innerText = labels[val - 1];
     });
 
-    highlightStars(5);
-    if (ratingText) ratingText.innerText = labels[4];
-  }
-
-  function highlightStars(count) {
-    const stars = document.querySelectorAll('.star-btn');
-    stars.forEach(s => {
-      const val = parseInt(s.dataset.val);
-      s.classList.toggle('selected', val <= count);
-    });
-  }
-
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.innerText = text;
-    return div.innerHTML;
-  }
-
-  // --- 6. Real-Time Firebase Listener ---
-  const q = query(reviewsCollection, orderBy("timestamp", "desc"));
-  onSnapshot(q, (snapshot) => {
-    const feed = document.getElementById('reviewsFeed');
-    if (!feed) return;
-    feed.innerHTML = '';
-
-    let totalScore = 0;
-    const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-    let total = 0;
-
-    snapshot.forEach((doc) => {
-      const rev = doc.data();
-      total++;
-      totalScore += rev.rating;
-      counts[rev.rating] = (counts[rev.rating] || 0) + 1;
-
-      const starsStr = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
-      const card = document.createElement('div');
-      card.className = 'review-item';
-      card.innerHTML = `
-        <div class="review-header">
-          <div class="reviewer-title">
-            <b>${escapeHtml(rev.name)}</b>
-            ${rev.role ? `<span>• ${escapeHtml(rev.role)}</span>` : ''}
-          </div>
-          <span class="review-date">${rev.dateString || 'Recent'}</span>
-        </div>
-        <div class="review-stars">${starsStr}</div>
-        <p class="review-body">"${escapeHtml(rev.comment)}"</p>
-        <div class="review-footer">
-          <span style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Verified Endorsement</span>
-          <button class="helpful-btn" onclick="this.innerText='✓ Helpful (1)'">Helpful</button>
-        </div>
-      `;
-      feed.appendChild(card);
+    star.addEventListener('mouseleave', function() {
+      highlightStars(selectedRating);
+      if(ratingText) ratingText.innerText = labels[selectedRating - 1];
     });
 
-    const avg = total > 0 ? (totalScore / total).toFixed(1) : "5.0";
-    const scoreEl = document.getElementById('avgScoreDisplay');
-    const countEl = document.getElementById('totalReviewsCount');
-    if (scoreEl) scoreEl.innerText = avg;
-    if (countEl) countEl.innerText = total;
-
-    for (let i = 1; i <= 5; i++) {
-      const pct = total > 0 ? Math.round((counts[i] / total) * 100) : 0;
-      const bar = document.getElementById('bar' + i);
-      const label = document.getElementById('count' + i);
-      if (bar) bar.style.width = pct + '%';
-      if (label) label.innerText = pct + '%';
-    }
+    star.addEventListener('click', function() {
+      selectedRating = parseInt(star.dataset.val);
+      highlightStars(selectedRating);
+    });
   });
 
-  // --- 7. Review Form Submission ---
-  window.handleReviewSubmit = async function(e) {
-    e.preventDefault();
-    const nameInput = document.getElementById('reviewerName');
-    const roleInput = document.getElementById('reviewerRole');
-    const commentInput = document.getElementById('reviewerComment');
+  highlightStars(5);
+}
 
-    const name = nameInput.value.trim();
-    const role = roleInput.value.trim();
-    const comment = commentInput.value.trim();
+function highlightStars(count) {
+  var stars = document.querySelectorAll('.star-btn');
+  stars.forEach(function(s) {
+    var val = parseInt(s.dataset.val);
+    s.classList.toggle('selected', val <= count);
+  });
+}
 
-    if (!name || !comment) return;
+function escapeHtml(text) {
+  var div = document.createElement('div');
+  div.innerText = text;
+  return div.innerHTML;
+}
 
-    const date = new Date();
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const dateStr = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+// --- 6. Live Firestore Listener (Real-Time Across All Devices) ---
+reviewsCollection.orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
+  var feed = document.getElementById('reviewsFeed');
+  if (!feed) return;
+  feed.innerHTML = '';
 
-    try {
-      await addDoc(reviewsCollection, {
-        name: name,
-        role: role || "Reader",
-        rating: selectedRating,
-        comment: comment,
-        dateString: dateStr,
-        timestamp: serverTimestamp()
-      });
+  var totalScore = 0;
+  var counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+  var total = 0;
 
-      document.getElementById('reviewForm').reset();
-      highlightStars(5);
-      selectedRating = 5;
-    } catch (err) {
-      console.error("Error submitting review:", err);
-      alert("Failed to submit review. Verify your internet connection or Firestore rules.");
+  snapshot.forEach(function(doc) {
+    var rev = doc.data();
+    total++;
+    totalScore += (rev.rating || 5);
+    if(counts[rev.rating]) {
+      counts[rev.rating]++;
+    } else {
+      counts[rev.rating] = 1;
     }
-  };
 
-  initStarPicker();
-</script>
+    var r = rev.rating || 5;
+    var starsStr = '★'.repeat(r) + '☆'.repeat(5 - r);
+    var card = document.createElement('div');
+    card.className = 'review-item';
+    card.innerHTML = 
+      '<div class="review-header">' +
+        '<div class="reviewer-title">' +
+          '<b>' + escapeHtml(rev.name || 'Anonymous') + '</b>' +
+          (rev.role ? '<span>• ' + escapeHtml(rev.role) + '</span>' : '') +
+        '</div>' +
+        '<span class="review-date">' + (rev.dateString || 'Recent') + '</span>' +
+      '</div>' +
+      '<div class="review-stars">' + starsStr + '</div>' +
+      '<p class="review-body">"' + escapeHtml(rev.comment || '') + '"</p>' +
+      '<div class="review-footer">' +
+        '<span style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Verified Endorsement</span>' +
+        '<button class="helpful-btn" onclick="this.innerText=\'✓ Helpful (1)\'">Helpful</button>' +
+      '</div>';
+    feed.appendChild(card);
+  });
 
-<!-- Ambient Canvas Background -->
-<script>
+  // Calculate Metrics
+  var avg = total > 0 ? (totalScore / total).toFixed(1) : "5.0";
+  var scoreEl = document.getElementById('avgScoreDisplay');
+  var countEl = document.getElementById('totalReviewsCount');
+  if (scoreEl) scoreEl.innerText = avg;
+  if (countEl) countEl.innerText = total;
+
+  for (var i = 1; i <= 5; i++) {
+    var pct = total > 0 ? Math.round(((counts[i] || 0) / total) * 100) : 0;
+    var bar = document.getElementById('bar' + i);
+    var label = document.getElementById('count' + i);
+    if (bar) bar.style.width = pct + '%';
+    if (label) label.innerText = pct + '%';
+  }
+}, function(error) {
+  console.error("Firestore error:", error);
+});
+
+// --- 7. Submit Review to Firebase ---
+function handleReviewSubmit(e) {
+  e.preventDefault();
+  var nameInput = document.getElementById('reviewerName');
+  var roleInput = document.getElementById('reviewerRole');
+  var commentInput = document.getElementById('reviewerComment');
+  var btn = document.getElementById('submitReviewBtn');
+
+  var name = nameInput.value.trim();
+  var role = roleInput.value.trim();
+  var comment = commentInput.value.trim();
+
+  if (!name || !comment) return;
+
+  var date = new Date();
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var dateStr = monthNames[date.getMonth()] + " " + date.getFullYear();
+
+  btn.disabled = true;
+  btn.innerText = "Publishing...";
+
+  reviewsCollection.add({
+    name: name,
+    role: role || "Reader",
+    rating: selectedRating,
+    comment: comment,
+    dateString: dateStr,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function() {
+    document.getElementById('reviewForm').reset();
+    highlightStars(5);
+    selectedRating = 5;
+    btn.disabled = false;
+    btn.innerText = "Post Reflection ↗";
+  }).catch(function(err) {
+    console.error("Error writing document: ", err);
+    alert("Could not post review. Ensure your Firestore rules allow write access.");
+    btn.disabled = false;
+    btn.innerText = "Post Reflection ↗";
+  });
+}
+
+// --- 8. Ambient Background Canvas Particles ---
 (function(){
-  const canvas = document.getElementById('bgcanvas');
+  var canvas = document.getElementById('bgcanvas');
   if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, particles;
+  var ctx = canvas.getContext('2d');
+  var w, h, particles;
 
   function resize(){
     w = canvas.width = window.innerWidth;
@@ -1053,21 +991,23 @@ updateTimers();
 
   function init(){
     resize();
-    const count = Math.min(60, Math.floor(w/24));
-    particles = Array.from({length:count}, () => ({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      r: Math.random()*1.3 + 0.3,
-      speed: Math.random()*0.3 + 0.08,
-      alpha: Math.random()*0.5 + 0.1,
-      drift: Math.random()*0.4 - 0.2
-    }));
+    var count = Math.min(60, Math.floor(w/24));
+    particles = Array.from({length:count}, function() {
+      return {
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.3 + 0.3,
+        speed: Math.random()*0.3 + 0.08,
+        alpha: Math.random()*0.5 + 0.1,
+        drift: Math.random()*0.4 - 0.2
+      };
+    });
   }
 
   function render(){
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = '#f0cf7a';
-    particles.forEach(p => {
+    particles.forEach(function(p) {
       ctx.globalAlpha = p.alpha;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
@@ -1087,57 +1027,8 @@ updateTimers();
   render();
 })();
 
-// --- Ambient Canvas Particles ---
-(function(){
-  const canvas = document.getElementById('bgcanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h, particles;
-
-  function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-
-  function init(){
-    resize();
-    const count = Math.min(60, Math.floor(w/24));
-    particles = Array.from({length:count}, () => ({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      r: Math.random()*1.3 + 0.3,
-      speed: Math.random()*0.3 + 0.08,
-      alpha: Math.random()*0.5 + 0.1,
-      drift: Math.random()*0.4 - 0.2
-    }));
-  }
-
-  function render(){
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#f0cf7a';
-    particles.forEach(p => {
-      ctx.globalAlpha = p.alpha;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-      p.y -= p.speed;
-      p.x += p.drift * 0.15;
-      if(p.y < -5){ p.y = h + 5; p.x = Math.random()*w; }
-      if(p.x < -5) p.x = w + 5;
-      if(p.x > w + 5) p.x = -5;
-    });
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(render);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  render();
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   initStarPicker();
-  renderReviewsFeed();
 });
 </script>
 </body>
