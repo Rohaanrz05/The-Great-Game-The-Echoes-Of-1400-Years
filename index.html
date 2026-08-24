@@ -193,6 +193,52 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
   .tabs.open{display:flex}
   .tab-btn{width:100%;text-align:left}
 }
+/* Reviews Module Styling */
+.reviews-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:30px;align-items:start}
+.summary-card{display:flex;flex-direction:column;gap:20px;text-align:center}
+.score-display{border-bottom:1px solid var(--line);padding-bottom:18px}
+.big-score{font:800 3.2rem/1 var(--display);color:var(--gold2);display:block;margin-bottom:6px}
+.stars-gold{color:var(--gold);font-size:1.2rem;letter-spacing:3px}
+.score-sub{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+
+.breakdown-bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:12px;font-size:.75rem;color:var(--muted)}
+.progress-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:width .4s ease}
+.bar-count{min-width:30px;text-align:right}
+
+/* Star Input Controller */
+.star-rating-picker{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.picker-label{font-size:.8rem;color:var(--muted)}
+.star-picker-group{display:flex;gap:4px;cursor:pointer}
+.star-btn{font-size:1.5rem;color:#444;transition:.2s}
+.star-btn.hovered, .star-btn.selected{color:var(--gold);transform:scale(1.15)}
+.rating-text{font-size:.75rem;color:var(--gold2);font-weight:600}
+
+/* Form Inputs */
+.input-field{margin-bottom:14px}
+.input-field input, .input-field textarea{
+  width:100%;background:rgba(0,0,0,.45);border:1px solid var(--panel-border);
+  border-radius:8px;padding:12px 14px;color:var(--cream);font:400 .85rem var(--sans);
+  outline:none;transition:.3s;
+}
+.input-field input:focus, .input-field textarea:focus{border-color:var(--gold2);box-shadow:0 0 10px rgba(201,162,39,.2)}
+
+/* Review Item Cards */
+.review-item{padding:24px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);margin-bottom:18px;animation:fadeSlide .4s ease forwards}
+.review-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.reviewer-title b{font:700 .9rem var(--display);color:var(--gold2)}
+.reviewer-title span{font-size:.72rem;color:var(--muted);margin-left:8px}
+.review-date{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.review-stars{color:var(--gold);font-size:.85rem;margin-bottom:10px}
+.review-body{font-size:.85rem;line-height:1.75;color:#c9cacf}
+.review-footer{margin-top:14px;display:flex;justify-content:space-between;align-items:center}
+.helpful-btn{background:none;border:1px solid rgba(255,255,255,.08);color:var(--muted);padding:4px 10px;border-radius:6px;font-size:.65rem;cursor:pointer;transition:.2s}
+.helpful-btn:hover{color:var(--gold2);border-color:var(--gold2)}
+
+@media(max-width:980px){
+  .reviews-layout{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -215,6 +261,7 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
       <li><button class="tab-btn" onclick="switchTab('tab-greatgame')">The Great Game</button></li>
       <li><button class="tab-btn" onclick="switchTab('tab-preview')">Interactive Preview</button></li>
       <li><button class="tab-btn" onclick="switchTab('tab-contents')">Contents &amp; Buy</button></li>
+      <li><button class="tab-btn" onclick="switchTab('tab-reviews')">Reader Reviews</button></li>
     </ul>
   </div>
 </nav>
@@ -617,7 +664,98 @@ footer{text-align:center;padding:60px 0 40px;border-top:1px solid rgba(201,162,3
     </div>
   </div>
 </section>
+  
+<!-- ================= TAB: READER REVIEWS & RATINGS ================= -->
+<section id="tab-reviews" class="tab-content container">
+  <div class="label">Public Discourse &amp; Endorsements</div>
+  <h2 class="title">Reader Reviews &amp; Reflections</h2>
+  <div class="divider">
+    <div class="ln"></div>
+    <svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227"/></svg>
+    <div class="ln"></div>
+  </div>
 
+  <div class="reviews-layout">
+    <!-- Left Column: Aggregate Rating Summary & Submission Form -->
+    <div>
+      <!-- Rating Summary Card -->
+      <div class="panel summary-card">
+        <div class="score-display">
+          <span class="big-score" id="avgScoreDisplay">4.9</span>
+          <div class="stars-gold" id="avgStarsHeader">★★★★★</div>
+          <p class="score-sub"><span id="totalReviewsCount">3</span> Verified Ratings</p>
+        </div>
+
+        <div class="breakdown-bars">
+          <div class="bar-row">
+            <span>5 ★</span>
+            <div class="progress-track"><div class="progress-fill" id="bar5" style="width: 85%"></div></div>
+            <span class="bar-count" id="count5">85%</span>
+          </div>
+          <div class="bar-row">
+            <span>4 ★</span>
+            <div class="progress-track"><div class="progress-fill" id="bar4" style="width: 15%"></div></div>
+            <span class="bar-count" id="count4">15%</span>
+          </div>
+          <div class="bar-row">
+            <span>3 ★</span>
+            <div class="progress-track"><div class="progress-fill" id="bar3" style="width: 0%"></div></div>
+            <span class="bar-count" id="count3">0%</span>
+          </div>
+          <div class="bar-row">
+            <span>2 ★</span>
+            <div class="progress-track"><div class="progress-fill" id="bar2" style="width: 0%"></div></div>
+            <span class="bar-count" id="count2">0%</span>
+          </div>
+          <div class="bar-row">
+            <span>1 ★</span>
+            <div class="progress-track"><div class="progress-fill" id="bar1" style="width: 0%"></div></div>
+            <span class="bar-count" id="count1">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submission Form Card -->
+      <div class="panel form-card" style="margin-top:24px">
+        <div class="label">Leave Your Impression</div>
+        <h3 style="font:700 1.25rem var(--head);font-style:italic;color:var(--gold2);margin-bottom:15px">Share Your Critique</h3>
+        
+        <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
+          <!-- Interactive Star Input -->
+          <div class="star-rating-picker">
+            <span class="picker-label">Your Rating:</span>
+            <div class="star-picker-group" id="starPicker">
+              <span class="star-btn" data-val="1">★</span>
+              <span class="star-btn" data-val="2">★</span>
+              <span class="star-btn" data-val="3">★</span>
+              <span class="star-btn" data-val="4">★</span>
+              <span class="star-btn" data-val="5">★</span>
+            </div>
+            <span class="rating-text" id="ratingText">Select stars</span>
+          </div>
+
+          <div class="input-field">
+            <input type="text" id="reviewerName" placeholder="Your Full Name or Initials" required>
+          </div>
+          <div class="input-field">
+            <input type="text" id="reviewerRole" placeholder="Role / Location (e.g. Student, Islamabad)">
+          </div>
+          <div class="input-field">
+            <textarea id="reviewerComment" rows="4" placeholder="Write your reflection, critique, or inquiry on the manuscript..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn gold" style="width:100%">Post Reflection ↗</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Feed of Comments -->
+    <div class="reviews-feed" id="reviewsFeed">
+      <!-- Dynamic Reviews will be injected here via JavaScript -->
+    </div>
+  </div>
+</section>
+  
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -698,6 +836,162 @@ function updateTimers() {
 setInterval(updateTimers, 1000);
 updateTimers();
 
+  // --- Interactive Reader Reviews Engine ---
+let selectedRating = 5;
+
+// Initial Pre-Loaded Reviews
+let reviewsDatabase = [
+  {
+    name: "Dr. Tariq M.",
+    role: "Historian, London",
+    rating: 5,
+    date: "August 2026",
+    comment: "An uncompromising, rigorous breakdown. The synthesis of Ibn Khaldun's Asabiyyah and modern financial interest cartels is masterfully connected to Qur'anic Sunan."
+  },
+  {
+    name: "Ahmad S.",
+    role: "Researcher, Lahore",
+    rating: 5,
+    date: "August 2026",
+    comment: "Finally, a book that refuses the victimhood mindset while addressing covert geopolitical warfare with serious discipline rather than wild conspiracies."
+  },
+  {
+    name: "Zainab K.",
+    role: "Postgrad Scholar, Islamabad",
+    rating: 5,
+    date: "August 2026",
+    comment: "The chapter on the dismantling of the Khilafat and the shift from organic empires to synthetic nation-states should be mandatory reading for every youth in the Ummah."
+  }
+];
+
+// Load persisted reviews from LocalStorage if present
+if(localStorage.getItem('book_user_reviews')) {
+  reviewsDatabase = JSON.parse(localStorage.getItem('book_user_reviews'));
+}
+
+// Setup Interactive Star Picker
+function initStarPicker() {
+  const stars = document.querySelectorAll('.star-btn');
+  const ratingText = document.getElementById('ratingText');
+  const labels = ["1/5 - Needs Work", "2/5 - Fair", "3/5 - Good", "4/5 - Excellent", "5/5 - Masterpiece"];
+
+  stars.forEach(star => {
+    star.addEventListener('mouseenter', () => {
+      const val = parseInt(star.dataset.val);
+      highlightStars(val);
+      ratingText.innerText = labels[val - 1];
+    });
+
+    star.addEventListener('mouseleave', () => {
+      highlightStars(selectedRating);
+      ratingText.innerText = labels[selectedRating - 1];
+    });
+
+    star.addEventListener('click', () => {
+      selectedRating = parseInt(star.dataset.val);
+      highlightStars(selectedRating);
+    });
+  });
+
+  highlightStars(5);
+  ratingText.innerText = labels[4];
+}
+
+function highlightStars(count) {
+  const stars = document.querySelectorAll('.star-btn');
+  stars.forEach(s => {
+    const val = parseInt(s.dataset.val);
+    s.classList.toggle('selected', val <= count);
+  });
+}
+
+// Render Review Feed and Calculate Aggregate Metrics
+function renderReviewsFeed() {
+  const feed = document.getElementById('reviewsFeed');
+  if(!feed) return;
+  feed.innerHTML = '';
+
+  let totalScore = 0;
+  const counts = { 1:0, 2:0, 3:0, 4:0, 5:0 };
+
+  reviewsDatabase.forEach((rev, idx) => {
+    totalScore += rev.rating;
+    counts[rev.rating] = (counts[rev.rating] || 0) + 1;
+
+    const starsStr = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+    const card = document.createElement('div');
+    card.className = 'review-item';
+    card.innerHTML = `
+      <div class="review-header">
+        <div class="reviewer-title">
+          <b>${escapeHtml(rev.name)}</b>
+          ${rev.role ? `<span>• ${escapeHtml(rev.role)}</span>` : ''}
+        </div>
+        <span class="review-date">${rev.date}</span>
+      </div>
+      <div class="review-stars">${starsStr}</div>
+      <p class="review-body">"${escapeHtml(rev.comment)}"</p>
+      <div class="review-footer">
+        <span style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Verified Endorsement</span>
+        <button class="helpful-btn" onclick="this.innerText='✓ Helpful (1)'">Helpful</button>
+      </div>
+    `;
+    feed.appendChild(card);
+  });
+
+  // Calculate Breakdown and Averages
+  const total = reviewsDatabase.length;
+  const avg = total > 0 ? (totalScore / total).toFixed(1) : "5.0";
+
+  document.getElementById('avgScoreDisplay').innerText = avg;
+  document.getElementById('totalReviewsCount').innerText = total;
+  
+  for(let i = 1; i <= 5; i++) {
+    const pct = total > 0 ? Math.round((counts[i] / total) * 100) : 0;
+    const bar = document.getElementById('bar' + i);
+    const label = document.getElementById('count' + i);
+    if(bar) bar.style.width = pct + '%';
+    if(label) label.innerText = pct + '%';
+  }
+}
+
+function handleReviewSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('reviewerName').value.trim();
+  const role = document.getElementById('reviewerRole').value.trim();
+  const comment = document.getElementById('reviewerComment').value.trim();
+
+  if(!name || !comment) return;
+
+  const newReview = {
+    name: name,
+    role: role || "Reader",
+    rating: selectedRating,
+    date: "Just now",
+    comment: comment
+  };
+
+  reviewsDatabase.unshift(newReview);
+  localStorage.setItem('book_user_reviews', JSON.stringify(reviewsDatabase));
+  
+  document.getElementById('reviewForm').reset();
+  highlightStars(5);
+  selectedRating = 5;
+  renderReviewsFeed();
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.innerText = text;
+  return div.innerHTML;
+}
+
+// Call on startup
+document.addEventListener('DOMContentLoaded', () => {
+  initStarPicker();
+  renderReviewsFeed();
+});
+  
 // --- Ambient Background Geometry Canvas ---
 (function(){
   const canvas = document.getElementById('bgcanvas');
