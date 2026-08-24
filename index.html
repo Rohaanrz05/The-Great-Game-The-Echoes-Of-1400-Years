@@ -660,15 +660,14 @@ function turnReaderPage(delta){
 updateReader();
 
 // --- Live Countdown Timers Engine ---
+// --- Live Countdown Timer for Paperback Only ---
 const paperbackDate = new Date('September 23, 2026 00:00:00').getTime();
-const ebookDate = new Date('October 15, 2026 00:00:00').getTime();
 
 function updateTimers() {
   const now = new Date().getTime();
-
-  // Paperback Countdown
   const diffP = paperbackDate - now;
-  if(diffP > 0) {
+
+  if (diffP > 0) {
     document.getElementById('pDays').innerText = String(Math.floor(diffP / (1000 * 60 * 60 * 24))).padStart(2, '0');
     document.getElementById('pHours').innerText = String(Math.floor((diffP % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
     document.getElementById('pMins').innerText = String(Math.floor((diffP % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
@@ -676,18 +675,10 @@ function updateTimers() {
   } else {
     document.getElementById('paperbackClock').innerHTML = '<span style="color:var(--gold2);font-weight:700;letter-spacing:1px">NOW AVAILABLE WORLDWIDE</span>';
   }
-
-  // E-Book Countdown
-  <div class="timer-card">
-    <h4>Kindle E-Book Edition</h4>
-    <p>Full digital version for Kindle & e-readers</p>
-    <div style="margin-top: 10px;">
-      <span style="display:inline-block; padding: 10px 24px; border-radius: 8px; background: rgba(201,162,39,0.12); border: 1px solid var(--line); color: var(--gold2); font: 700 0.82rem var(--display); letter-spacing: 2.5px; text-transform: uppercase;">
-        Coming Soon
-      </span>
-    </div>
-  </div>
 }
+
+setInterval(updateTimers, 1000);
+updateTimers();
 setInterval(updateTimers, 1000);
 updateTimers();
 
