@@ -678,15 +678,15 @@ function updateTimers() {
   }
 
   // E-Book Countdown
-  const diffE = ebookDate - now;
-  if(diffE > 0) {
-    document.getElementById('eDays').innerText = String(Math.floor(diffE / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    document.getElementById('eHours').innerText = String(Math.floor((diffE % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-    document.getElementById('eMins').innerText = String(Math.floor((diffE % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-    document.getElementById('eSecs').innerText = String(Math.floor((diffE % (1000 * 60)) / 1000)).padStart(2, '0');
-  } else {
-    document.getElementById('ebookClock').innerHTML = '<span style="color:var(--gold2);font-weight:700;letter-spacing:1px">DIGITAL EDITION AVAILABLE</span>';
-  }
+  <div class="timer-card">
+    <h4>Kindle E-Book Edition</h4>
+    <p>Full digital version for Kindle & e-readers</p>
+    <div style="margin-top: 10px;">
+      <span style="display:inline-block; padding: 10px 24px; border-radius: 8px; background: rgba(201,162,39,0.12); border: 1px solid var(--line); color: var(--gold2); font: 700 0.82rem var(--display); letter-spacing: 2.5px; text-transform: uppercase;">
+        Coming Soon
+      </span>
+    </div>
+  </div>
 }
 setInterval(updateTimers, 1000);
 updateTimers();
