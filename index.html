@@ -7,71 +7,76 @@
 <title>The Great Game &amp; The Echoes of 1400 Years — Muhammad Rohaan Zahid</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
 <style>
 :root{
-  --bg:#040507; --bg2:#090d14; --panel:rgba(12,16,24,.85); --panel-border:rgba(201,162,39,.22);
-  --gold:#c9a227; --gold2:#f3d687; --gold-glow:rgba(201,162,39,.35);
-  --ox:#8a2f2f; --cream:#efe8d8; --muted:#9ba0aa; --line:rgba(201,162,39,.18);
+  --bg:#030407; --bg2:#080c14; --panel:rgba(10,14,23,.82); --panel-border:rgba(212,175,55,.22);
+  --gold:#c9a227; --gold2:#f3d687; --gold-glow:rgba(212,175,55,.35);
+  --cyan-accent:#38bdf8; --indigo-accent:#818cf8;
+  --ox:#8a2f2f; --cream:#f5efe2; --muted:#9ba3b2; --line:rgba(212,175,55,.16);
   --display:'Cinzel',Georgia,serif; --head:'Cormorant Garamond',Georgia,serif;
-  --sans:'Inter',Arial,sans-serif; --arabic:'Amiri',serif;
+  --sans:'Inter',sans-serif; --heading:'Space Grotesk',sans-serif; --arabic:'Amiri',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--cream);font:15px/1.8 var(--sans);overflow-x:hidden;min-height:100vh}
-::selection{background:var(--gold);color:#0a0a0a}
+::selection{background:var(--gold);color:#050505}
 a{color:inherit;text-decoration:none}
-.container{width:min(1200px,94%);margin:0 auto}
+.container{width:min(1240px,94%);margin:0 auto}
 
-#bgcanvas{position:fixed;inset:0;z-index:-10;pointer-events:none}
-.grain{position:fixed;inset:0;z-index:-9;opacity:.035;pointer-events:none;
+#bgcanvas{position:fixed;inset:0;z-index:-10;pointer-events:auto}
+.grain{position:fixed;inset:0;z-index:-9;opacity:.025;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* Navigation Header */
-.nav{position:fixed;z-index:1000;left:0;right:0;top:0;background:rgba(4,5,7,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,162,39,.2)}
-.navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{color:var(--gold2);font:800 .85rem var(--display);letter-spacing:2px;white-space:nowrap;display:flex;align-items:center;gap:8px;flex-shrink:0}
-.brand-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.nav{position:fixed;z-index:1000;left:0;right:0;top:0;background:rgba(3,4,7,.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(212,175,55,.18)}
+.navin{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{color:var(--gold2);font:800 .9rem var(--display);letter-spacing:2px;white-space:nowrap;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
 .tabs{display:flex;gap:4px;list-style:none;align-items:center;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .tabs::-webkit-scrollbar{display:none}
-.tab-btn{background:transparent;border:1px solid transparent;color:var(--muted);font:600 .68rem var(--display);letter-spacing:.8px;padding:7px 11px;border-radius:7px;cursor:pointer;transition:.25s;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
-.tab-btn:hover{color:var(--gold2);background:rgba(201,162,39,.08)}
-.tab-btn.active{color:#07080b;background:linear-gradient(135deg,var(--gold2),var(--gold));border-color:var(--gold2);font-weight:700;box-shadow:0 0 14px rgba(201,162,39,.3)}
+.tab-btn{background:transparent;border:1px solid transparent;color:var(--muted);font:600 .7rem var(--heading);letter-spacing:1px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:.25s;text-transform:uppercase;white-space:nowrap;flex-shrink:0}
+.tab-btn:hover{color:var(--gold2);background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.2)}
+.tab-btn.active{color:#07080b;background:linear-gradient(135deg,#fce39f,#c9a227);border-color:var(--gold2);font-weight:700;box-shadow:0 0 20px rgba(212,175,55,.35)}
 .menu-btn{display:none;background:none;border:0;color:var(--gold2);font-size:1.4rem;cursor:pointer;flex-shrink:0}
 
 /* Tab Content Visibility */
-.tab-content{display:none;padding:110px 0 70px;animation:fadeSlide .45s cubic-bezier(.16,1,.3,1) forwards}
+.tab-content{display:none;padding:115px 0 75px;animation:fadeSlide .45s cubic-bezier(.16,1,.3,1) forwards}
 .tab-content.active{display:block}
-@keyframes fadeSlide{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeSlide{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
 /* Section Styling */
-.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--gold2);background:rgba(201,162,39,.06);text-transform:uppercase;letter-spacing:2px;font-size:.6rem;font-weight:700}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 15px;color:var(--gold2);background:rgba(212,175,55,.06);text-transform:uppercase;letter-spacing:2px;font-size:.62rem;font-weight:700}
 .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--gold2);box-shadow:0 0 8px var(--gold2);animation:pulse 2s infinite}
 @keyframes pulse{50%{opacity:.35}}
-.label{color:var(--gold2);font-size:.65rem;text-transform:uppercase;letter-spacing:3.5px;font-weight:700;margin-bottom:6px}
-.title{font:700 clamp(1.9rem,3.8vw,3rem)/1.15 var(--head);font-style:italic;color:#fff}
+.label{color:var(--gold2);font-size:.68rem;text-transform:uppercase;letter-spacing:3.5px;font-weight:700;margin-bottom:6px;font-family:var(--heading)}
+.title{font:700 clamp(2rem,4vw,3.2rem)/1.15 var(--head);font-style:italic;color:#fff}
 .divider{width:100%;display:flex;align-items:center;gap:16px;margin:22px 0 32px}
 .divider .ln{height:1px;flex:1;background:linear-gradient(90deg,var(--gold2),transparent)}
 .divider svg{width:20px;height:20px;flex-shrink:0;opacity:.8;animation:spin 35s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.panel{background:var(--panel);border:1px solid var(--panel-border);border-radius:16px;padding:32px;box-shadow:0 24px 70px rgba(0,0,0,.7);backdrop-filter:blur(14px);position:relative;overflow:hidden}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.text{color:#c4c7d0;font-size:.92rem;line-height:1.8}
+.panel{background:var(--panel);border:1px solid var(--panel-border);border-radius:22px;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.75);backdrop-filter:blur(18px);position:relative;overflow:hidden}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.text{color:#c7cbd4;font-size:.93rem;line-height:1.8}
 .text+.text{margin-top:14px}
-.lead{font:400 1.1rem/1.75 var(--head);font-style:italic;color:#d8d9df}
+.lead{font:400 1.15rem/1.75 var(--head);font-style:italic;color:#dfdfe4}
+
+/* Glass & Hero Cards */
+.glass-hero{background:linear-gradient(135deg,rgba(14,19,31,.88) 0%,rgba(4,6,11,.8) 100%);border:1px solid rgba(212,175,55,.2);border-radius:36px;padding:48px;box-shadow:0 28px 80px rgba(0,0,0,.65);position:relative;overflow:hidden}
+.glow-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
 
 /* Animated Book Title */
-.animated-title-box{margin:18px 0}
+.animated-title-box{margin:20px 0 16px}
 .title-line-1{
   display:block;
-  font:900 clamp(2.3rem,5vw,4.4rem)/1.02 var(--display);
-  letter-spacing:1px;
-  background:linear-gradient(135deg,#ffffff 0%,#f5d78a 50%,#b58420 100%);
+  font:900 clamp(2.4rem,5.2vw,4.5rem)/1.02 var(--display);
+  letter-spacing:1.5px;
+  background:linear-gradient(135deg,#ffffff 0%,#f8e3a8 45%,#b88825 100%);
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
@@ -82,161 +87,230 @@ a{color:inherit;text-decoration:none}
 }
 .title-line-2{
   display:block;
-  font:600 clamp(1.3rem,2.8vw,2.2rem)/1.2 var(--head);
+  font:600 clamp(1.35rem,2.9vw,2.3rem)/1.2 var(--head);
   font-style:italic;
   color:var(--gold2);
   letter-spacing:1.5px;
-  margin-top:6px;
+  margin-top:8px;
   opacity:0;
   transform:translateY(18px);
   filter:blur(6px);
-  animation:appearSubtitle 1.2s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+  animation:appearSubtitle 1.2s cubic-bezier(0.16,1,0.3,1) 0.45s forwards;
 }
 @keyframes appearTitle{to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
 @keyframes appearSubtitle{to{opacity:1;transform:translateY(0);filter:blur(0)}}
 
 /* Hero Section */
-.hero-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:center}
-.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:8px;font:700 .78rem var(--display);letter-spacing:1px;transition:.3s;border:1px solid transparent;cursor:pointer}
-.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#090702;box-shadow:0 12px 28px rgba(201,162,39,.3)}
-.btn.gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(201,162,39,.45)}
-.btn.outline{border-color:var(--panel-border);color:#eee;background:rgba(255,255,255,.03)}
-.btn.outline:hover{background:rgba(201,162,39,.12);border-color:var(--gold2)}
+.hero-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:45px;align-items:center;position:relative;z-index:2}
+.buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:999px;font:700 .78rem var(--heading);letter-spacing:1px;transition:.3s;border:1px solid transparent;cursor:pointer;text-transform:uppercase}
+.btn.gold{background:linear-gradient(135deg,#fae5a4,#c9a227);color:#080602;box-shadow:0 12px 30px rgba(212,175,55,.32)}
+.btn.gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(212,175,55,.45)}
+.btn.outline{border-color:rgba(212,175,55,.3);color:#eee;background:rgba(255,255,255,.03)}
+.btn.outline:hover{background:rgba(212,175,55,.1);border-color:var(--gold2);transform:translateY(-2px)}
 
-/* Astrolabe Geometric Circle with Secret Societies Sigils */
-.bookscene{display:flex;justify-content:center;align-items:center;position:relative;perspective:1600px;min-height:460px}
-.astro-portal{position:absolute;width:560px;height:560px;animation:spin 90s linear infinite;z-index:1;pointer-events:none}
+/* Astrolabe Geometric Circle (Counter-Rotation Keeps Sigils Upright) */
+.bookscene{display:flex;justify-content:center;align-items:center;position:relative;perspective:1600px;min-height:490px}
+.astro-portal{position:absolute;width:560px;height:560px;animation:spinOrb 90s linear infinite;z-index:1;pointer-events:none;transform-origin:150px 150px}
+.sigil-upright{animation:counterSpin 90s linear infinite;transform-box:fill-box;transform-origin:center center}
 .sigil-label{font:700 7px var(--display);fill:#f0cf7a;letter-spacing:1px}
 
-.hero-book-3d{width:min(270px,65vw);aspect-ratio:2/3;position:relative;transform-style:preserve-3d;transform:rotateY(-15deg) rotateX(4deg);transition:.6s cubic-bezier(.2,.8,.2,1);box-shadow:-22px 28px 55px rgba(0,0,0,.85),0 0 65px rgba(201,162,39,.2);border-radius:4px 14px 14px 4px;z-index:2;cursor:pointer}
-.hero-book-3d:hover{transform:rotateY(-3deg) rotateX(0) scale(1.03) translateY(-7px);box-shadow:-28px 36px 75px rgba(0,0,0,.95),0 0 85px rgba(201,162,39,.35)}
-.hero-book-3d img{width:100%;height:100%;object-fit:cover;border-radius:4px 14px 14px 4px;display:block}
-.hero-book-3d:before{content:"";position:absolute;left:-13px;top:4px;bottom:4px;width:13px;background:linear-gradient(90deg,#120c03,#684d19,#120c03);transform:skewY(-2deg);transform-origin:right;z-index:-1}
-.hero-book-3d:after{content:"";position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(90deg,#241907,#876922,#1b1305);border-radius:4px 0 0 4px}
+@keyframes spinOrb{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes counterSpin{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}
 
-/* Launch Status: Countdown for Paperback, Coming Soon Badge for E-Book */
-.countdown-container{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
-.timer-card{background:linear-gradient(145deg,rgba(201,162,39,.08),rgba(0,0,0,.4));border:1px solid var(--panel-border);border-radius:13px;padding:20px;text-align:center;display:flex;flex-direction:column;justify-content:center}
-.timer-card h4{font:700 .72rem var(--display);letter-spacing:1.8px;color:var(--gold2);margin-bottom:5px;text-transform:uppercase}
-.timer-card p{font-size:.72rem;color:var(--muted);margin-bottom:12px}
+.hero-book-3d{width:min(280px,68vw);aspect-ratio:2/3;position:relative;transform-style:preserve-3d;transform:rotateY(-14deg) rotateX(4deg);transition:.6s cubic-bezier(.2,.8,.2,1);box-shadow:-22px 28px 60px rgba(0,0,0,.9),0 0 70px rgba(212,175,55,.2);border-radius:4px 16px 16px 4px;z-index:3;cursor:pointer}
+.hero-book-3d:hover{transform:rotateY(-2deg) rotateX(0) scale(1.04) translateY(-8px);box-shadow:-28px 38px 80px rgba(0,0,0,.95),0 0 90px rgba(212,175,55,.4)}
+.hero-book-3d img{width:100%;height:100%;object-fit:cover;border-radius:4px 16px 16px 4px;display:block}
+.hero-book-3d:before{content:"";position:absolute;left:-14px;top:4px;bottom:4px;width:14px;background:linear-gradient(90deg,#120c03,#684d19,#120c03);transform:skewY(-2deg);transform-origin:right;z-index:-1}
+.hero-book-3d:after{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:linear-gradient(90deg,#241907,#876922,#1b1305);border-radius:4px 0 0 4px}
+
+/* Launch Status */
+.countdown-container{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.timer-card{background:linear-gradient(145deg,rgba(212,175,55,.08),rgba(0,0,0,.45));border:1px solid var(--panel-border);border-radius:16px;padding:22px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.timer-card h4{font:700 .74rem var(--heading);letter-spacing:1.5px;color:var(--gold2);margin-bottom:5px;text-transform:uppercase}
+.timer-card p{font-size:.74rem;color:var(--muted);margin-bottom:14px}
 .clock-digits{display:flex;justify-content:center;gap:8px}
-.clock-unit{background:rgba(0,0,0,.6);border:1px solid var(--line);border-radius:7px;padding:6px 8px;min-width:48px}
-.clock-unit .num{display:block;font:800 1.15rem var(--display);color:#fff}
-.clock-unit .lbl{display:block;font-size:.5rem;text-transform:uppercase;color:var(--gold2);letter-spacing:1px}
-.coming-soon-badge{display:inline-block;padding:9px 20px;border-radius:7px;background:rgba(201,162,39,.12);border:1px solid var(--line);color:var(--gold2);font:700 .78rem var(--display);letter-spacing:2px;text-transform:uppercase}
+.clock-unit{background:rgba(0,0,0,.65);border:1px solid var(--line);border-radius:9px;padding:7px 9px;min-width:50px}
+.clock-unit .num{display:block;font:800 1.2rem var(--heading);color:#fff}
+.clock-unit .lbl{display:block;font-size:.52rem;text-transform:uppercase;color:var(--gold2);letter-spacing:1px;font-family:var(--heading)}
+.coming-soon-badge{display:inline-block;padding:9px 20px;border-radius:999px;background:rgba(212,175,55,.12);border:1px solid var(--line);color:var(--gold2);font:700 .74rem var(--heading);letter-spacing:2px;text-transform:uppercase}
+
+/* Stats */
+.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02);margin-top:40px;overflow:hidden}
+.stat{text-align:center;padding:24px 12px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat b{display:block;color:var(--gold2);font:700 1.2rem var(--heading);margin-bottom:4px}
+.stat span{color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:1.6px;font-family:var(--heading)}
 
 /* Interactive Previewer */
 .preview-viewer{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
 .preview-stage{perspective:1800px;display:flex;justify-content:center}
 .book-reader{width:min(420px,90vw);height:470px;position:relative;transform-style:preserve-3d}
-.page{position:absolute;inset:0;background:linear-gradient(125deg,#ede3cc,#f9f5ea);color:#241d13;border-radius:4px 14px 14px 4px;box-shadow:0 24px 60px rgba(0,0,0,.7);border:1px solid #c0b497;padding:34px;transform-origin:left center;transition:transform .85s cubic-bezier(.2,.7,.2,1);backface-visibility:hidden;overflow-y:auto}
+.page{position:absolute;inset:0;background:linear-gradient(125deg,#ede3cc,#f9f5ea);color:#241d13;border-radius:4px 14px 14px 4px;box-shadow:0 24px 60px rgba(0,0,0,.75);border:1px solid #c0b497;padding:34px;transform-origin:left center;transition:transform .85s cubic-bezier(.2,.7,.2,1);backface-visibility:hidden;overflow-y:auto}
 .page.cover-pg{padding:0;background:#0d0d0f;overflow:hidden}
 .page.cover-pg img{width:100%;height:100%;object-fit:cover}
-.page h4{font:700 .68rem var(--display);letter-spacing:2.5px;color:#7e5b22;margin-bottom:8px}
+.page h4{font:700 .68rem var(--heading);letter-spacing:2.5px;color:#7e5b22;margin-bottom:8px;text-transform:uppercase}
 .page h3{font:700 1.35rem var(--head);color:#34230b;margin-bottom:12px;font-style:italic}
-.page p,.page li{font:400 .84rem/1.85 Georgia,serif;color:#2c271c}
+.page p,.page li{font:400 .86rem/1.85 Georgia,serif;color:#2c271c}
 .page ul{padding-left:18px;margin-top:10px}
 .page ul li{margin-bottom:6px}
 
-/* Stats */
-.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02);margin-top:35px;overflow:hidden}
-.stat{text-align:center;padding:22px 10px;border-right:1px solid var(--line)}
-.stat:last-child{border:0}
-.stat b{display:block;color:var(--gold2);font:700 1.15rem var(--display);margin-bottom:3px}
-.stat span{color:var(--muted);font-size:.62rem;text-transform:uppercase;letter-spacing:1.6px}
-
 /* Author Section */
 .author-card{display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;align-items:center}
-.author-img-wrap{aspect-ratio:4/5;max-width:360px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 28px 75px rgba(0,0,0,.8);position:relative}
+.author-img-wrap{aspect-ratio:4/5;max-width:360px;border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 28px 75px rgba(0,0,0,.8);position:relative}
 .author-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.author-img-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(4,5,7,.95));pointer-events:none}
-.author-name-tag{position:absolute;left:18px;bottom:16px;font:700 .72rem var(--display);letter-spacing:2px;color:var(--gold2);text-transform:uppercase}
-.pull-quote{padding:22px 26px;border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(201,162,39,.1),transparent);border-radius:0 12px 12px 0;color:#ede5d2;font:italic 500 1.04rem/1.8 var(--head);margin:22px 0}
-.signature{font-family:var(--head);font-style:italic;color:var(--gold2);font-size:1.4rem;margin-top:18px}
+.author-img-wrap:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(3,4,7,.95));pointer-events:none}
+.author-name-tag{position:absolute;left:18px;bottom:16px;font:700 .74rem var(--heading);letter-spacing:2px;color:var(--gold2);text-transform:uppercase}
+.pull-quote{padding:22px 26px;border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(212,175,55,.1),transparent);border-radius:0 14px 14px 0;color:#ede5d2;font:italic 500 1.08rem/1.8 var(--head);margin:22px 0}
+.signature{font-family:var(--head);font-style:italic;color:var(--gold2);font-size:1.45rem;margin-top:18px}
 
 /* Traps & Quran */
-.trap-box{padding:28px;border-radius:15px;border:1px solid rgba(201,162,39,.2);background:linear-gradient(160deg,rgba(255,255,255,.03),transparent);transition:.3s}
-.trap-box:hover{transform:translateY(-3px);border-color:var(--gold2)}
+.trap-box{padding:28px;border-radius:18px;border:1px solid rgba(212,175,55,.2);background:linear-gradient(160deg,rgba(255,255,255,.03),transparent);transition:.3s}
+.trap-box:hover{transform:translateY(-4px);border-color:var(--gold2)}
 .trap-box.danger{border-color:rgba(138,47,47,.35);background:linear-gradient(160deg,rgba(138,47,47,.08),transparent)}
-.trap-box h3{font:700 1.15rem var(--head);font-style:italic;color:var(--gold2);margin-bottom:10px}
+.trap-box h3{font:700 1.2rem var(--head);font-style:italic;color:var(--gold2);margin-bottom:10px}
 .trap-box.danger h3{color:#f58484}
-.verse-box{padding:26px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(150deg,rgba(201,162,39,.08),rgba(255,255,255,.01))}
-.arabic{font:700 1.3rem var(--arabic);color:var(--gold2);text-align:right;direction:rtl;margin-bottom:12px;line-height:2}
-.verse-box p{font:italic 400 .88rem/1.8 var(--head);color:#e2ddcf}
-.ref{display:block;color:var(--muted);font:600 .6rem var(--sans);letter-spacing:1.8px;text-transform:uppercase;margin-top:12px}
+.verse-box{padding:26px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(150deg,rgba(212,175,55,.08),rgba(255,255,255,.01))}
+.arabic{font:700 1.35rem var(--arabic);color:var(--gold2);text-align:right;direction:rtl;margin-bottom:12px;line-height:2}
+.verse-box p{font:italic 400 .9rem/1.8 var(--head);color:#e2ddcf}
+.ref{display:block;color:var(--muted);font:600 .62rem var(--heading);letter-spacing:1.8px;text-transform:uppercase;margin-top:12px}
 
-/* Table of Contents */
-.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.toc-card{border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02);overflow:hidden}
-.toc-head{padding:16px 20px;background:linear-gradient(90deg,rgba(201,162,39,.12),transparent);border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.toc-head b{color:var(--gold2);font:700 .82rem var(--display);letter-spacing:1px}
-.toc-head span{color:var(--muted);font-size:.62rem;letter-spacing:1px;text-transform:uppercase}
-.toc-list{padding:14px 20px;list-style:none}
-.toc-list li{padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);color:#b9bac2;font-size:.76rem;display:flex;gap:10px}
-.toc-list li:last-child{border:0}
-.toc-list strong{color:var(--gold2);font-family:var(--display);font-size:.7rem;min-width:22px}
+/* REDESIGNED CONTENTS SECTION */
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.volume-card{
+  border:1px solid var(--panel-border);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(16,22,34,.75),rgba(6,9,15,.8));
+  overflow:hidden;
+  transition:all .35s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 16px 40px rgba(0,0,0,.5);
+}
+.volume-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--gold2);
+  box-shadow:0 22px 55px rgba(212,175,55,.18);
+}
+.volume-header{
+  padding:18px 24px;
+  background:linear-gradient(90deg,rgba(212,175,55,.14),transparent);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.volume-title{
+  font:700 .85rem var(--display);
+  letter-spacing:1.5px;
+  color:var(--gold2);
+}
+.volume-badge{
+  font:700 .65rem var(--heading);
+  letter-spacing:1px;
+  text-transform:uppercase;
+  background:rgba(212,175,55,.12);
+  border:1px solid var(--line);
+  color:#fff;
+  padding:4px 10px;
+  border-radius:999px;
+}
+.chapter-list{list-style:none;padding:12px 18px}
+.chapter-item{
+  padding:12px 14px;
+  margin:4px 0;
+  border-radius:12px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  background:rgba(255,255,255,.015);
+  border:1px solid transparent;
+  transition:.25s ease;
+}
+.chapter-item:hover{
+  background:rgba(212,175,55,.06);
+  border-color:rgba(212,175,55,.25);
+  transform:translateX(4px);
+}
+.chap-num{
+  font:800 .75rem var(--heading);
+  color:var(--gold);
+  background:rgba(0,0,0,.5);
+  border:1px solid var(--line);
+  width:28px;
+  height:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:8px;
+  flex-shrink:0;
+}
+.chap-name{
+  font-size:.84rem;
+  color:#d0d3dc;
+  font-weight:500;
+  line-height:1.4;
+}
 
 /* Reviews & Ratings Module */
 .reviews-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:28px;align-items:start}
 .summary-card{display:flex;flex-direction:column;gap:18px;text-align:center}
 .score-display{border-bottom:1px solid var(--line);padding-bottom:16px}
-.big-score{font:800 3rem/1 var(--display);color:var(--gold2);display:block;margin-bottom:4px}
-.stars-gold{color:var(--gold);font-size:1.15rem;letter-spacing:3px}
-.score-sub{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:5px}
+.big-score{font:800 3.2rem/1 var(--heading);color:var(--gold2);display:block;margin-bottom:4px}
+.stars-gold{color:var(--gold);font-size:1.2rem;letter-spacing:3px}
+.score-sub{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:5px;font-family:var(--heading)}
 
-.breakdown-bars{display:flex;flex-direction:column;gap:7px}
-.bar-row{display:flex;align-items:center;gap:10px;font-size:.72rem;color:var(--muted)}
+.breakdown-bars{display:flex;flex-direction:column;gap:8px}
+.bar-row{display:flex;align-items:center;gap:10px;font-size:.74rem;color:var(--muted);font-family:var(--heading)}
 .progress-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:width .4s ease}
-.bar-count{min-width:28px;text-align:right}
+.bar-count{min-width:30px;text-align:right}
 
 .star-rating-picker{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .picker-label{font-size:.78rem;color:var(--muted)}
 .star-picker-group{display:flex;gap:3px;cursor:pointer}
 .star-btn{font-size:1.4rem;color:#444;transition:.2s}
 .star-btn.hovered, .star-btn.selected{color:var(--gold);transform:scale(1.1)}
-.rating-text{font-size:.72rem;color:var(--gold2);font-weight:600}
+.rating-text{font-size:.74rem;color:var(--gold2);font-weight:600;font-family:var(--heading)}
 
 .input-field{margin-bottom:12px}
 .input-field input, .input-field textarea{
   width:100%;background:rgba(0,0,0,.45);border:1px solid var(--panel-border);
-  border-radius:7px;padding:11px 13px;color:var(--cream);font:400 .82rem var(--sans);
+  border-radius:10px;padding:12px 15px;color:var(--cream);font:400 .84rem var(--sans);
   outline:none;transition:.3s;
 }
-.input-field input:focus, .input-field textarea:focus{border-color:var(--gold2);box-shadow:0 0 10px rgba(201,162,39,.2)}
+.input-field input:focus, .input-field textarea:focus{border-color:var(--gold2);box-shadow:0 0 14px rgba(212,175,55,.25)}
 
-.review-item{padding:22px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.02);margin-bottom:16px;animation:fadeSlide .4s ease forwards}
+.review-item{padding:22px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);margin-bottom:16px;animation:fadeSlide .4s ease forwards}
 .review-header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.reviewer-title b{font:700 .86rem var(--display);color:var(--gold2)}
-.reviewer-title span{font-size:.7rem;color:var(--muted);margin-left:6px}
-.review-date{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-.review-stars{color:var(--gold);font-size:.8rem;margin-bottom:8px}
-.review-body{font-size:.82rem;line-height:1.75;color:#c9cacf}
+.reviewer-title b{font:700 .88rem var(--heading);color:var(--gold2)}
+.reviewer-title span{font-size:.72rem;color:var(--muted);margin-left:6px}
+.review-date{font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--heading)}
+.review-stars{color:var(--gold);font-size:.84rem;margin-bottom:8px}
+.review-body{font-size:.84rem;line-height:1.75;color:#c9cacf}
 .review-footer{margin-top:12px;display:flex;justify-content:space-between;align-items:center}
-.helpful-btn{background:none;border:1px solid rgba(255,255,255,.08);color:var(--muted);padding:4px 9px;border-radius:5px;font-size:.62rem;cursor:pointer;transition:.2s}
+.helpful-btn{background:none;border:1px solid rgba(255,255,255,.08);color:var(--muted);padding:5px 11px;border-radius:6px;font-size:.65rem;cursor:pointer;transition:.2s;font-family:var(--heading)}
 .helpful-btn:hover{color:var(--gold2);border-color:var(--gold2)}
 
-footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,39,.15);color:var(--muted);font-size:.7rem}
-.footerbrand{font:700 .9rem var(--display);color:var(--gold2);letter-spacing:2px;margin-bottom:10px}
+footer{text-align:center;padding:55px 0 40px;border-top:1px solid rgba(212,175,55,.15);color:var(--muted);font-size:.74rem}
+.footerbrand{font:700 .95rem var(--display);color:var(--gold2);letter-spacing:2px;margin-bottom:10px}
 
 /* Responsive Rules */
 @media(max-width:1080px){
   .tabs{gap:2px}
-  .tab-btn{padding:6px 8px;font-size:.64rem}
+  .tab-btn{padding:7px 10px;font-size:.66rem}
 }
 @media(max-width:980px){
   .hero-layout,.author-card,.preview-viewer,.grid-2,.toc-grid,.countdown-container,.reviews-layout{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
   .stats-strip{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(2){border-right:0}
-  .astro-portal{width:400px;height:400px}
+  .astro-portal{width:420px;height:420px}
 }
 @media(max-width:768px){
   .menu-btn{display:block}
-  .tabs{position:absolute;top:68px;left:0;right:0;background:rgba(4,5,7,.98);border-bottom:1px solid var(--line);padding:14px;flex-direction:column;display:none}
+  .tabs{position:absolute;top:70px;left:0;right:0;background:rgba(3,4,7,.98);border-bottom:1px solid var(--line);padding:16px;flex-direction:column;display:none}
   .tabs.open{display:flex}
-  .tab-btn{width:100%;text-align:left;padding:10px 14px}
+  .tab-btn{width:100%;text-align:left;padding:11px 16px}
+  .glass-hero{padding:28px 20px}
 }
 </style>
 </head>
@@ -265,100 +339,124 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
 </nav>
 
 <main id="tab-overview" class="tab-content active container">
-  <div class="hero-layout">
-    <div>
-      <span class="badge"><span class="dot"></span>Official Author Edition • Independently Published</span>
-      
-      <div class="animated-title-box">
-        <span class="title-line-1">THE GREAT GAME</span>
-        <span class="title-line-2">&amp; The Echoes of 1400 Years</span>
-      </div>
+  <div class="glass-hero">
+    <div class="glow-orb" style="top:-80px;right:-80px;width:350px;height:350px;background:rgba(212,175,55,.12)"></div>
+    <div class="glow-orb" style="bottom:-80px;left:-80px;width:350px;height:350px;background:rgba(56,189,248,.08)"></div>
 
-      <p class="lead">The Rise and Fall of Muslim Civilization, Global Geopolitics, Secret Societies, and the Future in the Light of the Qur'an.</p>
-      <p class="text">How did the heirs of an intellectual, economic, and moral superpower become fragmented spectators on the world stage? Tracing fourteen centuries of civilizational ascendance, covert institutional warfare, and modern geopolitical traps.</p>
-      
-      <div class="buttons">
-        <a class="btn gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Acquire on Amazon ↗</a>
-        <button class="btn outline" onclick="switchTab('tab-preview')">Examine Preview ↓</button>
-      </div>
-
-      <div class="countdown-container">
-        <div class="timer-card">
-          <h4>Paperback Global Launch</h4>
-          <p>Releases worldwide on Sept 23, 2026</p>
-          <div class="clock-digits" id="paperbackClock">
-            <div class="clock-unit"><span class="num" id="pDays">00</span><span class="lbl">Days</span></div>
-            <div class="clock-unit"><span class="num" id="pHours">00</span><span class="lbl">Hours</span></div>
-            <div class="clock-unit"><span class="num" id="pMins">00</span><span class="lbl">Mins</span></div>
-            <div class="clock-unit"><span class="num" id="pSecs">00</span><span class="lbl">Secs</span></div>
-          </div>
+    <div class="hero-layout">
+      <div>
+        <span class="badge"><span class="dot"></span>Official Author Edition • Independently Published</span>
+        
+        <div class="animated-title-box">
+          <span class="title-line-1">THE GREAT GAME</span>
+          <span class="title-line-2">&amp; The Echoes of 1400 Years</span>
         </div>
 
-        <div class="timer-card">
-          <h4>Kindle E-Book Edition</h4>
-          <p>Full digital version for Kindle &amp; e-readers</p>
-          <div>
-            <span class="coming-soon-badge">Coming Soon</span>
+        <p class="lead">The Rise and Fall of Muslim Civilization, Global Geopolitics, Secret Societies, and the Future in the Light of the Qur'an.</p>
+        <p class="text">How did the heirs of an intellectual, economic, and moral superpower become fragmented spectators on the world stage? Tracing fourteen centuries of civilizational ascendance, covert institutional warfare, and modern geopolitical traps.</p>
+        
+        <div class="buttons">
+          <a class="btn gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Acquire on Amazon ↗</a>
+          <button class="btn outline" onclick="switchTab('tab-preview')">Examine Preview ↓</button>
+        </div>
+
+        <div class="countdown-container">
+          <div class="timer-card">
+            <h4>Paperback Global Launch</h4>
+            <p>Releases worldwide on Sept 23, 2026</p>
+            <div class="clock-digits" id="paperbackClock">
+              <div class="clock-unit"><span class="num" id="pDays">00</span><span class="lbl">Days</span></div>
+              <div class="clock-unit"><span class="num" id="pHours">00</span><span class="lbl">Hours</span></div>
+              <div class="clock-unit"><span class="num" id="pMins">00</span><span class="lbl">Mins</span></div>
+              <div class="clock-unit"><span class="num" id="pSecs">00</span><span class="lbl">Secs</span></div>
+            </div>
+          </div>
+
+          <div class="timer-card">
+            <h4>Kindle E-Book Edition</h4>
+            <p>Full digital version for Kindle &amp; e-readers</p>
+            <div>
+              <span class="coming-soon-badge">Coming Soon</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="bookscene">
-      <svg class="astro-portal" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" stroke="#c9a227" stroke-width="0.6" opacity="0.6">
-          <circle cx="150" cy="150" r="142" stroke-dasharray="3,3"/>
-          <circle cx="150" cy="150" r="128"/>
-          <circle cx="150" cy="150" r="105"/>
-          <line x1="150" y1="6" x2="150" y2="294" stroke-width="0.4"/>
-          <line x1="6" y1="150" x2="294" y2="150" stroke-width="0.4"/>
-          <line x1="45" y1="45" x2="255" y2="255" stroke-width="0.4"/>
-          <line x1="255" y1="45" x2="45" y2="255" stroke-width="0.4"/>
-        </g>
+      <div class="bookscene">
+        <!-- Astrolabe Portal: Outer frame rotates, internal groups have counter-rotation to keep symbols & text upright -->
+        <svg class="astro-portal" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+          <g fill="none" stroke="#c9a227" stroke-width="0.6" opacity="0.65">
+            <circle cx="150" cy="150" r="142" stroke-dasharray="3,3"/>
+            <circle cx="150" cy="150" r="128"/>
+            <circle cx="150" cy="150" r="105"/>
+            <line x1="150" y1="6" x2="150" y2="294" stroke-width="0.4"/>
+            <line x1="6" y1="150" x2="294" y2="150" stroke-width="0.4"/>
+            <line x1="45" y1="45" x2="255" y2="255" stroke-width="0.4"/>
+            <line x1="255" y1="45" x2="45" y2="255" stroke-width="0.4"/>
+          </g>
 
-        <polygon points="150,22 168,110 258,110 185,162 212,248 150,198 88,248 115,162 42,110 132,110" 
-                 stroke="#f0cf7a" stroke-width="1" fill="rgba(201,162,39,0.02)"/>
+          <polygon points="150,22 168,110 258,110 185,162 212,248 150,198 88,248 115,162 42,110 132,110" 
+                   stroke="#f0cf7a" stroke-width="1" fill="rgba(212,175,55,0.02)"/>
 
-        <g transform="translate(150,22)">
-          <polygon points="0,-12 12,8 -12,8" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
-          <circle cx="0" cy="0" r="2.5" fill="#f0cf7a"/>
-          <text x="0" y="-16" text-anchor="middle" class="sigil-label">EYE OF PROVIDENCE</text>
-        </g>
+          <!-- 1. Top Sigil -->
+          <g transform="translate(150,22)">
+            <g class="sigil-upright">
+              <polygon points="0,-12 12,8 -12,8" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
+              <circle cx="0" cy="0" r="2.5" fill="#f0cf7a"/>
+              <text x="0" y="-16" text-anchor="middle" class="sigil-label">EYE OF PROVIDENCE</text>
+            </g>
+          </g>
 
-        <g transform="translate(258,110)">
-          <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
-          <path d="M-6,6 L0,-7 L6,6 M-6,-3 L6,-3" stroke="#f0cf7a" stroke-width="0.7"/>
-          <text x="14" y="3" text-anchor="start" class="sigil-label">MASONIC LODGE</text>
-        </g>
+          <!-- 2. Top-Right Sigil -->
+          <g transform="translate(258,110)">
+            <g class="sigil-upright">
+              <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
+              <path d="M-6,6 L0,-7 L6,6 M-6,-3 L6,-3" stroke="#f0cf7a" stroke-width="0.7"/>
+              <text x="14" y="3" text-anchor="start" class="sigil-label">MASONIC LODGE</text>
+            </g>
+          </g>
 
-        <g transform="translate(212,248)">
-          <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
-          <path d="M-4,-4 L4,4 M-4,4 L4,-4" stroke="#f0cf7a" stroke-width="0.6"/>
-          <circle cx="0" cy="-2" r="3" fill="#f0cf7a"/>
-          <text x="14" y="3" text-anchor="start" class="sigil-label">SKULL &amp; BONES 322</text>
-        </g>
+          <!-- 3. Bottom-Right Sigil -->
+          <g transform="translate(212,248)">
+            <g class="sigil-upright">
+              <circle cx="0" cy="0" r="10" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
+              <path d="M-4,-4 L4,4 M-4,4 L4,-4" stroke="#f0cf7a" stroke-width="0.6"/>
+              <circle cx="0" cy="-2" r="3" fill="#f0cf7a"/>
+              <text x="14" y="3" text-anchor="start" class="sigil-label">SKULL &amp; BONES 322</text>
+            </g>
+          </g>
 
-        <g transform="translate(150,198)">
-          <polygon points="0,-7 6,4 -6,4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
-          <polygon points="0,7 6,-4 -6,-4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
-          <text x="0" y="16" text-anchor="middle" class="sigil-label">HEXAGRAM</text>
-        </g>
+          <!-- 4. Center-Bottom Sigil -->
+          <g transform="translate(150,198)">
+            <g class="sigil-upright">
+              <polygon points="0,-7 6,4 -6,4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
+              <polygon points="0,7 6,-4 -6,-4" stroke="#f0cf7a" stroke-width="0.6" fill="none"/>
+              <text x="0" y="16" text-anchor="middle" class="sigil-label">HEXAGRAM</text>
+            </g>
+          </g>
 
-        <g transform="translate(88,248)">
-          <polygon points="0,-9 9,7 -9,7" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
-          <line x1="-5" y1="-1" x2="5" y2="-1" stroke="#f0cf7a" stroke-width="0.6"/>
-          <text x="-14" y="3" text-anchor="end" class="sigil-label">ILLUMINATI ORDER</text>
-        </g>
+          <!-- 5. Bottom-Left Sigil -->
+          <g transform="translate(88,248)">
+            <g class="sigil-upright">
+              <polygon points="0,-9 9,7 -9,7" stroke="#f0cf7a" stroke-width="0.8" fill="#040507"/>
+              <line x1="-5" y1="-1" x2="5" y2="-1" stroke="#f0cf7a" stroke-width="0.6"/>
+              <text x="-14" y="3" text-anchor="end" class="sigil-label">ILLUMINATI ORDER</text>
+            </g>
+          </g>
 
-        <g transform="translate(42,110)">
-          <circle cx="0" cy="0" r="9" stroke="#f0cf7a" stroke-width="0.8" stroke-dasharray="2,2" fill="#040507"/>
-          <circle cx="0" cy="0" r="3" fill="#f0cf7a"/>
-          <text x="-14" y="3" text-anchor="end" class="sigil-label">SHADOW BANKING</text>
-        </g>
-      </svg>
+          <!-- 6. Top-Left Sigil -->
+          <g transform="translate(42,110)">
+            <g class="sigil-upright">
+              <circle cx="0" cy="0" r="9" stroke="#f0cf7a" stroke-width="0.8" stroke-dasharray="2,2" fill="#040507"/>
+              <circle cx="0" cy="0" r="3" fill="#f0cf7a"/>
+              <text x="-14" y="3" text-anchor="end" class="sigil-label">SHADOW BANKING</text>
+            </g>
+          </g>
+        </svg>
 
-      <div class="hero-book-3d" onclick="switchTab('tab-preview')">
-        <img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="The Great Game Front Cover">
+        <div class="hero-book-3d" onclick="switchTab('tab-preview')">
+          <img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="The Great Game Front Cover">
+        </div>
       </div>
     </div>
   </div>
@@ -557,81 +655,108 @@ footer{text-align:center;padding:50px 0 35px;border-top:1px solid rgba(201,162,3
       
       <div style="margin:22px 0;display:flex;align-items:center;gap:12px">
         <button class="btn outline" onclick="turnReaderPage(-1)">← Flip Back</button>
-        <span id="pageIndicator" style="font:700 .72rem var(--display);letter-spacing:1.5px;color:var(--gold2)">COVER • 1 / 6</span>
+        <span id="pageIndicator" style="font:700 .74rem var(--heading);letter-spacing:1.5px;color:var(--gold2)">COVER • 1 / 6</span>
         <button class="btn gold" onclick="turnReaderPage(1)">Flip Forward →</button>
       </div>
-      <p class="text" style="font-size:.8rem;color:var(--muted)">Full 26-chapter edition features 6x9 formatting, deep citations, historical chronologies, and original eschatological synthesis.</p>
+      <p class="text" style="font-size:.82rem;color:var(--muted)">Full 26-chapter edition features 6x9 formatting, deep citations, historical chronologies, and original eschatological synthesis.</p>
     </div>
   </div>
 </section>
 
+<!-- REDESIGNED CONTENTS SECTION -->
 <section id="tab-contents" class="tab-content container">
-  <div class="label">Full Structure &amp; Distribution</div>
-  <h2 class="title">Complete Table of Contents &amp; Acquisition Channels.</h2>
+  <div class="label">Master Architecture</div>
+  <h2 class="title">Complete Table of Contents &amp; Volume Breakdown.</h2>
   <div class="divider"><div class="ln"></div><svg viewBox="0 0 24 24"><polygon points="12,1 14,9 22,9 15,14 17,22 12,17 7,22 9,14 2,9 10,9" fill="#c9a227"/></svg><div class="ln"></div></div>
 
   <div class="toc-grid" style="margin-bottom:35px">
-    <div class="toc-card">
-      <div class="toc-head"><b>PART I: FROM DESERTS TO SUPERPOWERS</b><span>Ch. 01–05</span></div>
-      <ul class="toc-list">
-        <li><strong>01</strong> The Pre-Islamic World in Collapse</li>
-        <li><strong>02</strong> How Allah Changes History</li>
-        <li><strong>03</strong> The Qur'anic Blueprint for Change</li>
-        <li><strong>04</strong> Jihad, Justice, and the Expansion of Muslim Power</li>
-        <li><strong>05</strong> How the Qur'an Paved the Way for the Golden Age</li>
+    
+    <!-- Volume 1 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part I: From Deserts to Superpowers</span>
+        <span class="volume-badge">Ch. 01–05</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">01</span><span class="chap-name">The Pre-Islamic World in Collapse</span></li>
+        <li class="chapter-item"><span class="chap-num">02</span><span class="chap-name">How Allah Changes History</span></li>
+        <li class="chapter-item"><span class="chap-num">03</span><span class="chap-name">The Qur'anic Blueprint for Change</span></li>
+        <li class="chapter-item"><span class="chap-num">04</span><span class="chap-name">Jihad, Justice, and the Expansion of Muslim Power</span></li>
+        <li class="chapter-item"><span class="chap-num">05</span><span class="chap-name">How the Qur'an Paved the Way for the Golden Age</span></li>
       </ul>
     </div>
 
-    <div class="toc-card">
-      <div class="toc-head"><b>PART II: WHY SUPERPOWERS COLLAPSE</b><span>Ch. 06–09</span></div>
-      <ul class="toc-list">
-        <li><strong>06</strong> When Power &amp; Knowledge Were United</li>
-        <li><strong>07</strong> When a Nation Forgets the Legacy of Its Ancestors</li>
-        <li><strong>08</strong> Political Fragmentation and Loss of Learning</li>
-        <li><strong>09</strong> Qur'anic Warnings About the Fall of Nations</li>
+    <!-- Volume 2 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part II: Why Superpowers Collapse</span>
+        <span class="volume-badge">Ch. 06–09</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">06</span><span class="chap-name">When Power &amp; Knowledge Were United</span></li>
+        <li class="chapter-item"><span class="chap-num">07</span><span class="chap-name">When a Nation Forgets the Legacy of Its Ancestors</span></li>
+        <li class="chapter-item"><span class="chap-num">08</span><span class="chap-name">Political Fragmentation and Loss of Learning</span></li>
+        <li class="chapter-item"><span class="chap-num">09</span><span class="chap-name">Qur'anic Warnings About the Fall of Nations</span></li>
       </ul>
     </div>
 
-    <div class="toc-card">
-      <div class="toc-head"><b>PART III: THE GREAT GAME</b><span>Ch. 10–14</span></div>
-      <ul class="toc-list">
-        <li><strong>10</strong> From Empire to Nation-State</li>
-        <li><strong>11</strong> Multipolar World: A Chance or a Threat</li>
-        <li><strong>12</strong> The Creation of Israel: Working in Shadows</li>
-        <li><strong>13</strong> Banking, Interest, and Economic Dependence</li>
-        <li><strong>14</strong> Normalization of Deception in the Modern World</li>
+    <!-- Volume 3 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part III: The Great Game</span>
+        <span class="volume-badge">Ch. 10–14</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">10</span><span class="chap-name">From Empire to Nation-State</span></li>
+        <li class="chapter-item"><span class="chap-num">11</span><span class="chap-name">Multipolar World: A Chance or a Threat</span></li>
+        <li class="chapter-item"><span class="chap-num">12</span><span class="chap-name">The Creation of Israel: Working in Shadows</span></li>
+        <li class="chapter-item"><span class="chap-num">13</span><span class="chap-name">Banking, Interest, and Economic Dependence</span></li>
+        <li class="chapter-item"><span class="chap-num">14</span><span class="chap-name">Normalization of Deception in the Modern World</span></li>
       </ul>
     </div>
 
-    <div class="toc-card">
-      <div class="toc-head"><b>PART IV: HIDDEN POWERS</b><span>Ch. 15–18</span></div>
-      <ul class="toc-list">
-        <li><strong>15</strong> Secret Societies, Illuminati &amp; Freemasons</li>
-        <li><strong>16</strong> The New World Order: Dismantling the Khilafats</li>
-        <li><strong>17</strong> What Satanism Really Is: Symbols &amp; Normalization</li>
-        <li><strong>18</strong> Why Muslims Feel Strategically Contained</li>
+    <!-- Volume 4 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part IV: Hidden Powers</span>
+        <span class="volume-badge">Ch. 15–18</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">15</span><span class="chap-name">Secret Societies, Illuminati &amp; Freemasons</span></li>
+        <li class="chapter-item"><span class="chap-num">16</span><span class="chap-name">The New World Order: Dismantling the Khilafats</span></li>
+        <li class="chapter-item"><span class="chap-num">17</span><span class="chap-name">What Satanism Really Is: Symbols &amp; Normalization</span></li>
+        <li class="chapter-item"><span class="chap-num">18</span><span class="chap-name">Why Muslims Feel Strategically Contained</span></li>
       </ul>
     </div>
 
-    <div class="toc-card">
-      <div class="toc-head"><b>PART V: THE NEED OF KHILAFAT</b><span>Ch. 19–23</span></div>
-      <ul class="toc-list">
-        <li><strong>19</strong> What Khilafat Means in Islam</li>
-        <li><strong>20</strong> Khilafat &amp; the Mission of Allah</li>
-        <li><strong>21</strong> Leadership, Jihad, and Collective Responsibility</li>
-        <li><strong>22</strong> Why a Renewed Islamic Order Is Needed</li>
-        <li><strong>23</strong> Pakistan and the Question of Revival</li>
+    <!-- Volume 5 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part V: The Need of Khilafat</span>
+        <span class="volume-badge">Ch. 19–23</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">19</span><span class="chap-name">What Khilafat Means in Islam</span></li>
+        <li class="chapter-item"><span class="chap-num">20</span><span class="chap-name">Khilafat &amp; the Mission of Allah</span></li>
+        <li class="chapter-item"><span class="chap-num">21</span><span class="chap-name">Leadership, Jihad, and Collective Responsibility</span></li>
+        <li class="chapter-item"><span class="chap-num">22</span><span class="chap-name">Why a Renewed Islamic Order Is Needed</span></li>
+        <li class="chapter-item"><span class="chap-num">23</span><span class="chap-name">Pakistan and the Question of Revival</span></li>
       </ul>
     </div>
 
-    <div class="toc-card">
-      <div class="toc-head"><b>PART VI: ESCAPE AND FUTURE</b><span>Ch. 24–26</span></div>
-      <ul class="toc-list">
-        <li><strong>24</strong> Qur'anic Warnings for Today</li>
-        <li><strong>25</strong> The End of the Game: Prophecy &amp; Reckoning</li>
-        <li><strong>26</strong> Conclusion: Toward a New Dawn</li>
+    <!-- Volume 6 -->
+    <div class="volume-card">
+      <div class="volume-header">
+        <span class="volume-title">Part VI: Escape and Future</span>
+        <span class="volume-badge">Ch. 24–26</span>
+      </div>
+      <ul class="chapter-list">
+        <li class="chapter-item"><span class="chap-num">24</span><span class="chap-name">Qur'anic Warnings for Today</span></li>
+        <li class="chapter-item"><span class="chap-num">25</span><span class="chap-name">The End of the Game: Prophecy &amp; Reckoning</span></li>
+        <li class="chapter-item"><span class="chap-num">26</span><span class="chap-name">Conclusion: Toward a New Dawn</span></li>
       </ul>
     </div>
+
   </div>
 
   <div class="panel" style="text-align:center">
@@ -911,7 +1036,7 @@ reviewsCollection.orderBy("timestamp", "desc").onSnapshot(function(snapshot) {
       '<div class="review-stars">' + starsStr + '</div>' +
       '<p class="review-body">"' + escapeHtml(rev.comment || '') + '"</p>' +
       '<div class="review-footer">' +
-        '<span style="font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Verified Endorsement</span>' +
+        '<span style="font-size:0.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-family:var(--heading)">Verified Endorsement</span>' +
         '<button class="helpful-btn" onclick="this.innerText=\'✓ Helpful (1)\'">Helpful</button>' +
       '</div>';
     feed.appendChild(card);
@@ -977,12 +1102,13 @@ function handleReviewSubmit(e) {
   });
 }
 
-// --- 8. Ambient Background Canvas Particles ---
+// --- 8. Modern Interactive Quantum Constellation Canvas ---
 (function(){
   var canvas = document.getElementById('bgcanvas');
   if(!canvas) return;
   var ctx = canvas.getContext('2d');
-  var w, h, particles;
+  var w, h, particles = [];
+  var mouse = { x: null, y: null, radius: 130 };
 
   function resize(){
     w = canvas.width = window.innerWidth;
@@ -991,38 +1117,80 @@ function handleReviewSubmit(e) {
 
   function init(){
     resize();
-    var count = Math.min(60, Math.floor(w/24));
-    particles = Array.from({length:count}, function() {
-      return {
-        x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*1.3 + 0.3,
-        speed: Math.random()*0.3 + 0.08,
-        alpha: Math.random()*0.5 + 0.1,
-        drift: Math.random()*0.4 - 0.2
-      };
-    });
+    var count = Math.min(75, Math.floor((w * h) / 15000));
+    particles = [];
+    for(var i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r: Math.random() * 2 + 1,
+        baseAlpha: Math.random() * 0.4 + 0.2
+      });
+    }
   }
+
+  window.addEventListener('mousemove', function(e){
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+
+  window.addEventListener('mouseout', function(){
+    mouse.x = null;
+    mouse.y = null;
+  });
 
   function render(){
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#f0cf7a';
-    particles.forEach(function(p) {
-      ctx.globalAlpha = p.alpha;
+    
+    for(var i = 0; i < particles.length; i++){
+      var p = particles[i];
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if(p.x < 0 || p.x > w) p.vx *= -1;
+      if(p.y < 0 || p.y > h) p.vy *= -1;
+
+      // Mouse interactive force
+      if(mouse.x !== null){
+        var dx = mouse.x - p.x;
+        var dy = mouse.y - p.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if(dist < mouse.radius){
+          var force = (mouse.radius - dist) / mouse.radius;
+          p.x -= (dx / dist) * force * 1.5;
+          p.y -= (dy / dist) * 1.5;
+        }
+      }
+
+      // Draw particle dot
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(212, 175, 55, ' + p.baseAlpha + ')';
       ctx.fill();
-      p.y -= p.speed;
-      p.x += p.drift * 0.15;
-      if(p.y < -5){ p.y = h + 5; p.x = Math.random()*w; }
-      if(p.x < -5) p.x = w + 5;
-      if(p.x > w + 5) p.x = -5;
-    });
-    ctx.globalAlpha = 1;
+
+      // Connect nearby particles (constellation web)
+      for(var j = i + 1; j < particles.length; j++){
+        var p2 = particles[j];
+        var linkDist = Math.hypot(p.x - p2.x, p.y - p2.y);
+        if(linkDist < 115){
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = 'rgba(212, 175, 55, ' + (0.16 * (1 - linkDist / 115)) + ')';
+          ctx.lineWidth = 0.75;
+          ctx.stroke();
+        }
+      }
+    }
     requestAnimationFrame(render);
   }
 
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', function(){
+    init();
+  });
   init();
   render();
 })();
