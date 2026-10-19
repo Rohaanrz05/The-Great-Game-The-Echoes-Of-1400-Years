@@ -1,322 +1,1579 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Great Game &amp; The Echoes of 1400 Years — Muhammad Rohaan Zahid</title>
-<meta name="description" content="The rise and fall of Muslim civilization, global geopolitics, secret societies and the Qur'anic roadmap to renewal. By Muhammad Rohaan Zahid.">
+<meta name="description" content="The definitive geopolitical and spiritual exposé on secret societies, occult rituals, central banking, and the Qur'anic roadmap to Islamic civilizational renewal by Muhammad Rohaan Zahid.">
 <meta property="og:title" content="The Great Game &amp; The Echoes of 1400 Years">
-<meta property="og:description" content="Documented history, systematic analysis and Qur'anic law, without victimhood and without conspiracy hysteria.">
+<meta property="og:description" content="Exposing the occult architecture, the fall of Muslim civilization, and the 26 Qur'anic civilizational laws.">
 <meta property="og:image" content="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi">
 <meta property="og:type" content="book">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500;1,600&family=Amiri:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'selector',
+  theme: {
+    extend: {
+      colors: {
+        gold: {
+          50: '#fbf8eb',
+          100: '#f5efcb',
+          200: '#eddca1',
+          300: '#e3c36c',
+          400: '#d6b24a',
+          500: '#c59a35',
+          600: '#ab7e28',
+          700: '#875d21',
+          800: '#6f4a1f',
+          900: '#5c3e1e',
+        }
+      },
+      fontFamily: {
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        cinzel: ['"Cinzel"', 'serif'],
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        arabic: ['"Amiri"', 'serif']
+      }
+    }
+  }
+}
+</script>
+
+<!-- Firebase SDK Compat -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 <style>
-:root{--ink:#06070b;--ink2:#0d111b;--line:rgba(214,178,74,.2);--gold:#d6b24a;--gold2:#f2d98c;--text:#d5d8e0;--mute:#8f97a8;--red:#c24d4d;
---serif:'Cormorant Garamond',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{background:var(--ink);color:var(--text);font:16px/1.75 var(--sans);overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
-.wrap{width:min(1180px,92%);margin:0 auto}
-canvas#bg{position:fixed;inset:0;z-index:-1}
-h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.1;color:#fff}
-h2{font-size:clamp(2rem,4.2vw,3.3rem);font-style:italic;max-width:18ch}
-section{padding:110px 0 30px}
-.kicker{color:var(--gold);font-size:.85rem;letter-spacing:.04em;margin-bottom:14px}
-.lede{font:italic 500 1.3rem/1.6 var(--serif);color:#e8e4d6;max-width:60ch}
-p+p{margin-top:14px}
-.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:999px;font-weight:600;font-size:.92rem;border:1px solid var(--line);cursor:pointer;transition:.25s;background:none;color:#fff;font-family:inherit}
-.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#120d02;border:0;box-shadow:0 10px 30px rgba(214,178,74,.28)}
-.btn:hover{transform:translateY(-2px);border-color:var(--gold2)}
-.btn:disabled{opacity:.5;cursor:wait}
-/* nav */
-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(6,7,11,.8);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px}
-.brand{font:700 1.3rem var(--serif);color:var(--gold2);letter-spacing:.08em}
-nav ul{display:flex;gap:4px;list-style:none}
-nav li a{display:block;padding:8px 14px;border-radius:999px;font-size:.85rem;color:var(--mute);transition:.2s}
-nav li a:hover{color:#fff}nav li a.on{background:var(--gold);color:#120d02;font-weight:600}
-#burger{display:none;background:none;border:0;color:var(--gold2);font-size:1.6rem}
-/* hero */
-#top{min-height:100vh;display:flex;align-items:center;padding-top:100px}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
-h1{font-size:clamp(3.2rem,8vw,6.4rem);letter-spacing:-.01em;background:linear-gradient(160deg,#fff 20%,var(--gold2) 60%,#a77f1e);-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1.2s cubic-bezier(.16,1,.3,1) both}
-h1 small{display:block;font:italic 600 clamp(1.4rem,3vw,2.2rem) var(--serif);-webkit-text-fill-color:var(--gold2);margin-top:10px}
-@keyframes rise{from{opacity:0;transform:translateY(24px);filter:blur(8px)}}
-.hero .lede{margin:24px 0 28px;animation:rise 1.2s .3s cubic-bezier(.16,1,.3,1) both}
-.cta{display:flex;gap:12px;flex-wrap:wrap;animation:rise 1.2s .5s both}
-.status{display:flex;gap:28px;margin-top:34px;color:var(--mute);font-size:.88rem;flex-wrap:wrap}
-.status b{color:var(--gold2);display:block;font-size:.95rem}
-.stage{position:relative;display:grid;place-items:center;min-height:520px;perspective:1400px}
-.stage svg{position:absolute;width:min(560px,100%);animation:spin 120s linear infinite;opacity:.9}
-@keyframes spin{to{transform:rotate(360deg)}}
-.draw{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 3.5s .4s ease forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
-.book{width:min(270px,62vw);aspect-ratio:2/3;border-radius:3px 14px 14px 3px;box-shadow:-24px 30px 60px #000,0 0 80px rgba(214,178,74,.22);transition:transform .15s;transform-style:preserve-3d;position:relative;z-index:2}
-.book img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
-/* reveal */
-.rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s cubic-bezier(.16,1,.3,1);transition-delay:var(--d,0s)}
-.rv.in{opacity:1;transform:none}
-/* two traps */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
-.card{background:linear-gradient(150deg,rgba(18,24,38,.85),rgba(8,11,18,.9));border:1px solid var(--line);border-radius:18px;padding:30px;position:relative;overflow:hidden}
-.card.trap{border-color:rgba(194,77,77,.35)}.card.trap h3{color:#f0908f}
-.card h3{font-size:1.6rem;margin-bottom:12px;font-style:italic}
-.card b{color:#fff}
-.balance{margin-top:22px;border-color:var(--gold)}
-/* engines */
-.engines{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;counter-reset:e}
-.eng{cursor:pointer;transition:.3s;--mx:50%;--my:50%}
-.eng:before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx) var(--my),rgba(214,178,74,.16),transparent 70%);opacity:0;transition:.3s}
-.eng:hover:before{opacity:1}.eng:hover{border-color:var(--gold2)}
-.eng .ph{color:var(--gold);font-size:.85rem}
-.eng h3{font-size:1.45rem;margin:8px 0}
-.eng p{font-size:.9rem;color:#b8bdca}
-.eng .more{max-height:0;overflow:hidden;transition:max-height .5s;font-size:.85rem;color:var(--gold2);border-top:1px solid var(--line);margin-top:0}
-.eng.open .more{max-height:200px;margin-top:14px;padding-top:12px}
-.eng .tg{font-size:.78rem;color:var(--mute);margin-top:12px}
-.track{height:2px;background:var(--line);margin:40px 0 0;position:relative}
-.track i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold2);transition:width 1.6s}
-.track.in i{width:100%}
-/* author */
-.author{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;margin-top:44px;align-items:start}
-.portrait{position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;transition:transform .2s}
-.portrait img{width:100%;height:112%;object-fit:cover;display:block;transition:transform .2s}
-.portrait:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,7,11,.95))}
-.portrait .cap{position:absolute;left:20px;bottom:18px;z-index:2;font:700 1.3rem var(--serif);color:#fff}
-.portrait .cap span{display:block;font:500 .8rem var(--sans);color:var(--gold2)}
-.frame{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
-.frame rect{fill:none;stroke:var(--gold2);stroke-width:2;stroke-dasharray:1800;stroke-dashoffset:1800;transition:stroke-dashoffset 2.2s ease}
-.portrait.in .frame rect{stroke-dashoffset:0}
-.words span{display:inline-block;opacity:0;transform:translateY(.6em);transition:.7s cubic-bezier(.16,1,.3,1);transition-delay:calc(var(--i)*60ms);margin-right:.25em}
-.words.in span{opacity:1;transform:none}
-blockquote{border-left:2px solid var(--gold);padding:6px 0 6px 20px;margin:20px 0;font:italic 500 1.25rem/1.6 var(--serif);color:#f1ecdc}
-.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-.nums div{border-top:1px solid var(--line);padding-top:12px}
-.nums b{font:700 2.8rem var(--serif);color:var(--gold2);display:block;line-height:1}
-.nums span{font-size:.82rem;color:var(--mute)}
-.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-.pillars .card{padding:22px}.pillars h3{font-size:1.2rem}.pillars p{font-size:.85rem;color:var(--mute)}
-/* quran */
-.ayah{text-align:right;direction:rtl;font:700 2rem/2.2 'Amiri',serif;color:var(--gold2);margin:14px 0}
-/* contents */
-.toc{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-details{border:1px solid var(--line);border-radius:14px;background:rgba(13,17,27,.8);padding:4px 20px}
-summary{cursor:pointer;padding:16px 0;font:700 1.25rem var(--serif);color:var(--gold2);list-style:none;display:flex;justify-content:space-between;gap:10px}
-summary::after{content:"+";transition:.3s}details[open] summary::after{transform:rotate(45deg)}
-details ol{padding:0 0 16px 22px;font-size:.9rem;color:#c3c7d2}details li{padding:3px 0}
-/* reviews */
-.rev{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;margin-top:40px;align-items:start}
-.sum{text-align:center;margin-bottom:18px}.sum b{font:700 3.4rem var(--serif);color:var(--gold2);display:block;line-height:1}
-.bar{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--mute);margin-top:6px}
-.bar i{flex:1;height:5px;border-radius:9px;background:rgba(255,255,255,.07);overflow:hidden}.bar u{display:block;height:100%;background:var(--gold);width:0;transition:width .6s}
-label{display:block;font-size:.82rem;color:var(--mute);margin:14px 0 5px}
-input,select,textarea{width:100%;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:#fff;font:inherit;font-size:.92rem}
-input:focus,select:focus,textarea:focus{border-color:var(--gold2);outline:0}
-select option{background:#0d111b}
-.stars{display:flex;gap:4px;font-size:1.7rem;color:#454a58;cursor:pointer;user-select:none}.stars .s.on{color:var(--gold)}
-.hp{position:absolute;left:-9999px}
-.msg{margin-top:12px;font-size:.88rem;min-height:1.3em;color:var(--gold2)}.msg.err{color:#f0908f}
-.report{margin-bottom:16px}.report .hd{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--mute)}.report .hd b{color:var(--gold2);font-size:1rem}
-.report .tag{display:inline-block;margin:10px 0 8px;font-size:.78rem;color:var(--gold2);border:1px solid var(--line);border-radius:999px;padding:2px 12px}
-.empty{border:1px dashed var(--line);border-radius:16px;padding:40px;text-align:center;color:var(--mute)}
-footer{margin-top:100px;border-top:1px solid var(--line);padding:40px 0;text-align:center;color:var(--mute);font-size:.85rem}
-footer b{display:block;font:700 1.2rem var(--serif);color:var(--gold2);margin-bottom:6px}
-@media(max-width:980px){.hero,.author,.rev,.grid2,.toc{grid-template-columns:1fr}.engines,.pillars,.nums{grid-template-columns:1fr}.stage{min-height:420px}}
-@media(max-width:820px){#burger{display:block}nav ul{display:none;position:absolute;top:68px;left:0;right:0;background:#06070b;flex-direction:column;padding:12px;border-bottom:1px solid var(--line)}nav ul.open{display:flex}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.words span{opacity:1;transform:none}.draw,.frame rect{stroke-dashoffset:0}}
+:root {
+  --bg-primary: #05070a;
+  --bg-secondary: #0c1017;
+  --bg-card: rgba(14, 19, 29, 0.85);
+  --bg-card-hover: rgba(22, 30, 46, 0.95);
+  --border-gold: rgba(214, 178, 74, 0.22);
+  --border-gold-strong: rgba(214, 178, 74, 0.6);
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8b9bb4;
+  --gold-accent: #d6b24a;
+  --gold-glow: rgba(214, 178, 74, 0.25);
+  --red-accent: #c24d4d;
+}
+
+[data-theme="light"] {
+  --bg-primary: #f6f3eb;
+  --bg-secondary: #ede7da;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+  --border-gold: rgba(181, 140, 34, 0.28);
+  --border-gold-strong: rgba(171, 126, 40, 0.65);
+  --text-primary: #111827;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --gold-accent: #b8860b;
+  --gold-glow: rgba(184, 134, 11, 0.16);
+  --red-accent: #b91c1c;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+canvas#bgCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-gold);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fff 0%, #fae69e 40%, #d6b24a 75%, #aa7c1e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+[data-theme="light"] .gold-gradient-text {
+  background: linear-gradient(135deg, #1f2937 0%, #875d21 40%, #b8860b 80%, #52370e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* 3D Book & Rotating Elements */
+.book-wrapper {
+  perspective: 1400px;
+}
+.book-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  box-shadow: -22px 28px 55px rgba(0,0,0,0.85), 0 0 45px var(--gold-glow);
+}
+[data-theme="light"] .book-3d {
+  box-shadow: -15px 20px 40px rgba(0,0,0,0.2), 0 0 35px var(--gold-glow);
+}
+
+@keyframes slowSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: slowSpin 90s linear infinite;
+}
+
+/* Strict Tab Content Visibility */
+.tab-content {
+  display: none;
+}
+.tab-content.active-tab {
+  display: block;
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Active Nav Button */
+.main-tab-btn.active {
+  background: linear-gradient(135deg, #f2d98c, #d6b24a);
+  color: #0b0e14 !important;
+  font-weight: 700;
+  border-color: transparent;
+  box-shadow: 0 4px 18px var(--gold-glow);
+}
+
+/* Book Flip Simulation */
+.flipper-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flipper-card.flipped {
+  transform: rotateY(-180deg);
+}
+.flipper-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flipper-back {
+  transform: rotateY(180deg);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border-gold-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-accent); }
 </style>
 </head>
-<body>
-<canvas id="bg"></canvas>
-<nav><div class="wrap"><a class="brand" href="#top">ROHAAN ZAHID</a>
-<button id="burger" aria-label="Menu">☰</button>
-<ul id="menu">
-<li><a href="#top">Overview</a></li><li><a href="#traps">Two Traps</a></li><li><a href="#engines">Great Game</a></li><li><a href="#quran">Qur'an Lens</a></li><li><a href="#author">Author</a></li><li><a href="#contents">Contents</a></li><li><a href="#reports">Field Reports</a></li>
-</ul></div></nav>
+<body class="antialiased selection:bg-amber-400 selection:text-black min-h-screen flex flex-col justify-between">
 
-<header id="top"><div class="wrap hero">
-<div>
-<h1>The Great Game<small>&amp; The Echoes of 1400 Years</small></h1>
-<p class="lede">How did the heirs of an intellectual, economic and moral superpower become spectators on the world stage? Fourteen centuries of ascent, covert institutional warfare and the Qur'anic laws that explain both.</p>
-<div class="cta"><a class="btn gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Buy on Amazon</a><a class="btn" href="#contents">Read the contents</a></div>
-<div class="status"><div><b>Paperback</b>Available worldwide</div><div><b>Kindle edition</b>Coming soon</div><div><b>26 chapters</b>Six parts</div></div>
+<!-- Sacred Geometry Particle Background -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- Top Announcement & Kindle Countdown Bar -->
+<header class="relative z-50 bg-gradient-to-r from-amber-950 via-zinc-950 to-amber-950 text-amber-200 border-b border-amber-500/30 py-2.5 px-4 text-xs font-cinzel">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+      <span class="tracking-wider uppercase font-bold text-amber-300">Amazon KDP Launch:</span>
+      <span class="text-zinc-300">November 1, 2026 &bull; Global Digital Edition</span>
+    </div>
+    
+    <!-- Real-time Countdown Timer -->
+    <div class="flex items-center gap-2.5 font-mono text-[11px] bg-black/50 px-3 py-1 rounded-full border border-amber-500/30 text-amber-300" id="kdpCountdown">
+      <div><span id="cdDays" class="font-bold text-white">00</span>d</div>:
+      <div><span id="cdHours" class="font-bold text-white">00</span>h</div>:
+      <div><span id="cdMins" class="font-bold text-white">00</span>m</div>:
+      <div><span id="cdSecs" class="font-bold text-white">00</span>s</div>
+      <span class="text-amber-400/70 ml-1 text-[10px] uppercase font-cinzel">Remaining</span>
+    </div>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="underline underline-offset-4 text-amber-300 hover:text-white font-bold">Hardcover Live on Amazon &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<!-- Main Navigation -->
+<nav class="sticky top-0 z-40 backdrop-blur-xl border-b transition-colors duration-300" style="background: var(--bg-card); border-color: var(--border-gold);" aria-label="Book Sections">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand / Author Identity -->
+      <button onclick="navigateTab('tab-hero')" class="flex flex-col text-left group">
+        <span class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-amber-400 group-hover:text-amber-300 transition-colors">THE GREAT GAME</span>
+        <span class="text-[10px] uppercase tracking-[0.25em] text-zinc-400">&amp; The Echoes of 1400 Years &bull; Rohaan Zahid</span>
+      </button>
+
+      <!-- Desktop Strict Tab Triggers -->
+      <div class="hidden xl:flex items-center space-x-1 font-medium text-xs tracking-wider uppercase font-cinzel">
+        <button onclick="navigateTab('tab-hero')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all active" id="btn-tab-hero">1. Overview</button>
+        <button onclick="navigateTab('tab-secret')" class="main-tab-btn px-3 py-2 rounded-full border border-amber-500/30 text-amber-400 hover:text-amber-300 transition-all flex items-center gap-1 font-bold" id="btn-tab-secret">
+          <span>👁</span> 2. Secret Societies
+        </button>
+        <button onclick="navigateTab('tab-traps')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all" id="btn-tab-traps">3. Two Traps</button>
+        <button onclick="navigateTab('tab-quran')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all" id="btn-tab-quran">4. 26 Surahs Lens</button>
+        <button onclick="navigateTab('tab-author')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all" id="btn-tab-author">5. The Author</button>
+        <button onclick="navigateTab('tab-toc')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all" id="btn-tab-toc">6. Book Archive</button>
+        <button onclick="navigateTab('tab-reports')" class="main-tab-btn px-3 py-2 rounded-full border border-transparent hover:text-amber-400 transition-all" id="btn-tab-reports">7. Field Reports</button>
+      </div>
+
+      <!-- Action Utilities: Theme Toggle & Order Link -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" aria-label="Toggle Theme" class="p-2.5 rounded-full border border-amber-500/30 text-amber-400 hover:bg-amber-500/10 transition-colors">
+          <svg id="themeMoon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+          <svg id="themeSun" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h1m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
+
+        <!-- Amazon Order Button -->
+        <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-bold font-cinzel tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-zinc-950 hover:brightness-110 shadow-lg shadow-amber-500/20 transition-all">
+          Buy Hardcover
+        </a>
+
+        <!-- Mobile Drawer Toggle -->
+        <button id="mobileNavToggle" aria-label="Toggle Mobile Menu" class="xl:hidden p-2 rounded-lg text-amber-400 border border-amber-500/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobileMenu" class="hidden xl:hidden border-t px-4 py-4 space-y-2 backdrop-blur-2xl" style="background: var(--bg-card); border-color: var(--border-gold);">
+    <button onclick="navigateTab('tab-hero')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">1. Overview &amp; Countdown</button>
+    <button onclick="navigateTab('tab-secret')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel bg-amber-500/10 text-amber-400 font-bold">2. Secret Societies &amp; Occult Exposé</button>
+    <button onclick="navigateTab('tab-traps')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">3. The Two Traps</button>
+    <button onclick="navigateTab('tab-quran')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">4. 26 Surahs Lens</button>
+    <button onclick="navigateTab('tab-author')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">5. Author Profile</button>
+    <button onclick="navigateTab('tab-toc')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">6. Interactive 26 Chapters</button>
+    <button onclick="navigateTab('tab-reports')" class="w-full text-left px-3 py-2 rounded-lg text-xs font-cinzel hover:bg-amber-500/10">7. Field Reports</button>
+  </div>
+</nav>
+
+<!-- Responsive Secondary Tab Bar for easy one-click tab jumping -->
+<div class="relative z-30 py-2.5 border-b border-amber-500/20 backdrop-blur-xl" style="background: var(--bg-secondary);">
+  <div class="max-w-7xl mx-auto px-4 overflow-x-auto flex items-center justify-start sm:justify-center gap-2 text-xs font-cinzel whitespace-nowrap">
+    <button onclick="navigateTab('tab-hero')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">Overview</button>
+    <button onclick="navigateTab('tab-secret')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300 font-bold">Secret Societies</button>
+    <button onclick="navigateTab('tab-traps')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">Two Traps</button>
+    <button onclick="navigateTab('tab-quran')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">Qur'anic Lens</button>
+    <button onclick="navigateTab('tab-author')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">Author</button>
+    <button onclick="navigateTab('tab-toc')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">26 Chapters</button>
+    <button onclick="navigateTab('tab-reports')" class="sub-tab-btn px-3 py-1.5 rounded-full border border-amber-500/20 hover:border-amber-400 text-amber-300">Field Reports</button>
+  </div>
 </div>
-<div class="stage" id="stage">
-<svg viewBox="0 0 300 300" fill="none" stroke="#d6b24a" stroke-width=".6" aria-hidden="true">
-<circle cx="150" cy="150" r="142" stroke-dasharray="3 4" opacity=".6"/><circle cx="150" cy="150" r="125" opacity=".5"/>
-<polygon class="draw" points="150,22 168,110 258,110 185,162 212,248 150,198 88,248 115,162 42,110 132,110" stroke="#f2d98c" stroke-width="1"/>
-<circle cx="150" cy="22" r="3" fill="#f2d98c"/><circle cx="258" cy="110" r="3" fill="#f2d98c"/><circle cx="212" cy="248" r="3" fill="#f2d98c"/><circle cx="88" cy="248" r="3" fill="#f2d98c"/><circle cx="42" cy="110" r="3" fill="#f2d98c"/>
-</svg>
-<div class="book" id="book"><img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="Front cover of The Great Game"></div>
-</div></div></header>
 
-<main>
-<section id="traps"><div class="wrap">
-<p class="kicker rv">The method</p>
-<h2 class="rv">Two traps every book falls into, and how this one avoids them.</h2>
-<div class="grid2">
-<div class="card trap rv"><h3>Helpless victimhood</h3><p><b>The pitfall:</b> blaming every collapse on colonialism and outside enemies.</p><p><b>The flaw:</b> it removes moral agency and contradicts the Qur'an: "Allah will not change the condition of a people until they change what is within themselves" (13:11).</p></div>
-<div class="card trap rv" style="--d:.12s"><h3>Unhinged conspiracy</h3><p><b>The pitfall:</b> treating shadowy elites as omnipotent controllers of every event.</p><p><b>The flaw:</b> it replaces evidence with fear and ignores the economic and geopolitical systems you can actually observe.</p></div>
-</div>
-<div class="card balance rv"><h3>The balance</h3><p>Every claim sits in one of three tiers: <b>documented historical fact</b>, <b>systematic geopolitical analysis</b>, or <b>speculative inquiry, labeled as such</b>. Secret societies and financial systems are treated as real, documented actors, but never as supernatural ones. They exploit a community that has abandoned its own covenant, rigor and unity.</p></div>
-</div></section>
+<!-- ======================================================== -->
+<!-- TAB VIEW 1: OVERVIEW & COUNTDOWN & 3D INTERACTIVE HERO -->
+<!-- ======================================================== -->
+<main id="tab-hero" class="tab-content active-tab relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Left Hero Column -->
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-cinzel tracking-widest uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+        Forensic Geopolitics &bull; Occult Orders &bull; Qur'anic Law
+      </div>
 
-<section id="engines"><div class="wrap">
-<p class="kicker rv">Deconstructing the Great Game</p>
-<h2 class="rv">Six interlocking engines of modern subjugation.</h2>
-<p class="lede rv" style="margin-top:20px">Textbooks define the Great Game as the British–Russian rivalry over Central Asia. This book follows it further: the long campaign to dismantle the unified Islamic order and secure lasting economic and cognitive dominance.</p>
-<div class="engines" id="engGrid"></div>
-<div class="track rv" id="track"><i></i></div>
-</div></section>
+      <h1 class="font-serif text-4xl sm:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white">
+        The Great Game
+        <span class="block font-serif italic text-2xl sm:text-4xl lg:text-5xl font-semibold mt-2 gold-gradient-text">
+          &amp; The Echoes of 1400 Years
+        </span>
+      </h1>
 
-<section id="quran"><div class="wrap">
-<p class="kicker rv">The Qur'anic lens</p>
-<h2 class="rv">The Qur'an as a diagnostic mirror for civilizations.</h2>
-<div class="grid2">
-<div class="card rv"><p class="ayah">إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ</p><p class="lede" style="font-size:1.15rem">"Indeed, Allah will not change the condition of a people until they change what is in themselves." <span style="color:var(--mute);font-size:.9rem">Ar-Ra'd 13:11</span></p><p style="font-size:.9rem;color:var(--mute)">Powers fall when their internal moral core, learning and unity dissolve. Outside pressure only finishes what decay began.</p></div>
-<div class="card rv" style="--d:.12s"><h3>Why it matters here</h3><p>The book reads the Qur'an as more than a text of ritual. It treats it as a set of sociological laws (<em>Sunan</em>) governing the rise, stagnation and collapse of nations, then tests those laws against documented history.</p><p>Revival, it argues, comes through intellectual strength, economic literacy and collective responsibility. Slogans and uprisings do not deliver it.</p></div>
-</div></div></section>
+      <p class="text-base sm:text-lg font-light leading-relaxed max-w-2xl text-zinc-300">
+        How did the heirs of a global intellectual, economic, and moral superpower become fragmented spectators on the world stage? Fourteen centuries of ascent, covert institutional warfare, and the Qur'anic laws that explain both.
+      </p>
 
-<section id="author"><div class="wrap">
-<p class="kicker rv">The author</p>
-<h2 class="words" id="authHead">A voice from within the Ummah, refusing historical amnesia.</h2>
-<div class="author">
-<div class="portrait" id="portrait">
-<img src="https://res.cloudinary.com/bpqdnyog/image/upload/v1786877340/004.jpg" alt="Muhammad Rohaan Zahid" id="portImg">
-<svg class="frame" viewBox="0 0 400 500" preserveAspectRatio="none"><rect x="6" y="6" width="388" height="488" rx="18"/></svg>
-<div class="cap">Muhammad Rohaan Zahid<span>Author, AI engineer and geopolitical researcher</span></div>
-</div>
-<div>
-<p class="rv">This book was not written from the comfort of academic distance. It came out of the friction between what Islamic civilization was commissioned to embody and the fractured, dependent reality it lives in today.</p>
-<blockquote class="rv">Any strengths, insights and structural clarity belong to Allah and to the scholarship passed down through generations. Every imperfection is entirely my own.</blockquote>
-<p class="rv">Public discourse has been stuck between fatalistic victimhood and sensational conspiracy. The book breaks that binary by combining documented institutional history, clandestine power mechanics and the sociological laws set out in the Qur'an.</p>
-<p class="rv" style="color:var(--mute);font-size:.9rem">Dedicated to my parents, whose prayers and sacrifices laid the foundation for this work, and to every truth-seeker who refuses to believe the story of Islam has reached its final chapter.</p>
-<div class="nums" id="nums">
-<div><b data-to="26">0</b><span>chapters</span></div><div><b data-to="6">0</b><span>parts</span></div><div><b data-to="1400">0</b><span>years traced</span></div>
-</div></div></div>
-<div class="pillars">
-<div class="card rv"><h3>Primary source inquiry</h3><p>Verified archives, economic records and treaties across fourteen centuries.</p></div>
-<div class="card rv" style="--d:.1s"><h3>Qur'anic epistemology</h3><p>Revelation as the analytical tool for judging a civilization's health.</p></div>
-<div class="card rv" style="--d:.2s"><h3>Modern systems literacy</h3><p>Central banking, petrodollar mechanics, intelligence networks and cognitive warfare.</p></div>
-</div></div></section>
+      <!-- Launch countdown card -->
+      <div class="glass-panel p-5 rounded-2xl border border-amber-500/30 max-w-xl space-y-3">
+        <div class="flex items-center justify-between text-xs font-cinzel text-amber-400">
+          <span class="font-bold flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Amazon KDP Kindle Edition Release
+          </span>
+          <span class="text-zinc-400 font-mono">November 1, 2026</span>
+        </div>
+        <p class="text-xs text-zinc-300">
+          The worldwide digital eBook edition goes live on Amazon KDP on November 1, 2026. The full 26 chapters, unabridged documentation, and references will be available across Kindle and digital devices globally.
+        </p>
+      </div>
 
-<section id="contents"><div class="wrap">
-<p class="kicker rv">Table of contents</p>
-<h2 class="rv">Six parts, twenty-six chapters.</h2>
-<div class="toc" id="toc"></div>
-</div></section>
+      <!-- Action Buttons -->
+      <div class="pt-2 flex flex-wrap gap-4 items-center">
+        <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="px-7 py-3.5 rounded-full text-xs font-bold font-cinzel tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-zinc-950 hover:shadow-[0_0_30px_rgba(214,178,74,0.45)] hover:-translate-y-0.5 transition-all">
+          Order Hardcover Now
+        </a>
+        <button onclick="navigateTab('tab-secret')" class="px-6 py-3.5 rounded-full text-xs font-cinzel font-semibold border border-amber-500/40 text-amber-300 hover:bg-amber-500/10 transition-all flex items-center gap-2">
+          <span>Unveil Secret Societies Dossier</span> &rarr;
+        </button>
+      </div>
 
-<section id="reports"><div class="wrap">
-<p class="kicker rv">Reader field reports</p>
-<h2 class="rv">Test the argument. Report what you find.</h2>
-<p class="lede rv" style="margin-top:20px">The book asks readers to separate documented fact from speculation. Field reports follow the same rule: say which engine changed your thinking and which trap you recognized. Every report is read by the author before it appears.</p>
-<div class="rev">
-<div>
-<div class="card rv"><div class="sum"><b id="avg">–</b><span id="cnt" style="color:var(--mute);font-size:.88rem">No field reports yet</span></div><div id="bars"></div></div>
-<form class="card rv" id="form" style="margin-top:18px" novalidate>
-<h3>File a field report</h3>
-<label>Your rating</label><div class="stars" id="stars" role="radiogroup" aria-label="Rating"></div>
-<label for="n">Name or initials</label><input id="n" maxlength="60" required>
-<label for="r">Role and location (optional)</label><input id="r" maxlength="60" placeholder="Student, Islamabad">
-<label for="e">Which engine changed your thinking most?</label><select id="e"></select>
-<label for="t">Which trap did you recognize in your own thinking?</label>
-<select id="t"><option>Helpless victimhood</option><option>Unhinged conspiracy</option><option>Both</option><option>Neither</option></select>
-<label for="c">Your report (20 to 1,200 characters)</label><textarea id="c" rows="5" maxlength="1200" required placeholder="Name a chapter, a claim, or a source you checked."></textarea>
-<input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-<button class="btn gold" id="sb" style="width:100%;margin-top:18px">Submit for review</button>
-<div class="msg" id="msg" role="status"></div>
-</form></div>
-<div id="feed"></div>
-</div></div></section>
+      <!-- Meta stats -->
+      <div class="grid grid-cols-3 gap-4 pt-4 border-t border-amber-500/20 max-w-lg">
+        <div>
+          <div class="font-cinzel text-2xl font-bold text-amber-400">26</div>
+          <div class="text-[10px] uppercase tracking-wider text-zinc-400">Chapters Traced</div>
+        </div>
+        <div>
+          <div class="font-cinzel text-2xl font-bold text-amber-400">6 Parts</div>
+          <div class="text-[10px] uppercase tracking-wider text-zinc-400">Systemic Scope</div>
+        </div>
+        <div>
+          <div class="font-cinzel text-2xl font-bold text-amber-400">1400 Yrs</div>
+          <div class="text-[10px] uppercase tracking-wider text-zinc-400">Historical Continuum</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: 3D Book & Rotating Secret Society / Idolatry Ring -->
+    <div class="lg:col-span-5 flex flex-col items-center justify-center relative">
+      
+      <!-- Rotating SVG Ring Exposing Secret Societies & Occult Deities -->
+      <div class="absolute w-[360px] h-[360px] sm:w-[480px] sm:h-[480px] pointer-events-none flex items-center justify-center">
+        <svg viewBox="0 0 500 500" class="w-full h-full animate-spin-slow opacity-60 text-amber-400">
+          <defs>
+            <path id="circlePath" d="M 250, 250 m -210, 0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0" />
+            <path id="innerCirclePath" d="M 250, 250 m -170, 0 a 170,170 0 1,0 340,0 a 170,170 0 1,0 -340,0" />
+          </defs>
+          <circle cx="250" cy="250" r="240" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 6"/>
+          <circle cx="250" cy="250" r="210" fill="none" stroke="currentColor" stroke-width="0.5"/>
+          <circle cx="250" cy="250" r="170" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="4 4"/>
+          
+          <!-- Outer exposed names text -->
+          <text font-family="'Cinzel', serif" font-size="11" font-weight="bold" fill="currentColor" letter-spacing="3.5">
+            <textPath href="#circlePath" startOffset="0%">
+              &bull; BAVARIAN ILLUMINATI &bull; SALONICA MASONIC LODGE &bull; SKULL &amp; BONES &bull; BOHEMIAN GROVE &bull; TAVISTOCK INSTITUTE &bull; GRAND ORIENT
+            </textPath>
+          </text>
+
+          <!-- Inner exposed deities / occult entities text -->
+          <text font-family="'Cinzel', serif" font-size="9" fill="#e05252" letter-spacing="4">
+            <textPath href="#innerCirclePath" startOffset="0%">
+              &bull; BAAL WORSHIP &bull; MOLECH SACRIFICES &bull; LUCIFERIAN DOCTRINE &bull; BAPHOMET &bull; SATANIC DECEPTION &bull; FITRAH INVERSION
+            </textPath>
+          </text>
+        </svg>
+      </div>
+
+      <!-- 3D Interactive Book Presentation -->
+      <div class="book-wrapper py-6 z-10">
+        <div id="hero3DBook" class="book-3d relative w-[240px] sm:w-[290px] aspect-[2/3] rounded-r-xl rounded-l-sm border-l-[6px] border-amber-950 cursor-grab active:cursor-grabbing">
+          <img 
+            src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" 
+            alt="The Great Game Front Cover" 
+            class="w-full h-full object-cover rounded-r-xl rounded-l-sm"
+            onerror="this.src='https://placehold.co/600x900/0c1017/d6b24a?text=The+Great+Game'"
+          >
+          <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/40 pointer-events-none rounded-r-xl"></div>
+        </div>
+        <p class="text-center text-[10px] uppercase font-cinzel text-amber-400/80 mt-4 tracking-widest">
+          Interactive 3D Simulation &bull; Hover to Tilt
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Interactive Flip-Through Preview Section -->
+  <section class="glass-panel p-6 sm:p-10 rounded-3xl border border-amber-500/30 space-y-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-amber-500/20 pb-4">
+      <div>
+        <span class="text-xs font-cinzel uppercase text-amber-400 font-bold">Interactive Sample Reader</span>
+        <h3 class="font-serif text-2xl font-bold text-white">Flip Through The Pages: Prelude &amp; Architecture</h3>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="prevFlipPage()" class="px-3 py-1.5 rounded-full border border-amber-500/40 text-xs font-cinzel hover:bg-amber-500/20 text-amber-300">&larr; Prev Page</button>
+        <span id="flipPageNum" class="text-xs font-mono text-zinc-400">Page 1 / 4</span>
+        <button onclick="nextFlipPage()" class="px-3 py-1.5 rounded-full border border-amber-500/40 text-xs font-cinzel hover:bg-amber-500/20 text-amber-300">Next Page &rarr;</button>
+      </div>
+    </div>
+
+    <!-- Flipping Page Container -->
+    <div class="min-h-[260px] bg-black/40 p-6 sm:p-8 rounded-2xl border border-amber-500/20 relative" id="flipContentArea">
+      <!-- Dynamic page content injected via JS -->
+    </div>
+  </section>
+
 </main>
 
-<footer><div class="wrap"><b>THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS</b>By Muhammad Rohaan Zahid · © 2026 · Written in Pakistan</div></footer>
+<!-- ======================================================== -->
+<!-- TAB VIEW 2: THE SECRET SOCIETIES & SATANIC RITUALS EXPOSÉ -->
+<!-- ======================================================== -->
+<main id="tab-secret" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <!-- Header Banner -->
+  <div class="text-center max-w-4xl mx-auto space-y-4">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500/50 bg-red-950/40 text-red-400 text-xs font-cinzel font-bold tracking-widest uppercase">
+      Declassified Investigation &bull; Chapters 15, 16, 17
+    </div>
+    <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+      The Secret Societies, Luciferian Rituals &amp; The War on Fitrah
+    </h2>
+    <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+      A forensic deconstruction of the clandestine power structures: how ancient pagan blood sacrifices transitioned into Enlightenment secret lodges, infiltrated the Ottoman Empire, and weaponized mass media to wage war against the worship of Allah.
+    </p>
+  </div>
 
+  <!-- HIGHLIGHTED THESIS QUOTE BOX -->
+  <div class="relative p-8 sm:p-12 rounded-3xl glass-panel border-2 border-amber-400/80 shadow-[0_0_50px_rgba(214,178,74,0.2)] bg-gradient-to-br from-amber-500/10 via-black/60 to-red-950/20 overflow-hidden">
+    <div class="absolute -right-12 -top-12 text-amber-500/10 text-9xl font-serif select-none pointer-events-none">“</div>
+    <div class="relative z-10 space-y-4 text-center max-w-4xl mx-auto">
+      <span class="text-xs uppercase font-cinzel tracking-[0.3em] text-amber-400 font-bold block">The Book's Core Thesis Revealed</span>
+      <p class="font-serif italic text-xl sm:text-3xl lg:text-4xl text-amber-100 font-semibold leading-relaxed">
+        "They do not merely seek geopolitical dominance; their ultimate war is spiritual: to ensure humanity and Muslims cease bowing before Allah, and instead bow before Baal and Lucifer."
+      </p>
+      <div class="pt-2 text-xs font-cinzel text-amber-400 tracking-wider">
+        — Muhammad Rohaan Zahid &bull; <em>The Great Game &amp; The Echoes of 1400 Years</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deep Exposé Dossiers -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- File 1: The Genealogies of Baal & Molech Sacrifices -->
+    <article class="glass-panel p-8 rounded-2xl border-l-4 border-l-red-500 space-y-4">
+      <div class="flex items-center justify-between text-xs font-cinzel text-red-400 font-bold">
+        <span>Occult Archeology #01</span>
+        <span class="px-2 py-0.5 rounded bg-red-950 border border-red-500/40 text-[10px]">Canaanite Rites</span>
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-white">From the Brazen Bull of Molech to Modern Cabals</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        The worship of Baal and Molech in ancient Phoenicia and Carthage required the sacrifice of newborns and innocents through furnace idols to invoke wealth, military victory, and esoteric influence. <strong>The Great Game</strong> traces how these ancient blood pacts did not vanish into history; they were preserved, disguised in Kabbalistic hermeticism, and adopted by aristocratic secret societies like the Bohemian Club and European occult fraternities.
+      </p>
+      <div class="p-4 rounded-xl bg-black/60 border border-red-500/30 text-xs font-mono text-zinc-300 space-y-1.5">
+        <div class="text-red-400 font-bold">Book Excerpt (Ch. 17):</div>
+        <div>"Sacrifice in the satanic paradigm is the inverse of Islamic Udhiyyah (sacrifice for Allah). While the believer sacrifices an animal to remember submission and eradicate arrogance, the occult elite sacrifices innocent blood to consolidate earthly dominion and feed demonic contracts."</div>
+      </div>
+    </article>
+
+    <!-- File 2: The Bavarian Illuminati & Masonic Infiltration -->
+    <article class="glass-panel p-8 rounded-2xl border-l-4 border-l-amber-500 space-y-4">
+      <div class="flex items-center justify-between text-xs font-cinzel text-amber-400 font-bold">
+        <span>Institutional Infiltration #02</span>
+        <span class="px-2 py-0.5 rounded bg-amber-950 border border-amber-500/40 text-[10px]">Salonica Lodges</span>
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-white">Salonica Lodges &amp; The Dismantling of the Khilafah</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        Founded on May 1, 1776 by Adam Weishaupt under banking patronage, the Bavarian Illuminati blueprint mandated the infiltration of existing Masonic lodges to overthrow monarchies and religious orders. The book documents how this exact playbook struck Istanbul: the Young Turks (CUP) used Italian and French Grand Orient Masonic lodges in Salonica (such as <em>Macedonia Risorta</em>) to evade Ottoman imperial surveillance, organize the 1908 revolution, and depose Sultan Abdul Hamid II in 1909.
+      </p>
+      <div class="p-4 rounded-xl bg-black/60 border border-amber-500/30 text-xs font-mono text-zinc-300 space-y-1.5">
+        <div class="text-amber-400 font-bold">Verified Archival Fact:</div>
+        <div>Emmanuel Carasso, Grand Master of the Italian Masonic lodge in Salonica, was one of the four individuals who personally delivered the deposition decree to the Caliph of Islam.</div>
+      </div>
+    </article>
+
+    <!-- File 3: The Luciferian Doctrine & Inversion of Fitrah -->
+    <article class="glass-panel p-8 rounded-2xl border-l-4 border-l-amber-500 space-y-4">
+      <div class="flex items-center justify-between text-xs font-cinzel text-amber-400 font-bold">
+        <span>Metaphysical War #03</span>
+        <span class="px-2 py-0.5 rounded bg-amber-950 border border-amber-500/40 text-[10px]">Albert Pike Blueprint</span>
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-white">The Luciferian Creed: "Do What Thou Wilt"</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        High-degree Masonic literature (such as Albert Pike’s <em>Morals and Dogma</em>) explicitly reveals Lucifer as the bearer of light and intellect, while depicting the God of Abraham as an oppressive tyrant. The objective is spiritual rebellion: transmuting moral absolutes into subjective desires. By convincing mankind that submission to Divine Law is bondage, they cultivate an environment where human beings surrender their intellect to carnal instincts.
+      </p>
+      <div class="p-4 rounded-xl bg-black/60 border border-amber-500/30 text-xs font-mono text-zinc-300 space-y-1.5">
+        <div class="text-amber-400 font-bold">Qur'anic Identification:</div>
+        <div>"Did I not enjoin upon you, O children of Adam, that you not worship Satan? Indeed, he is to you a clear enemy. And that you worship [only] Me? This is a straight path." (Ya-Sin 36:60-61)</div>
+      </div>
+    </article>
+
+    <!-- File 4: Normalization in Media, Sports, Music & Culture -->
+    <article class="glass-panel p-8 rounded-2xl border-l-4 border-l-red-500 space-y-4">
+      <div class="flex items-center justify-between text-xs font-cinzel text-red-400 font-bold">
+        <span>Cognitive Warfare #04</span>
+        <span class="px-2 py-0.5 rounded bg-red-950 border border-red-500/40 text-[10px]">Mass Conditioning</span>
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-white">Pop Culture Normalization: Sports, Hollywood &amp; Music</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        Why are occult symbols—the All-Seeing Eye, the pyramid, the horns of Baphomet, ritualistic stage sacrifices, and 666 geometry—ubiquitous across global halftime shows, music videos, and fashion industries? Chapter 17 unmasks this not as random edgy aesthetics, but as deliberate perceptual desensitization supervised by Tavistock social engineers: when occult symbols become ordinary, society accepts spiritual subjugation without friction.
+      </p>
+      <div class="p-4 rounded-xl bg-black/60 border border-red-500/30 text-xs font-mono text-zinc-300 space-y-1.5">
+        <div class="text-red-400 font-bold">The Psychological Objective:</div>
+        <div>Normalize transgression, break down natural shame (Haya), and dismantle spiritual resistance among the younger generations of the Ummah.</div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- How Book Separates Fact from Conspiracy Hysteria -->
+  <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-amber-500/30 space-y-4">
+    <div class="flex items-center gap-2 text-xs font-cinzel text-amber-400 font-bold">
+      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+      <span>Rigorous Epistemology</span>
+    </div>
+    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">How This Book Separates Archival Evidence from Internet Hysteria</h3>
+    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+      Unlike sensationalist YouTube videos or apocalyptic panic merchants, <em>The Great Game</em> operates under a strict three-tier evidential filter:
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 text-xs">
+      <div class="p-4 rounded-xl bg-black/40 border border-amber-500/20 space-y-1">
+        <strong class="text-amber-400 font-cinzel block">Tier 1: Documented Facts</strong>
+        <p class="text-zinc-400">Treaties, banking charters, court decrees, and lodge logs cited from primary diplomatic archives.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-black/40 border border-amber-500/20 space-y-1">
+        <strong class="text-amber-400 font-cinzel block">Tier 2: Systemic Analysis</strong>
+        <p class="text-zinc-400">Economic, currency, and military correlations tested against geopolitical outcomes over 1400 years.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-black/40 border border-amber-500/20 space-y-1">
+        <strong class="text-amber-400 font-cinzel block">Tier 3: Speculative Inquiry</strong>
+        <p class="text-zinc-400">Unverified claims are explicitly labeled as speculative, safeguarding reader intellect from confirmation bias.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ======================================================== -->
+<!-- TAB VIEW 3: THE TWO TRAPS & METHODOLOGY -->
+<!-- ======================================================== -->
+<main id="tab-traps" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="text-center max-w-3xl mx-auto space-y-4">
+    <span class="text-xs uppercase font-cinzel text-amber-400 tracking-widest font-semibold">The Methodological Standard</span>
+    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">The Two Traps Every Analysis Falls Into</h2>
+    <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+      Most analyses of Muslim civilizational decline collapse into one of two intellectually bankrupt dead-ends. <em>The Great Game &amp; The Echoes of 1400 Years</em> is designed specifically to dismantle both.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Trap 1 -->
+    <div class="glass-panel p-8 sm:p-10 rounded-3xl border-t-4 border-t-red-500 space-y-5">
+      <div class="flex items-center gap-2 text-red-400 font-cinzel font-bold text-sm">
+        <span>Trap 01:</span>
+        <span>The Paralysis of Helpless Victimhood</span>
+      </div>
+      <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Blaming Everything on Outside Enemies</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        This trap attributes every failure, civil war, educational backwardness, and political tyranny exclusively to Western colonialism, the CIA, or foreign saboteurs.
+      </p>
+      <div class="space-y-2 text-xs text-zinc-300 border-l-2 border-red-500/40 pl-4">
+        <div><strong>The Epistemological Flaw:</strong> It strips Muslims of moral and historical agency. If external enemies dictate everything, repentance and reform are pointless.</div>
+        <div><strong>The Qur'anic Refutation:</strong> "Indeed, Allah will not change the condition of a people until they change what is in themselves." (13:11). External invaders only walk through doors unlocked by internal rot.</div>
+      </div>
+    </div>
+
+    <!-- Trap 2 -->
+    <div class="glass-panel p-8 sm:p-10 rounded-3xl border-t-4 border-t-red-500 space-y-5">
+      <div class="flex items-center gap-2 text-red-400 font-cinzel font-bold text-sm">
+        <span>Trap 02:</span>
+        <span>Unhinged Conspiracy Hysteria</span>
+      </div>
+      <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white">Treating Clandestine Cabals as Omnipotent Gods</h3>
+      <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+        This trap elevates secret societies into omniscient directors of every single historical movement, pandemic, inflation cycle, and election.
+      </p>
+      <div class="space-y-2 text-xs text-zinc-300 border-l-2 border-red-500/40 pl-4">
+        <div><strong>The Epistemological Flaw:</strong> It replaces verifiable historical, economic, and military data with sensationalism, fueling defeatism and fear.</div>
+        <div><strong>The Qur'anic Refutation:</strong> "Indeed, the plot of Satan has ever been weak." (4:76). Cabals do not possess supernatural power; they exploit divided nations who have abandoned the Book of Allah.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- The Author's Unified Balance -->
+  <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-amber-500/40 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/5 space-y-4">
+    <div class="flex items-center gap-2 text-xs font-cinzel text-amber-400 font-bold">
+      <span>The Resolution</span> &bull; <span>The Qur'anic Sunan of History</span>
+    </div>
+    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-amber-300">Why This Book Does Not Fall Into Either Trap</h3>
+    <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+      In <em>The Great Game &amp; The Echoes of 1400 Years</em>, Muhammad Rohaan Zahid proves that secret societies, banking syndicates, and cartographic conspiracies are genuine, documented historical entities—but they are <strong>symptoms, not root causes</strong>. Just as bacteria can only infect a decaying biological organism, clandestine powers can only subjugate a civilization that has first dismantled its own moral covenant, its intellectual rigor, and its social solidarity. Revival starts not with endless grievance, but with rigorous self-accountability.
+    </p>
+  </div>
+
+</main>
+
+<!-- ======================================================== -->
+<!-- TAB VIEW 4: THE QUR'ANIC LENS & 26 SURAHS MAPPING -->
+<!-- ======================================================== -->
+<main id="tab-quran" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="text-center max-w-3xl mx-auto space-y-4">
+    <span class="text-xs uppercase font-cinzel text-amber-400 tracking-widest font-semibold">Sunan Ilahiyyah &bull; Civilizational Laws</span>
+    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">The Qur'anic Epistemology &amp; 26 Surahs</h2>
+    <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+      The rise and fall of nations is governed by immutable Divine laws (<em>Sunan</em>). Below is the comprehensive mapping of <strong>all 26 chapters</strong> of <em>The Great Game</em> to their corresponding foundational Qur'anic Surahs.
+    </p>
+  </div>
+
+  <!-- Central Diagnostic Ayah -->
+  <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-amber-500/40 text-center space-y-6">
+    <p class="font-arabic text-3xl sm:text-5xl text-amber-300 leading-[1.8] dir-rtl">
+      إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ
+    </p>
+    <p class="font-serif italic text-lg sm:text-2xl text-zinc-200">
+      "Indeed, Allah will not change the condition of a people until they change what is in themselves."
+    </p>
+    <span class="text-xs font-cinzel text-amber-400 tracking-widest uppercase">— Surah Ar-Ra'd (13:11) &bull; The Golden Axiom of Renewal —</span>
+  </div>
+
+  <!-- 26 Surahs Mapping to 26 Chapters Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="quran26Container">
+    <!-- Populated with full 26 Surah-Chapter cards via JS -->
+  </div>
+
+</main>
+
+<!-- ======================================================== -->
+<!-- TAB VIEW 5: THE AUTHOR PROFILE (MUHAMMAD ROHAAN ZAHID) -->
+<!-- ======================================================== -->
+<main id="tab-author" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    
+    <!-- Left Column: Portrait & Visual Frame -->
+    <div class="lg:col-span-5 relative">
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass-panel border border-amber-500/40 shadow-2xl group">
+        <img 
+          src="https://res.cloudinary.com/bpqdnyog/image/upload/v1786877340/004.jpg" 
+          alt="Muhammad Rohaan Zahid" 
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          onerror="this.src='https://placehold.co/600x750/0b1019/d6b24a?text=Muhammad+Rohaan+Zahid'"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="absolute bottom-6 left-6 right-6 space-y-1">
+          <h3 class="font-serif text-2xl font-bold text-white">Muhammad Rohaan Zahid</h3>
+          <p class="text-xs font-cinzel text-amber-400 tracking-widest uppercase">AI Engineer &bull; Geopolitical Analyst &bull; Author</p>
+          <p class="text-[11px] text-zinc-400">Islamabad, Pakistan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Personal Story, CASE, Why Written -->
+    <div class="lg:col-span-7 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-cinzel font-semibold uppercase tracking-wider">
+        The Mind Behind The Manifesto
+      </div>
+
+      <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight">
+        A Voice From Within the Ummah, Refusing Historical Amnesia.
+      </h2>
+
+      <div class="space-y-4 text-xs sm:text-sm text-zinc-300 leading-relaxed font-sans">
+        <p>
+          <strong>Muhammad Rohaan Zahid</strong> is an AI engineer, computer science scholar from <strong>Sir Syed CASE Institute of Technology</strong>, and independent geopolitical researcher based in Islamabad, Pakistan.
+        </p>
+        <p>
+          Rather than viewing geopolitics through disconnected secular theories or superstitious folklore, he applies an analytical systems-engineering methodology to 1400 years of Islamic history, monetary economics, and international statecraft.
+        </p>
+        <p>
+          <strong>Why I Wrote This Book:</strong> <em>"I wrote this treatise because our youth are trapped in an intolerable crossfire. On one side, secular schooling teaches them that their ancestors were barbaric and that salvation lies in aping the West. On the other side, internet sensationalists fill them with paralyzing paranoia about illuminati cults, making them feel like helpless pawns. I wrote this book to give our generation their backbone back: to prove with documented history and Qur'anic certainty that our destiny is written by our own deeds."</em>
+        </p>
+      </div>
+
+      <!-- Author's Personal Dedication Quote -->
+      <blockquote class="p-6 rounded-2xl glass-panel border-l-4 border-l-amber-400 font-serif italic text-base sm:text-lg text-amber-100 space-y-2">
+        <p>"Dedicated with unending love to my beloved parents, whose relentless sacrifices, patience, and prayers laid the quiet foundations of this entire work. And to every Muslim youth who refuses to concede that our history is over."</p>
+        <footer class="text-xs font-cinzel not-italic text-amber-400 tracking-wider">— Muhammad Rohaan Zahid</footer>
+      </blockquote>
+
+      <!-- Expectations from the Ummah -->
+      <div class="p-5 rounded-2xl bg-black/40 border border-amber-500/20 text-xs space-y-2">
+        <h4 class="font-cinzel text-amber-400 font-bold uppercase tracking-wider">What Rohaan Zahid Expects From Readers:</h4>
+        <ul class="list-disc list-inside space-y-1 text-zinc-300">
+          <li><strong>Never accept hearsay:</strong> Verify every treaty, historical date, and economic claim.</li>
+          <li><strong>Eradicate intellectual servility:</strong> Recognize that Western institutional models are not neutral or objective.</li>
+          <li><strong>Master modern systems:</strong> Combine deep Qur'anic comprehension with proficiency in AI, monetary science, and sovereign technology.</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<!-- ======================================================== -->
+<!-- TAB VIEW 6: INTERACTIVE 26-CHAPTER ARCHIVE -->
+<!-- ======================================================== -->
+<main id="tab-toc" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="text-center max-w-3xl mx-auto space-y-4">
+    <span class="text-xs uppercase font-cinzel text-amber-400 tracking-widest font-semibold">Archival Dossier</span>
+    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">The 26 Chapters Forensic Architecture</h2>
+    <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+      Browse the six comprehensive parts of the work. Click any chapter to inspect its declassified coordinates, primary archives, and modern implications.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="archiveContainer">
+    <!-- Populated dynamically via JS -->
+  </div>
+
+</main>
+
+<!-- ======================================================== -->
+<!-- TAB VIEW 7: READER FIELD REPORTS (FIRESTORE REAL-TIME) -->
+<!-- ======================================================== -->
+<main id="tab-reports" class="tab-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+  
+  <div class="text-center max-w-3xl mx-auto space-y-4">
+    <span class="text-xs uppercase font-cinzel text-amber-400 tracking-widest font-semibold">Verifiable Engagement</span>
+    <h2 class="font-serif text-3xl sm:text-5xl font-bold text-white">Reader Field Reports</h2>
+    <p class="text-sm sm:text-base text-zinc-300 leading-relaxed">
+      Test the claims. Verify the citations. File your report stating which engine dismantled your preconceptions and which trap you overcame. Every field report is reviewed by Muhammad Rohaan Zahid prior to public indexing.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Left Column: Metrics & Form -->
+    <div class="lg:col-span-5 space-y-6">
+      
+      <!-- Scorecard -->
+      <div class="glass-panel p-6 rounded-2xl border border-amber-500/30 text-center space-y-3">
+        <div class="font-cinzel text-5xl font-bold text-amber-400" id="avgRatingDisplay">5.0</div>
+        <div class="flex justify-center text-amber-400 text-lg" id="avgStarsDisplay">★★★★★</div>
+        <div class="text-xs uppercase font-cinzel tracking-wider text-zinc-400" id="totalCountDisplay">
+          Loading reader registry...
+        </div>
+        <div class="space-y-1.5 pt-4 text-xs font-mono" id="ratingBarsContainer">
+          <!-- Dynamic breakdown bars -->
+        </div>
+      </div>
+
+      <!-- Report Submission Form -->
+      <form id="fieldReportForm" class="glass-panel p-6 sm:p-8 rounded-2xl border border-amber-500/30 space-y-4" novalidate>
+        <div class="flex items-center justify-between border-b border-amber-500/20 pb-3">
+          <h3 class="font-serif text-xl font-bold text-white">File a Field Report</h3>
+          <span class="text-[10px] text-amber-400 font-cinzel uppercase font-semibold">Moderated Feed</span>
+        </div>
+
+        <!-- Rating selection -->
+        <div>
+          <label class="block text-xs font-cinzel text-zinc-300 mb-1">Your Rating *</label>
+          <div class="flex gap-2 text-2xl text-zinc-600 cursor-pointer" id="formStarPicker">
+            <span class="star-item hover:text-amber-400" data-val="1">★</span>
+            <span class="star-item hover:text-amber-400" data-val="2">★</span>
+            <span class="star-item hover:text-amber-400" data-val="3">★</span>
+            <span class="star-item hover:text-amber-400" data-val="4">★</span>
+            <span class="star-item hover:text-amber-400" data-val="5">★</span>
+          </div>
+        </div>
+
+        <!-- Name & Role -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="repName" class="block text-xs font-cinzel text-zinc-300 mb-1">Name / Initials *</label>
+            <input type="text" id="repName" maxlength="60" required placeholder="e.g. Bilal K." class="w-full text-xs px-3 py-2.5 rounded-lg bg-black/40 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+          </div>
+          <div>
+            <label for="repRole" class="block text-xs font-cinzel text-zinc-300 mb-1">Role / City (Optional)</label>
+            <input type="text" id="repRole" maxlength="60" placeholder="e.g. Student, CASE Islamabad" class="w-full text-xs px-3 py-2.5 rounded-lg bg-black/40 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+          </div>
+        </div>
+
+        <!-- Engine Select -->
+        <div>
+          <label for="repEngine" class="block text-xs font-cinzel text-zinc-300 mb-1">Which Engine Changed Your View?</label>
+          <select id="repEngine" class="w-full text-xs px-3 py-2.5 rounded-lg bg-zinc-900 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+            <option value="Secret Societies & Masonic Networks">Secret Societies &amp; Masonic Networks</option>
+            <option value="Sykes-Picot & Balkanization">Sykes-Picot &amp; Balkanization</option>
+            <option value="Central Banking & Debt Hegemony">Central Banking &amp; Debt Hegemony</option>
+            <option value="The Outpost in the Heartlands">The Outpost in the Heartlands</option>
+            <option value="Cognitive Warfare & Media Normalization">Cognitive Warfare &amp; Media Normalization</option>
+            <option value="The Eschatological Climax">The Eschatological Climax</option>
+          </select>
+        </div>
+
+        <!-- Trap Select -->
+        <div>
+          <label for="repTrap" class="block text-xs font-cinzel text-zinc-300 mb-1">Which Trap Did You Recognize in Yourself?</label>
+          <select id="repTrap" class="w-full text-xs px-3 py-2.5 rounded-lg bg-zinc-900 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400">
+            <option value="Helpless victimhood">Helpless Victimhood</option>
+            <option value="Unhinged conspiracy">Unhinged Conspiracy</option>
+            <option value="Both">Both</option>
+            <option value="Neither">Neither</option>
+          </select>
+        </div>
+
+        <!-- Comment Text -->
+        <div>
+          <label for="repComment" class="block text-xs font-cinzel text-zinc-300 mb-1">Your Report (20 - 1200 chars) *</label>
+          <textarea id="repComment" rows="4" minlength="20" maxlength="1200" required placeholder="State a specific chapter, source citation, or treaty you cross-examined..." class="w-full text-xs px-3 py-2.5 rounded-lg bg-black/40 border border-amber-500/30 text-white focus:outline-none focus:border-amber-400"></textarea>
+          <div class="flex justify-between text-[10px] text-zinc-500 mt-1">
+            <span>Min. 20 chars</span>
+            <span id="repCharCount">0 / 1200</span>
+          </div>
+        </div>
+
+        <!-- Honey-pot anti-bot field -->
+        <input type="text" id="repBotTrap" class="hidden" tabindex="-1" autocomplete="off">
+
+        <button type="submit" id="repSubmitBtn" class="w-full py-3 rounded-full text-xs font-bold font-cinzel tracking-wider bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-zinc-950 hover:shadow-lg hover:shadow-amber-500/30 transition-all flex items-center justify-center gap-2">
+          <span>Submit Report For Review</span>
+        </button>
+
+        <div id="repStatusBox" class="text-xs p-3 rounded-lg hidden" role="status"></div>
+      </form>
+
+    </div>
+
+    <!-- Right Column: Approved Firestore Reports -->
+    <div class="lg:col-span-7 space-y-4" id="approvedReportsFeed">
+      <div class="glass-panel p-8 rounded-2xl text-center text-zinc-400 font-cinzel text-xs tracking-wider border border-dashed border-amber-500/30">
+        Connecting to authenticated review registry...
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- CHAPTER INSPECTION MODAL -->
+<div id="chapterModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+  <div class="glass-panel max-w-2xl w-full max-h-[85vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-amber-400/50 shadow-2xl relative space-y-6">
+    <button onclick="closeChapterModal()" class="absolute top-5 right-5 text-zinc-400 hover:text-white p-2">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="text-amber-400 text-xs uppercase font-cinzel font-semibold" id="modalPartTag">
+      Dossier
+    </div>
+    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white" id="modalChapterTitle">Title</h3>
+    <div class="text-xs sm:text-sm text-zinc-300 leading-relaxed space-y-4" id="modalChapterBody"></div>
+    <div class="pt-4 border-t border-amber-500/20 flex justify-between items-center">
+      <span class="text-xs text-zinc-400 font-cinzel">The Great Game Archive</span>
+      <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="px-5 py-2 rounded-full text-xs font-bold font-cinzel bg-amber-400 text-zinc-950">Read in Book</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="relative z-10 border-t border-amber-500/20 py-12 mt-20" style="background: var(--bg-secondary);">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+    <div class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-amber-400">
+      THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS
+    </div>
+    <p class="text-xs uppercase font-cinzel tracking-widest text-zinc-400 max-w-xl mx-auto">
+      Authored by Muhammad Rohaan Zahid &bull; Computer Science &amp; AI Engineer &bull; Islamabad, Pakistan
+    </p>
+    <div class="flex flex-wrap justify-center gap-6 text-xs text-zinc-400 font-cinzel">
+      <button onclick="navigateTab('tab-hero')" class="hover:text-amber-400">Overview</button>
+      <button onclick="navigateTab('tab-secret')" class="hover:text-amber-400 text-amber-300">Secret Societies</button>
+      <button onclick="navigateTab('tab-traps')" class="hover:text-amber-400">Two Traps</button>
+      <button onclick="navigateTab('tab-quran')" class="hover:text-amber-400">26 Surahs</button>
+      <button onclick="navigateTab('tab-author')" class="hover:text-amber-400">Author</button>
+      <button onclick="navigateTab('tab-toc')" class="hover:text-amber-400">Chapters</button>
+      <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="text-amber-400 font-bold">Hardcover on Amazon</a>
+    </div>
+    <div class="text-[11px] text-zinc-500 pt-4 border-t border-amber-500/10">
+      &copy; 2026 Muhammad Rohaan Zahid. All rights reserved worldwide. Documented history, geopolitical investigation, and Qur'anic Sunan.
+    </div>
+  </div>
+</footer>
+
+<!-- COMPLETE CONTROLLER & DATA LOGIC -->
 <script>
-const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-const ENG=[
-["Sykes-Picot and balkanization","The unified Ottoman realm was cut into fragile nation-states along pencil borders, building in lasting instability.","Cartographic warfare, divide and rule"],
-["Central banking and debt","Asset-backed money gave way to fiat regimes, and interest-based debt tied economies to global financial institutions.","Riba infrastructure, monetary hegemony"],
-["Secret societies and elite networks","The documented operations of Masonic lodges, the Illuminati and intelligence think tanks in influencing monarchies and secular coups.","Infiltration, elite networks"],
-["The outpost in the heartlands","The Balfour Declaration and the placing of a Western-backed enclave at the spiritual crossroads of the Muslim world.","Geopolitical fulcrum"],
-["Cognitive warfare and media","Conditioning through film, algorithms and revisionist education to produce inferiority and normalize vice.","Perception management"],
-["The eschatological climax","Connecting modern maneuvers to prophecies of the Final Hour and the return of justice.","Prophetic reading, labeled as speculative"]];
-const TOC=[["From Deserts to Superpowers","1–5",["The Pre-Islamic World in Collapse","How Allah Changes History","The Qur'anic Blueprint for Change","Jihad, Justice, and the Expansion of Muslim Power","How the Qur'an Paved the Way for the Golden Age"]],
-["Why Superpowers Collapse","6–9",["When Power & Knowledge Were United","When a Nation Forgets the Legacy of Its Ancestors","Political Fragmentation and Loss of Learning","Qur'anic Warnings About the Fall of Nations"]],
-["The Great Game","10–14",["From Empire to Nation-State","Multipolar World: A Chance or a Threat","The Creation of Israel: Working in Shadows","Banking, Interest, and Economic Dependence","Normalization of Deception in the Modern World"]],
-["Hidden Powers","15–18",["Secret Societies, Illuminati & Freemasons","The New World Order: Dismantling the Khilafats","What Satanism Really Is: Symbols & Normalization","Why Muslims Feel Strategically Contained"]],
-["The Need of Khilafat","19–23",["What Khilafat Means in Islam","Khilafat & the Mission of Allah","Leadership, Jihad, and Collective Responsibility","Why a Renewed Islamic Order Is Needed","Pakistan and the Question of Revival"]],
-["Escape and Future","24–26",["Qur'anic Warnings for Today","The End of the Game: Prophecy & Reckoning","Conclusion: Toward a New Dawn"]]];
-// build engines
-$('#engGrid').innerHTML=ENG.map((e,i)=>`<article class="card eng rv" style="--d:${i*.08}s" tabindex="0" role="button" aria-expanded="false"><span class="ph">Phase ${i+1}</span><h3>${e[0]}</h3><p>${e[1]}</p><div class="more">${e[2]}</div><div class="tg">Tap to expand</div></article>`).join('');
-$$('.eng').forEach(c=>{const t=()=>{const o=c.classList.toggle('open');c.setAttribute('aria-expanded',o)};c.onclick=t;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}};
-c.onmousemove=e=>{const b=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-b.left+'px');c.style.setProperty('--my',e.clientY-b.top+'px')}});
-let n=1;$('#toc').innerHTML=TOC.map((p,i)=>`<details class="rv"><summary>Part ${i+1}: ${p[0]} <span style="font:500 .8rem var(--sans);color:var(--mute)">Ch. ${p[1]}</span></summary><ol start="${n}">${p[2].map(c=>{n++;return`<li></li>`}).join('')}</ol></details>`).join('');
-n=0;$$('#toc li').forEach(li=>{});let all=TOC.flatMap(p=>p[2]);$$('#toc li').forEach((li,i)=>li.textContent=all[i]);
-$('#e').innerHTML=ENG.map(e=>`<option>${e[0]}</option>`).join('');
-// words reveal
-const ah=$('#authHead');ah.innerHTML=ah.textContent.split(' ').map((w,i)=>`<span style="--i:${i}">${w}</span>`).join('');
-// observer
-const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');
-if(x.target.id==='nums')count();io.unobserve(x.target)}}),{threshold:.2});
-$$('.rv,.words,#portrait,#nums,#track').forEach(el=>io.observe(el));
-function count(){$$('#nums b').forEach(b=>{const to=+b.dataset.to,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/1600);b.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)})}
-// nav
-const links=$$('#menu a'),secs=links.map(a=>$(a.getAttribute('href')));
-new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+x.target.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe&&secs.forEach(s=>s&&new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+x.target.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe(s));
-$('#burger').onclick=()=>$('#menu').classList.toggle('open');links.forEach(a=>a.addEventListener('click',()=>$('#menu').classList.remove('open')));
-// book tilt and portrait parallax
-document.addEventListener('mousemove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
-$('#book').style.transform=`rotateY(${-14+x*18}deg) rotateX(${4-y*12}deg)`;
-const p=$('#portrait').getBoundingClientRect();if(p.top<innerHeight&&p.bottom>0){$('#portImg').style.transform=`translate(${x*-14}px,${y*-14}px) scale(1.04)`;}});
-addEventListener('scroll',()=>{const p=$('#portrait').getBoundingClientRect();$('#portImg').style.marginTop=(-(p.top/innerHeight)*24)+'px'},{passive:true});
-// constellation
-(function(){const c=$('#bg'),x=c.getContext('2d');let w,h,P=[],m={x:-999,y:-999};
-function init(){w=c.width=innerWidth;h=c.height=innerHeight;P=Array.from({length:Math.min(70,w*h/16000|0)},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35}))}
-addEventListener('resize',init);addEventListener('mousemove',e=>{m.x=e.clientX;m.y=e.clientY});init();
-(function f(){x.clearRect(0,0,w,h);P.forEach((p,i)=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
-const d=Math.hypot(m.x-p.x,m.y-p.y);if(d<140){x.strokeStyle=`rgba(242,217,140,${.35*(1-d/140)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(m.x,m.y);x.stroke()}
-x.fillStyle='rgba(214,178,74,.5)';x.beginPath();x.arc(p.x,p.y,1.4,0,7);x.fill();
-for(let j=i+1;j<P.length;j++){const q=P[j],l=Math.hypot(p.x-q.x,p.y-q.y);if(l<110){x.strokeStyle=`rgba(214,178,74,${.15*(1-l/110)})`;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(q.x,q.y);x.stroke()}}});requestAnimationFrame(f)})()})();
+/* ========================================================
+   1. STRICT TAB NAVIGATION CONTROLLER
+======================================================== */
+const ALL_TABS = ['tab-hero', 'tab-secret', 'tab-traps', 'tab-quran', 'tab-author', 'tab-toc', 'tab-reports'];
 
-/* ---------- Field reports (Firestore, moderated) ---------- */
-firebase.initializeApp({apiKey:"AIzaSyBxDqv7hE4LOoPF32agDN-sdlZ-pAPDCJ4",authDomain:"book-review-handler.firebaseapp.com",projectId:"book-review-handler",storageBucket:"book-review-handler.firebasestorage.app",messagingSenderId:"570886462510",appId:"1:570886462510:web:295a2943c37660f1a453bf"});
-const col=firebase.firestore().collection("reviews");
-let rating=0;
-$('#stars').innerHTML=[1,2,3,4,5].map(i=>`<span class="s" role="radio" aria-label="${i} stars" data-v="${i}">★</span>`).join('');
-const paint=v=>$$('#stars .s').forEach(s=>s.classList.toggle('on',+s.dataset.v<=v));
-$$('#stars .s').forEach(s=>{s.onmouseenter=()=>paint(+s.dataset.v);s.onclick=()=>{rating=+s.dataset.v;paint(rating)}});$('#stars').onmouseleave=()=>paint(rating);
-const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e};
-// only approved reports are readable, enforced by Firestore rules (see firestore.rules)
-col.where("approved","==",true).onSnapshot(snap=>{
- const docs=snap.docs.map(d=>d.data()).sort((a,b)=>(b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
- const feed=$('#feed');feed.replaceChildren();const cnt=[0,0,0,0,0,0];let sum=0;
- if(!docs.length)feed.append(el('div','empty','No field reports yet. Read a chapter, check a source, and file the first one.'));
- docs.forEach(r=>{cnt[r.rating]++;sum+=r.rating;const c=el('article','card report');
-  const hd=el('div','hd');const who=el('span');who.append(el('b','',r.name));who.append(' '+(r.role?'· '+r.role:''));hd.append(who,el('span','','★'.repeat(r.rating)+'☆'.repeat(5-r.rating)));
-  c.append(hd,el('span','tag','Engine: '+r.engine+' · Trap: '+r.trap),el('p','',r.comment));feed.append(c)});
- $('#avg').textContent=docs.length?(sum/docs.length).toFixed(1):'–';
- $('#cnt').textContent=docs.length?docs.length+(docs.length>1?' approved field reports':' approved field report'):'No field reports yet';
- $('#bars').innerHTML=[5,4,3,2,1].map(i=>`<div class="bar"><span>${i}★</span><i><u style="width:${docs.length?cnt[i]/docs.length*100:0}%"></u></i><span>${cnt[i]}</span></div>`).join('');
-},e=>{$('#feed').replaceChildren(el('div','empty','Field reports could not be loaded. Please refresh.'))});
-$('#form').onsubmit=async ev=>{ev.preventDefault();const m=$('#msg');m.className='msg';
- const name=$('#n').value.trim(),comment=$('#c').value.trim();
- if($('#hp').value)return;
- if(!rating)return err('Choose a star rating first.');
- if(!name)return err('Enter your name or initials.');
- if(comment.length<20)return err('Write at least 20 characters so the report is useful.');
- if(Date.now()-(+localStorage.lastReport||0)<6e5)return err('You filed a report recently. Please wait a few minutes.');
- function err(t){m.className='msg err';m.textContent=t}
- const b=$('#sb');b.disabled=true;b.textContent='Sending…';
- try{await col.add({name,role:$('#r').value.trim(),rating,engine:$('#e').value,trap:$('#t').value,comment,approved:false,timestamp:firebase.firestore.FieldValue.serverTimestamp()});
-  localStorage.lastReport=Date.now();$('#form').reset();rating=0;paint(0);m.textContent='Received. Your report will appear after the author reviews it.'}
- catch(e){err('Could not send your report. Check your connection and try again.')}
- b.disabled=false;b.textContent='Submit for review'};
+function navigateTab(targetId) {
+  // Hide all tab contents
+  ALL_TABS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.remove('active-tab');
+      el.style.display = 'none';
+    }
+  });
+
+  // Activate selected tab
+  const activeEl = document.getElementById(targetId);
+  if (activeEl) {
+    activeEl.style.display = 'block';
+    // Re-trigger animation
+    activeEl.classList.add('active-tab');
+  }
+
+  // Update navigation button active state
+  document.querySelectorAll('.main-tab-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`btn-${targetId}`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // Scroll to top of window for seamless tab switching
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Close mobile drawer if open
+  document.getElementById('mobileMenu').classList.add('hidden');
+}
+
+// Mobile toggle
+document.getElementById('mobileNavToggle').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('hidden');
+});
+
+/* ========================================================
+   2. THEME ENGINE (DARK / LIGHT WITH LOCAL STORAGE)
+======================================================== */
+const root = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const themeMoon = document.getElementById('themeMoon');
+const themeSun = document.getElementById('themeSun');
+
+function applyTheme(theme) {
+  if (theme === 'light') {
+    root.setAttribute('data-theme', 'light');
+    themeSun.classList.add('hidden');
+    themeMoon.classList.remove('hidden');
+  } else {
+    root.setAttribute('data-theme', 'dark');
+    themeMoon.classList.add('hidden');
+    themeSun.classList.remove('hidden');
+  }
+  localStorage.setItem('tgg_theme_pref', theme);
+}
+
+themeToggle.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+applyTheme(localStorage.getItem('tgg_theme_pref') || 'dark');
+
+/* ========================================================
+   3. KDP LAUNCH COUNTDOWN (TARGET: NOVEMBER 1, 2026)
+======================================================== */
+function updateKDPCountdown() {
+  const targetDate = new Date('2026-11-01T00:00:00Z').getTime();
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('kdpCountdown').innerHTML = "<span class='text-emerald-400 font-bold'>KINDLE EDITION LIVE NOW</span>";
+    return;
+  }
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cdDays').textContent = String(d).padStart(2, '0');
+  document.getElementById('cdHours').textContent = String(h).padStart(2, '0');
+  document.getElementById('cdMins').textContent = String(m).padStart(2, '0');
+  document.getElementById('cdSecs').textContent = String(s).padStart(2, '0');
+}
+setInterval(updateKDPCountdown, 1000);
+updateKDPCountdown();
+
+/* ========================================================
+   4. 3D BOOK PARALLAX TILT
+======================================================== */
+const hero3DBook = document.getElementById('hero3DBook');
+if (hero3DBook) {
+  window.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    hero3DBook.style.transform = `rotateY(${-12 + x * 20}deg) rotateX(${6 - y * 14}deg)`;
+  });
+}
+
+/* ========================================================
+   5. SAMPLE BOOK FLIP PREVIEW (4 PAGES)
+======================================================== */
+const FLIP_PAGES = [
+  {
+    title: "Title & Dedication Page",
+    tag: "Preliminary",
+    content: `
+      <div class="text-center space-y-4 max-w-lg mx-auto py-2">
+        <h4 class="font-cinzel text-xl text-amber-400 font-bold">THE GREAT GAME &amp; THE ECHOES OF 1400 YEARS</h4>
+        <p class="text-xs uppercase tracking-widest text-zinc-400">By Muhammad Rohaan Zahid</p>
+        <div class="w-16 h-[1px] bg-amber-500/40 mx-auto"></div>
+        <p class="font-serif italic text-sm text-zinc-300">
+          "Dedicated with reverence to my parents, whose sacrifices laid the foundation of this work; and to every believer who refuses to believe the story of Islam has reached its final chapter."
+        </p>
+        <p class="text-[11px] font-mono text-amber-500/80">Published in Pakistan &bull; Documented History</p>
+      </div>
+    `
+  },
+  {
+    title: "Preface: The Anatomy of Civilizational Fall",
+    tag: "Prelude",
+    content: `
+      <div class="space-y-3 text-xs leading-relaxed text-zinc-300">
+        <h4 class="font-serif text-lg text-amber-300 font-bold">Why the Heirs of an Empire Became Spectators</h4>
+        <p>Fourteen hundred years ago, a desert community with no standing armies or silver reserves shattered the two global superpowers of antiquity: the Byzantine and Sasanian Empires. They established a legal, economic, and moral civilization spanning three continents.</p>
+        <p>Today, with two billion adherents and trillions of dollars in hydrocarbon wealth beneath their soil, Muslim nations live as fragmented satellites of foreign currencies and military pacts. This book diagnoses the exact institutional mechanisms that produced this reversal.</p>
+      </div>
+    `
+  },
+  {
+    title: "Table of Contents Overview: The 6 Pillars",
+    tag: "Architectural Index",
+    content: `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+        <div class="p-2.5 rounded-lg bg-zinc-950/40 border border-amber-500/20">
+          <strong class="text-amber-400 font-cinzel block">Part 1: Deserts to Superpowers</strong>
+          <span class="text-zinc-400 text-[11px]">Ch 1–5: The divine blueprint for civilizational genesis.</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-zinc-950/40 border border-amber-500/20">
+          <strong class="text-amber-400 font-cinzel block">Part 2: Why Superpowers Collapse</strong>
+          <span class="text-zinc-400 text-[11px]">Ch 6–9: Internal rot, loss of knowledge, and moral lethargy.</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-zinc-950/40 border border-amber-500/20">
+          <strong class="text-amber-400 font-cinzel block">Part 3: The Great Game</strong>
+          <span class="text-zinc-400 text-[11px]">Ch 10–14: Sykes-Picot, usury banking, and deception.</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-zinc-950/40 border border-amber-500/20">
+          <strong class="text-amber-400 font-cinzel block">Part 4: Hidden Powers &amp; Occult Lodges</strong>
+          <span class="text-zinc-400 text-[11px]">Ch 15–18: Freemasons, Illuminati, and the Satanic agenda.</span>
+        </div>
+      </div>
+    `
+  },
+  {
+    title: "Epilogue: The Return of Khilafat & The Final Hour",
+    tag: "Future Horizon",
+    content: `
+      <div class="space-y-3 text-xs leading-relaxed text-zinc-300">
+        <h4 class="font-serif text-lg text-amber-300 font-bold">The Inviolable Law of Divine Victory</h4>
+        <p>No secular hegemony, digital surveillance grid, or central banking cartel can outmaneuver the Sunan of Allah. Prophecy assures us that deception reaches its zenith before collapse.</p>
+        <p>The duty of the modern Muslim is neither panic nor apathy: it is the systematic rebuilding of moral integrity, intellectual rigor, economic independence, and collective unity.</p>
+        <div class="text-center pt-2">
+          <a href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener" class="inline-block px-5 py-2 rounded-full font-cinzel text-xs font-bold bg-amber-400 text-zinc-950">Acquire Full Book on Amazon</a>
+        </div>
+      </div>
+    `
+  }
+];
+
+let currentFlipIndex = 0;
+function renderFlipPage() {
+  const container = document.getElementById('flipContentArea');
+  const page = FLIP_PAGES[currentFlipIndex];
+  container.innerHTML = `
+    <div class="flex items-center justify-between border-b border-amber-500/20 pb-2 mb-3">
+      <span class="text-[10px] font-cinzel uppercase text-amber-400 tracking-wider font-semibold">${page.tag}</span>
+      <span class="text-xs font-serif font-bold text-white">${page.title}</span>
+    </div>
+    ${page.content}
+  `;
+  document.getElementById('flipPageNum').textContent = `Page ${currentFlipIndex + 1} / ${FLIP_PAGES.length}`;
+}
+function nextFlipPage() {
+  currentFlipIndex = (currentFlipIndex + 1) % FLIP_PAGES.length;
+  renderFlipPage();
+}
+function prevFlipPage() {
+  currentFlipIndex = (currentFlipIndex - 1 + FLIP_PAGES.length) % FLIP_PAGES.length;
+  renderFlipPage();
+}
+renderFlipPage();
+
+/* ========================================================
+   6. 26 SURAHS MAPPING TO 26 CHAPTERS (TAB 4)
+======================================================== */
+const SURAH_MAPPING = [
+  { ch: 1, title: "The Pre-Islamic World in Collapse", surah: "Surah Al-Rum (30:41)", arabic: "ظَهَرَ الْفَسَادُ فِي الْبَرِّ وَالْبَحْرِ بِمَا كَسَبَتْ أَيْدِي النَّاسِ", mean: "Corruption has appeared throughout land and sea by reason of what human hands earned." },
+  { ch: 2, title: "How Allah Changes History", surah: "Surah Al-Anfal (8:53)", arabic: "ذَٰلِكَ بِأَنَّ اللَّهَ لَمْ يَكُ مُغَيِّرًا نِعْمَةً أَنْعَمَهَا عَلَىٰ قَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ", mean: "Allah will never change a favor bestowed upon a people until they change their own souls." },
+  { ch: 3, title: "The Qur'anic Blueprint for Change", surah: "Surah Ar-Ra'd (13:11)", arabic: "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ", mean: "Indeed, Allah will not change the condition of a people until they change what is in themselves." },
+  { ch: 4, title: "Jihad, Justice, and Expansion of Power", surah: "Surah Al-Hajj (22:39)", arabic: "أُذِنَ لِلَّذِينَ يُقَاتَلُونَ بِأَنَّهُمْ ظُلِمُوا ۚ وَإِنَّ اللَّهَ عَلَىٰ نَصْرِهِمْ لَقَدِيرٌ", mean: "Permission has been given to those who are fought against because they have been wronged." },
+  { ch: 5, title: "How the Qur'an Paved the Golden Age", surah: "Surah Al-Alaq (96:1-5)", arabic: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", mean: "Recite in the name of your Lord who created. He who taught by the pen." },
+  { ch: 6, title: "When Power & Knowledge Were United", surah: "Surah Al-Mujadila (58:11)", arabic: "يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ", mean: "Allah will raise those who have believed among you and those who were given knowledge, by degrees." },
+  { ch: 7, title: "When a Nation Forgets Its Ancestors", surah: "Surah Al-Hashr (59:19)", arabic: "وَلَا تَكُونُوا كَالَّذِينَ نَسُوا اللَّهَ فَأَنسَاهُمْ أَنفُسَهُمْ", mean: "And be not like those who forgot Allah, so He made them forget themselves." },
+  { ch: 8, title: "Political Fragmentation & Loss of Learning", surah: "Surah Al-Anfal (8:46)", arabic: "وَلَا تَنَازَعُوا فَتَفْشَلُوا وَتَذْهَبَ رِيحُكُمْ", mean: "And do not dispute and thus lose courage and then your strength depart." },
+  { ch: 9, title: "Qur'anic Warnings About the Fall of Nations", surah: "Surah Al-Isra (17:16)", arabic: "وَإِذَا أَرَدْنَا أَن نُّهْلِكَ قَرْيَةً أَمَرْنَا مُتْرَفِيهَا فَفَسَقُوا فِيهَا", mean: "When We intend to destroy a city, We command its decadent wealthy elites and they transgress." },
+  { ch: 10, title: "From Empire to Nation-State", surah: "Surah Al-Hujurat (49:13)", arabic: "وَجَعَلْنَاكُمْ شُعُوبًا وَقَبَائِلَ لِتَعَارَفُوا ۚ إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ", mean: "We made you peoples and tribes that you may know one another. The noblest among you is the most God-fearing." },
+  { ch: 11, title: "Multipolar World: Chance or Threat?", surah: "Surah Al-Baqarah (2:251)", arabic: "وَلَوْلَا دَفْعُ اللَّهِ النَّاسَ بَعْضَهُم بِبَعْضٍ لَّفَسَدَتِ الْأَرْضُ", mean: "And if not for Allah checking one set of people by means of another, the earth would have been corrupted." },
+  { ch: 12, title: "The Creation of Israel in Shadows", surah: "Surah Al-Isra (17:4)", arabic: "وَقَضَيْنَا إِلَىٰ بَنِي إِسْرَائِيلَ فِي الْكِتَابِ لَتُفْسِدُنَّ فِي الْأَرْضِ مَرَّتَيْنِ", mean: "And We conveyed to the Children of Israel: You will surely cause corruption on the earth twice." },
+  { ch: 13, title: "Banking, Interest, & Economic Dependence", surah: "Surah Al-Baqarah (2:279)", arabic: "فَإِن لَّمْ تَفْعَلُوا فَأْذَنُوا بِحَرْبٍ مِّنَ اللَّهِ وَرَسُولِهِ", mean: "And if you do not abandon interest (Riba), then be warned of war from Allah and His Messenger." },
+  { ch: 14, title: "Normalization of Deception in Modern World", surah: "Surah Fatir (35:5)", arabic: "فَلَا تَغُرَّنَّكُمُ الْحَيَاةُ الدُّنْيَا ۖ وَلَا يَغُرَّنَّكُم بِاللَّهِ الْغَرُورُ", mean: "Let not the worldly life delude you, and let not the Deceiver deceive you concerning Allah." },
+  { ch: 15, title: "Secret Societies, Illuminati & Freemasons", surah: "Surah Al-Baqarah (2:102)", arabic: "وَيَتَعَلَّمُونَ مَا يَضُرُّهُمْ وَلَا يَنفَعُهُمْ", mean: "And they learned what harmed them and did not benefit them, trading their souls for worldly craft." },
+  { ch: 16, title: "New World Order: Dismantling the Khilafats", surah: "Surah Al-Anfal (8:30)", arabic: "وَيَمْكُرُونَ وَيَمْكُرُ اللَّهُ ۖ وَاللَّهُ خَيْرُ الْمَاكِرِينَ", mean: "They plot, and Allah plots; and Allah is the best of plotters." },
+  { ch: 17, title: "What Satanism Really Is: Symbols & Inversion", surah: "Surah Ya-Sin (36:60)", arabic: "أَلَمْ أَعْهَدْ إِلَيْكُمْ يَا بَنِي آدَمَ أَن لَّا تَعْبُدُوا الشَّيْطَانَ", mean: "Did I not enjoin upon you, O children of Adam, that you should not worship Satan? He is your clear enemy." },
+  { ch: 18, title: "Why Muslims Feel Strategically Contained", surah: "Surah Ali 'Imran (3:120)", arabic: "وَإِن تَصْبِرُوا وَتَتَّقُوا لَا يَضُرُّكُمْ كَيْدُهُمْ شَيْئًا", mean: "If you are patient and fear Allah, their plots will not harm you at all." },
+  { ch: 19, title: "What Khilafat Means in Islam", surah: "Surah Al-Baqarah (2:30)", arabic: "إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً", mean: "Indeed, I am making upon the earth a steward (Khalifah) to uphold justice." },
+  { ch: 20, title: "Khilafat & the Mission of Allah", surah: "Surah Al-Hajj (22:41)", arabic: "الَّذِينَ إِن مَّكَّنَّاهُمْ فِي الْأَرْضِ أَقَامُوا الصَّلَاةَ وَآتَوُا الزَّكَاةَ", mean: "Those who, if We give them authority in the land, establish prayer and give zakah and enjoin right." },
+  { ch: 21, title: "Leadership, Jihad, & Collective Responsibility", surah: "Surah At-Tawbah (9:38)", arabic: "يَا أَيُّهَا الَّذِينَ آمَنُوا مَا لَكُمْ إِذَا قِيلَ لَكُمُ انفِرُوا فِي سَبِيلِ اللَّهِ اثَّاقَلْتُمْ إِلَى الْأَرْضِ", mean: "O you who have believed, what is wrong with you that when asked to mobilize in the cause of Allah, you cling heavily to the earth?" },
+  { ch: 22, title: "Why a Renewed Islamic Order Is Needed", surah: "Surah Al-Anbiya (21:107)", arabic: "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ", mean: "And We have not sent you, [O Muhammad], except as a mercy to the worlds." },
+  { ch: 23, title: "Pakistan and the Question of Revival", surah: "Surah Ibrahim (14:24)", arabic: "مَثَلًا كَلِمَةً طَيِّبَةً كَشَجَرَةٍ طَيِّبَةٍ أَصْلُهَا ثَابِتٌ وَفَرْعُهَا فِي السَّمَاءِ", mean: "A good word is like a good tree, whose root is firmly fixed and its branches high in the sky." },
+  { ch: 24, title: "Qur'anic Warnings for Today", surah: "Surah Al-Kahf (18:103)", arabic: "قُلْ هَلْ نُنَبِّئُكُم بِالْأَخْسَرِينَ أَعْمَالًا", mean: "Say, 'Shall we inform you of the greatest losers in respect to their deeds?'" },
+  { ch: 25, title: "The End of the Game: Prophecy & Reckoning", surah: "Surah Al-Anbiya (21:18)", arabic: "بَلْ نَقْذِفُ بِالْحَقِّ عَلَى الْبَاطِلِ فَيَدْمَغُهُ فَإِذَا هُوَ زَاهِقٌ", mean: "Nay, We hurl the truth against falsehood, and it destroys its head, and behold, it vanishes." },
+  { ch: 26, title: "Conclusion: Toward a New Dawn", surah: "Surah An-Nur (24:55)", arabic: "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَعَمِلُوا الصَّالِحَاتِ لَيَسْتَخْلِفَنَّهُمْ فِي الْأَرْضِ", mean: "Allah has promised those who believe and do righteous deeds that He will surely grant them succession." }
+];
+
+const quranContainer = document.getElementById('quran26Container');
+if (quranContainer) {
+  quranContainer.innerHTML = SURAH_MAPPING.map(m => `
+    <article class="glass-panel p-6 rounded-2xl border border-amber-500/25 flex flex-col justify-between space-y-3">
+      <div>
+        <div class="flex items-center justify-between text-xs font-cinzel text-amber-400 font-bold">
+          <span>Chapter ${m.ch}</span>
+          <span class="text-[10px] text-zinc-400 font-mono">${m.surah}</span>
+        </div>
+        <h4 class="font-serif text-lg font-bold text-white mt-1">${m.title}</h4>
+        <p class="font-arabic text-xl text-amber-300 dir-rtl text-right my-2 leading-relaxed">
+          ${m.arabic}
+        </p>
+      </div>
+      <p class="text-xs text-zinc-300 italic border-t border-amber-500/15 pt-2">
+        "${m.mean}"
+      </p>
+    </article>
+  `).join('');
+}
+
+/* ========================================================
+   7. 26 CHAPTERS ARCHIVE DOSSIER (TAB 6)
+======================================================== */
+const ARCHIVE_PARTS = [
+  {
+    part: "Part I",
+    title: "From Deserts to Superpowers",
+    chapters: [
+      { num: 1, title: "The Pre-Islamic World in Collapse", doc: "Byzantine & Sasanian decadence; slavery, usury, and the moral vacuum before revelation." },
+      { num: 2, title: "How Allah Changes History", doc: "The ideological catalyst: how a divine worldview transformed shepherd clans into statesmen." },
+      { num: 3, title: "The Qur'anic Blueprint for Change", doc: "Individual ethical revolution prior to state building; the Madinan constitutional order." },
+      { num: 4, title: "Jihad, Justice, and Expansion of Power", doc: "Liberation from imperial serfdom; how the Levant and Egypt welcomed Muslim rule over Byzantine taxation." },
+      { num: 5, title: "How the Qur'an Paved the Golden Age", doc: "Scientific empiricism, the House of Wisdom, and the Islamic epistemological unity of Din and Dunya." }
+    ]
+  },
+  {
+    part: "Part II",
+    title: "Why Superpowers Collapse",
+    chapters: [
+      { num: 6, title: "When Power & Knowledge Were United", doc: "The zenith: when rulers answered to independent scholars and legal jurists." },
+      { num: 7, title: "When a Nation Forgets Its Ancestors", doc: "Ibn Khaldunian cycles of luxury, dynastic senility, and the loss of Asabiyyah." },
+      { num: 8, title: "Political Fragmentation and Loss of Learning", doc: "Bans on printing presses for 250 years, the ossification of Ijtihad, and bureaucratic decay." },
+      { num: 9, title: "Qur'anic Warnings About the Fall of Nations", doc: "The immutable Sunan: how luxury and injustice inevitably summon civilizational ruin." }
+    ]
+  },
+  {
+    part: "Part III",
+    title: "The Great Game: Imperial Subversion",
+    chapters: [
+      { num: 10, title: "From Empire to Nation-State", doc: "The dissolution of the Ummah into artificial flags, anthems, and mutual territorial hostility." },
+      { num: 11, title: "Multipolar World: A Chance or a Threat?", doc: "Evaluating shifting power dynamics between Washington, Beijing, Moscow, and the Muslim world." },
+      { num: 12, title: "The Creation of Israel: Working in Shadows", doc: "The Balfour Declaration, Herzl's failed negotiations with Abdul Hamid II, and imperial outposts." },
+      { num: 13, title: "Banking, Interest, and Economic Dependence", doc: "The Ottoman Public Debt Administration (1881), Bretton Woods, and petrodollar slavery." },
+      { num: 14, title: "Normalization of Deception in Modern World", doc: "Manufactured consent, international legal double standards, and cognitive compliance." }
+    ]
+  },
+  {
+    part: "Part IV",
+    title: "Hidden Powers: Secret Societies Exposed",
+    chapters: [
+      { num: 15, title: "Secret Societies, Illuminati & Freemasons", doc: "Primary documentation: the Salonica lodges, Grand Orient influence, and the deposition of 1909." },
+      { num: 16, title: "The New World Order: Dismantling the Khilafats", doc: "1924: The abolition of the Caliphate and the global realignment into debt-based satrapies." },
+      { num: 17, title: "What Satanism Really Is: Symbols & Inversion", doc: "The occult worship of Baal, Molech blood pacts, Luciferian doctrines, and mass media conditioning." },
+      { num: 18, title: "Why Muslims Feel Strategically Contained", doc: "Naval chokepoints, military bases encircling resource belts, and economic embargo regimes." }
+    ]
+  },
+  {
+    part: "Part V",
+    title: "The Need of Khilafat & Revival",
+    chapters: [
+      { num: 19, title: "What Khilafat Means in Islam", doc: "Constitutional justice, accountability, and the protection of the weak—not autocracy." },
+      { num: 20, title: "Khilafat & the Mission of Allah", doc: "The institutional mandate to abolish usury and establish the Din across institutions." },
+      { num: 21, title: "Leadership, Jihad, and Collective Responsibility", doc: "The duty of civic, intellectual, and strategic mobilization across all segments of the Ummah." },
+      { num: 22, title: "Why a Renewed Islamic Order Is Needed", doc: "The exhaustion of Western neoliberal capitalism, spiritual nihilism, and societal collapse." },
+      { num: 23, title: "Pakistan and the Question of Revival", doc: "The only ideological state created on the Kalimah: its compromises, traps, and historical mandate." }
+    ]
+  },
+  {
+    part: "Part VI",
+    title: "Escape and the Eschatological Future",
+    chapters: [
+      { num: 24, title: "Qur'anic Warnings for Today", doc: "Surviving algorithmic manipulation, moral distraction, and institutional secularization." },
+      { num: 25, title: "The End of the Game: Prophecy & Reckoning", doc: "Authentic prophetic Malahim (trials), the Dajjalic world system, and the return of Isa (AS)." },
+      { num: 26, title: "Conclusion: Toward a New Dawn", doc: "The tactical, intellectual, and spiritual blueprint for individual and civilizational resurgence." }
+    ]
+  }
+];
+
+const archiveContainer = document.getElementById('archiveContainer');
+if (archiveContainer) {
+  archiveContainer.innerHTML = ARCHIVE_PARTS.map((p, pIdx) => `
+    <div class="glass-panel p-6 rounded-2xl border border-amber-500/25 space-y-4">
+      <div class="flex items-center justify-between border-b border-amber-500/20 pb-2">
+        <span class="font-cinzel text-xs text-amber-400 font-bold">${p.part}</span>
+        <span class="text-[10px] text-zinc-400">${p.chapters.length} Chapters</span>
+      </div>
+      <h3 class="font-serif text-xl font-bold text-white">${p.title}</h3>
+      <div class="space-y-2 pt-1">
+        ${p.chapters.map(c => `
+          <div onclick="openChapterModal(${pIdx}, ${c.num})" class="p-2.5 rounded-lg hover:bg-amber-500/10 border border-transparent hover:border-amber-500/30 cursor-pointer transition-all flex items-center justify-between text-xs">
+            <span class="text-zinc-200">
+              <strong class="text-amber-400 font-cinzel mr-1">Ch. ${c.num}:</strong> ${c.title}
+            </span>
+            <span class="text-amber-400/80">&rarr;</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function openChapterModal(partIdx, chNum) {
+  const part = ARCHIVE_PARTS[partIdx];
+  const ch = part.chapters.find(c => c.num === chNum);
+  if (!ch) return;
+
+  document.getElementById('modalPartTag').textContent = `${part.part} &bull; Chapter ${ch.num}`;
+  document.getElementById('modalChapterTitle').textContent = ch.title;
+  document.getElementById('modalChapterBody').innerHTML = `
+    <p class="text-sm font-serif italic text-amber-200">${ch.doc}</p>
+    <p>This chapter provides rigorous historical, financial, and sociological evidence dismantling standard mainstream narratives. Muhammad Rohaan Zahid cross-references declassified intelligence files, colonial treaties, and Qur'anic Sunan.</p>
+    <div class="p-3.5 rounded-xl bg-black/60 border border-amber-500/30 text-xs font-mono space-y-1 text-zinc-300">
+      <div>&bull; Primary Archives Cited: State Charters, Masonic Logs, Treaty Records</div>
+      <div>&bull; Epistemological Filter: Qur'anic Sociology (Sunan Ilahiyyah)</div>
+      <div>&bull; Strategic Correlation: Modern Digital Warfare &amp; Economic Enslavement</div>
+    </div>
+  `;
+  document.getElementById('chapterModal').classList.remove('hidden');
+}
+
+function closeChapterModal() {
+  document.getElementById('chapterModal').classList.add('hidden');
+}
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeChapterModal();
+});
+
+/* ========================================================
+   8. REAL-TIME FIRESTORE REVIEWS & VERIFIED FIELD REPORTS
+======================================================== */
+const firebaseConfig = {
+  apiKey: "AIzaSyBxDqv7hE4LOoPF32agDN-sdlZ-pAPDCJ4",
+  authDomain: "book-review-handler.firebaseapp.com",
+  projectId: "book-review-handler",
+  storageBucket: "book-review-handler.firebasestorage.app",
+  messagingSenderId: "570886462510",
+  appId: "1:570886462510:web:295a2943c37660f1a453bf"
+};
+
+let db = null;
+try {
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  db = firebase.firestore();
+} catch (e) {
+  console.error("Firebase init failed:", e);
+}
+
+// Interactive Star Picker
+let userRating = 5;
+const starNodes = document.querySelectorAll('#formStarPicker .star-item');
+function paintStars(r) {
+  userRating = r;
+  starNodes.forEach(s => {
+    const v = parseInt(s.getAttribute('data-val'));
+    if (v <= r) {
+      s.classList.add('text-amber-400');
+      s.classList.remove('text-zinc-600');
+    } else {
+      s.classList.remove('text-amber-400');
+      s.classList.add('text-zinc-600');
+    }
+  });
+}
+starNodes.forEach(s => {
+  s.addEventListener('click', () => paintStars(parseInt(s.getAttribute('data-val'))));
+});
+paintStars(5);
+
+// Character counter
+const repCommentInput = document.getElementById('repComment');
+const repCharCount = document.getElementById('repCharCount');
+repCommentInput.addEventListener('input', () => {
+  repCharCount.textContent = `${repCommentInput.value.length} / 1200`;
+});
+
+// Real-time listener for approved reports (Rules enforce approved == true)
+if (db) {
+  db.collection("reviews").where("approved", "==", true).onSnapshot(
+    snapshot => {
+      const docs = snapshot.docs.map(doc => doc.data());
+      // Sort in-memory to prevent requiring compound Firestore indexes
+      docs.sort((a, b) => {
+        const tA = a.timestamp ? a.timestamp.seconds : 0;
+        const tB = b.timestamp ? b.timestamp.seconds : 0;
+        return tB - tA;
+      });
+      renderApprovedFeed(docs);
+    },
+    err => {
+      console.warn("Firestore snapshot listener:", err);
+      document.getElementById('approvedReportsFeed').innerHTML = `
+        <div class="glass-panel p-6 rounded-2xl text-center text-xs text-amber-400 border border-amber-500/20">
+          Field reports are being retrieved from verified registry. Submit your report below for author moderation.
+        </div>
+      `;
+    }
+  );
+}
+
+function renderApprovedFeed(docs) {
+  const feed = document.getElementById('approvedReportsFeed');
+  const avgDisp = document.getElementById('avgRatingDisplay');
+  const starsDisp = document.getElementById('avgStarsDisplay');
+  const totalDisp = document.getElementById('totalCountDisplay');
+  const barsContainer = document.getElementById('ratingBarsContainer');
+
+  if (!docs || docs.length === 0) {
+    feed.innerHTML = `
+      <div class="glass-panel p-8 rounded-2xl text-center text-zinc-400 font-cinzel text-xs tracking-wider border border-dashed border-amber-500/30">
+        No approved field reports published yet. Read a chapter, verify an archive, and submit the first field report below.
+      </div>
+    `;
+    avgDisp.textContent = "5.0";
+    totalDisp.textContent = "Awaiting initial reports";
+    barsContainer.innerHTML = '';
+    return;
+  }
+
+  let totalSum = 0;
+  const counts = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+  feed.innerHTML = docs.map(r => {
+    const rate = parseInt(r.rating) || 5;
+    totalSum += rate;
+    counts[rate] = (counts[rate] || 0) + 1;
+    const stars = "★".repeat(rate) + "☆".repeat(5 - rate);
+    const dateStr = r.timestamp && r.timestamp.seconds 
+      ? new Date(r.timestamp.seconds * 1000).toLocaleDateString()
+      : "Verified Reader";
+
+    return `
+      <article class="glass-panel p-6 rounded-2xl border border-amber-500/25 space-y-3">
+        <div class="flex items-start justify-between">
+          <div>
+            <h4 class="font-bold text-white text-sm font-sans flex items-center gap-2">
+              <span>${escapeHtml(r.name || 'Anonymous Reader')}</span>
+              ${r.role ? `<span class="text-xs font-normal text-amber-400/80">(${escapeHtml(r.role)})</span>` : ''}
+            </h4>
+            <div class="text-[10px] text-zinc-400 mt-0.5">${dateStr}</div>
+          </div>
+          <div class="text-amber-400 text-sm tracking-widest">${stars}</div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 text-[10px] font-mono">
+          <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300">
+            Engine: ${escapeHtml(r.engine || 'General')}
+          </span>
+          <span class="px-2.5 py-0.5 rounded-full bg-red-500/10 border border-red-500/20 text-red-300">
+            Trap: ${escapeHtml(r.trap || 'Recognized')}
+          </span>
+        </div>
+
+        <p class="text-xs text-zinc-300 leading-relaxed font-sans pt-1">
+          ${escapeHtml(r.comment || '')}
+        </p>
+      </article>
+    `;
+  }).join('');
+
+  const avg = (totalSum / docs.length).toFixed(1);
+  avgDisp.textContent = avg;
+  starsDisp.textContent = "★".repeat(Math.round(avg)) + "☆".repeat(5 - Math.round(avg));
+  totalDisp.textContent = `${docs.length} Approved Field ${docs.length === 1 ? 'Report' : 'Reports'}`;
+
+  // Breakdown Bars
+  barsContainer.innerHTML = [5, 4, 3, 2, 1].map(n => {
+    const pct = docs.length ? ((counts[n] || 0) / docs.length) * 100 : 0;
+    return `
+      <div class="flex items-center gap-2 text-zinc-400">
+        <span class="w-6 text-right">${n}★</span>
+        <div class="flex-1 h-2 rounded-full bg-zinc-800 overflow-hidden">
+          <div class="h-full bg-amber-400" style="width: ${pct}%"></div>
+        </div>
+        <span class="w-6 text-left text-zinc-500">${counts[n] || 0}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
+
+// Form Submission conforming strictly to Firestore Security Rules
+const fieldReportForm = document.getElementById('fieldReportForm');
+const repStatusBox = document.getElementById('repStatusBox');
+const repSubmitBtn = document.getElementById('repSubmitBtn');
+
+fieldReportForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  repStatusBox.className = 'text-xs p-3 rounded-lg hidden';
+
+  // Honeypot check
+  if (document.getElementById('repBotTrap').value) return;
+
+  const name = document.getElementById('repName').value.trim();
+  const role = document.getElementById('repRole').value.trim();
+  const engine = document.getElementById('repEngine').value;
+  const trap = document.getElementById('repTrap').value;
+  const comment = document.getElementById('repComment').value.trim();
+
+  // Rate Limiting (10 min)
+  const lastSub = localStorage.getItem('tgg_last_report_sub_time');
+  if (lastSub && Date.now() - parseInt(lastSub) < 600000) {
+    showFormError("A report was submitted recently from this browser. Please allow a few minutes before submitting another.");
+    return;
+  }
+
+  // Schema validation matching firestore.rules
+  if (!userRating || userRating < 1 || userRating > 5) {
+    showFormError("Rating must be between 1 and 5 stars.");
+    return;
+  }
+  if (!name || name.length > 60) {
+    showFormError("Name or initials required (1 to 60 characters).");
+    return;
+  }
+  if (role.length > 60) {
+    showFormError("Role / location must be 60 characters or fewer.");
+    return;
+  }
+  if (engine.length > 80) {
+    showFormError("Selected engine parameter invalid.");
+    return;
+  }
+  if (trap.length > 40) {
+    showFormError("Selected trap parameter invalid.");
+    return;
+  }
+  if (comment.length < 20 || comment.length > 1200) {
+    showFormError("Report text must be between 20 and 1,200 characters.");
+    return;
+  }
+
+  repSubmitBtn.disabled = true;
+  repSubmitBtn.innerHTML = `<span>Transmitting to Archive...</span>`;
+
+  try {
+    const payload = {
+      name: name,
+      role: role,
+      rating: parseInt(userRating),
+      engine: engine,
+      trap: trap,
+      comment: comment,
+      approved: false, // Rule requirement: visitors can only write with approved: false
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    await db.collection("reviews").add(payload);
+
+    localStorage.setItem('tgg_last_report_sub_time', Date.now().toString());
+    fieldReportForm.reset();
+    paintStars(5);
+    repCharCount.textContent = '0 / 1200';
+
+    repStatusBox.textContent = "Report transmitted successfully! To uphold academic and scholarly integrity, your entry will appear in the live feed following author review.";
+    repStatusBox.className = "text-xs p-3 rounded-lg bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 block";
+  } catch (err) {
+    console.error("Submission failed:", err);
+    showFormError("Could not transmit report. Verify your connection and retry.");
+  } finally {
+    repSubmitBtn.disabled = false;
+    repSubmitBtn.innerHTML = `<span>Submit Report For Review</span>`;
+  }
+});
+
+function showFormError(msg) {
+  repStatusBox.textContent = msg;
+  repStatusBox.className = "text-xs p-3 rounded-lg bg-red-950/70 border border-red-500/40 text-red-300 block";
+}
+
+/* ========================================================
+   9. SACRED GEOMETRY CANVAS
+======================================================== */
+(function initCanvas() {
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  let particles = [];
+  const mouse = { x: -999, y: -999 };
+
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    const count = Math.min(60, Math.floor((width * height) / 20000));
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.5 + 1
+    }));
+  }
+  window.addEventListener('resize', resize);
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+  resize();
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const dotCol = isLight ? 'rgba(184, 134, 11, 0.4)' : 'rgba(214, 178, 74, 0.45)';
+    const lineCol = isLight ? 'rgba(184, 134, 11, 0.1)' : 'rgba(214, 178, 74, 0.12)';
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = dotCol;
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const dist = Math.hypot(p2.x - p.x, p2.y - p.y);
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = lineCol;
+          ctx.lineWidth = 0.5 * (1 - dist / 110);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
 </script>
+
 </body>
 </html>
