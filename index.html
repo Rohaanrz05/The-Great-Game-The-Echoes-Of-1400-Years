@@ -5,2084 +5,695 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Great Game &amp; The Echoes of 1400 Years — Muhammad Rohaan Zahid</title>
   <meta name="description" content="The rise and fall of Muslim civilization, geopolitical warfare, secret societies, and the Qur'anic roadmap to revival. By Muhammad Rohaan Zahid.">
-  <meta property="og:title" content="The Great Game &amp; The Echoes of 1400 Years">
-  <meta property="og:description" content="Documented history, systematic analysis and Qur'anic law, exposing institutional and covert warfare.">
-  <meta property="og:image" content="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi">
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Firebase Compat SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 
   <style>
-    /* ==========================================================================
-       1. CSS VARIABLES & DUAL-THEME ENGINE
-       ========================================================================== */
     :root[data-theme="dark"] {
-      --bg-base: #04060b;
-      --bg-surface: #0a0e17;
-      --bg-card: rgba(14, 20, 34, 0.78);
-      --bg-card-hover: rgba(20, 28, 46, 0.95);
-      --border: rgba(214, 178, 74, 0.22);
-      --border-bright: rgba(214, 178, 74, 0.65);
-      --gold: #d6b24a;
-      --gold-light: #fae49c;
-      --gold-dark: #9e7d23;
-      --text-main: #f3f5f9;
-      --text-sub: #b8c0d1;
-      --text-muted: #7e879b;
-      --crimson: #e04a4a;
-      --crimson-bg: rgba(224, 74, 74, 0.12);
-      --emerald: #34d399;
-      --emerald-bg: rgba(52, 211, 153, 0.1);
-      --quote-bg: linear-gradient(135deg, rgba(214, 178, 74, 0.1), rgba(6, 8, 14, 0.92));
-      --nav-bg: rgba(4, 6, 11, 0.88);
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
-      --glow: 0 0 35px rgba(214, 178, 74, 0.22);
+      --bg: #05070c; --surf: #0b0f1a; --card: rgba(15, 22, 36, 0.85);
+      --bdr: rgba(214, 178, 74, 0.24); --bdr-hi: rgba(214, 178, 74, 0.65);
+      --gold: #d6b24a; --gold-lt: #fae29c; --txt: #f2f4f8; --sub: #b8c0d1; --mut: #7d869a;
+      --crim: #e04848; --crim-bg: rgba(224, 72, 72, 0.12); --em: #34d399;
+      --nav: rgba(5, 7, 12, 0.9); --shd: 0 18px 45px rgba(0,0,0,0.65);
     }
-
     :root[data-theme="light"] {
-      --bg-base: #f6f3ec;
-      --bg-surface: #ebe5d8;
-      --bg-card: rgba(255, 255, 255, 0.9);
-      --bg-card-hover: #ffffff;
-      --border: rgba(140, 105, 30, 0.25);
-      --border-bright: rgba(140, 105, 30, 0.65);
-      --gold: #9e7518;
-      --gold-light: #6e500b;
-      --gold-dark: #533b04;
-      --text-main: #14171f;
-      --text-sub: #384050;
-      --text-muted: #6b7280;
-      --crimson: #b91c1c;
-      --crimson-bg: rgba(185, 28, 28, 0.08);
-      --emerald: #059669;
-      --emerald-bg: rgba(5, 150, 105, 0.08);
-      --quote-bg: linear-gradient(135deg, rgba(214, 178, 74, 0.15), #ffffff);
-      --nav-bg: rgba(246, 243, 236, 0.92);
-      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-      --glow: 0 0 25px rgba(158, 117, 24, 0.15);
+      --bg: #f6f3ec; --surf: #ebe5d8; --card: rgba(255, 255, 255, 0.92);
+      --bdr: rgba(140, 105, 30, 0.25); --bdr-hi: rgba(140, 105, 30, 0.65);
+      --gold: #9e7518; --gold-lt: #5e4306; --txt: #14171f; --sub: #384050; --mut: #6b7280;
+      --crim: #b91c1c; --crim-bg: rgba(185, 28, 28, 0.08); --em: #059669;
+      --nav: rgba(246, 243, 236, 0.94); --shd: 0 12px 30px rgba(0,0,0,0.08);
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background-color: var(--bg-base);
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(214, 178, 74, 0.06) 0%, transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(224, 74, 74, 0.05) 0%, transparent 35%);
-      background-attachment: fixed;
-      color: var(--text-main);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.7;
-      overflow-x: hidden;
-      min-height: 100vh;
-      transition: background-color 0.35s ease, color 0.35s ease;
+      background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif;
+      line-height: 1.7; overflow-x: hidden; min-height: 100vh;
+      background-image: radial-gradient(circle at 15% 15%, rgba(214,178,74,0.06), transparent 35%),
+                        radial-gradient(circle at 85% 80%, rgba(224,72,72,0.05), transparent 35%);
+      transition: background 0.3s, color 0.3s;
     }
-
     a { color: inherit; text-decoration: none; }
-    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 700; color: var(--text-main); }
-    .cinzel { font-family: 'Cinzel', serif; letter-spacing: 0.06em; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; color: var(--txt); }
 
-    /* ==========================================================================
-       2. WORD-BY-WORD & SCROLL REVEAL ANIMATIONS
-       ========================================================================== */
-    .word-anim {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(18px) rotateX(-20deg);
-      filter: blur(4px);
-      animation: wordReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes wordReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-        filter: blur(0);
-      }
-    }
+    /* Word & Element Animations (Always Visible Fallback) */
+    .w-anim { display: inline-block; animation: wPop 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes wPop { from { opacity: 0; transform: translateY(14px); filter: blur(3px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+    @keyframes riseUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    .anim-box { animation: riseUp 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+    .hl { color: var(--gold-lt); transition: 0.25s; }
+    .hl:hover { color: var(--gold); text-shadow: 0 0 12px rgba(214,178,74,0.55); }
 
-    .reveal-item {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .reveal-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Interactive Hover Highlight on Important Terms */
-    .hl-word {
-      color: var(--gold-light);
-      position: relative;
-      display: inline-block;
-      transition: color 0.25s ease, text-shadow 0.25s ease;
-    }
-    .hl-word:hover {
-      color: var(--gold);
-      text-shadow: 0 0 12px rgba(214, 178, 74, 0.5);
-    }
-
-    /* ==========================================================================
-       3. TOP COUNTER BOX & NAVIGATION TABS (BELOW COUNTER)
-       ========================================================================== */
-    .top-counter-wrapper {
-      max-width: 1320px;
-      margin: 18px auto 10px;
-      padding: 0 20px;
-    }
-    .counter-box {
-      background: linear-gradient(135deg, rgba(16, 22, 36, 0.92), rgba(8, 12, 22, 0.96));
-      border: 1px solid var(--border-bright);
-      border-radius: 14px;
-      padding: 14px 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      box-shadow: var(--glow);
-      position: relative;
-      overflow: hidden;
-    }
-    :root[data-theme="light"] .counter-box {
-      background: linear-gradient(135deg, #ffffff, #f0eadc);
-    }
-    .counter-box::before {
-      content: "";
-      position: absolute;
-      top: 0; left: -100%;
-      width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(214, 178, 74, 0.12), transparent);
-      animation: shimmerSweep 6s infinite;
-      pointer-events: none;
-    }
-    @keyframes shimmerSweep {
-      100% { left: 200%; }
-    }
-
-    .counter-label-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .pulse-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 12px var(--gold);
-      animation: pulseDot 1.8s infinite;
-    }
-    @keyframes pulseDot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.35); opacity: 0.5; }
-    }
-    .counter-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .counter-sub {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-    }
-
-    .counter-blocks {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .time-cube {
-      background: var(--bg-base);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 6px 12px;
-      text-align: center;
-      min-width: 62px;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-    .time-cube:hover {
-      transform: translateY(-2px);
-      border-color: var(--gold);
-    }
-    .time-cube .num {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--gold-light);
-      display: block;
-      line-height: 1.1;
-    }
-    .time-cube .unit {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-    }
-
-    /* Sticky Header & Redesigned Professional Tabs (Below Counter) */
+    /* Sticky Header & Professional Unnumbered Tabs */
     header.site-header {
-      background: var(--nav-bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 99;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: var(--nav); border-bottom: 1px solid var(--bdr);
+      position: sticky; top: 0; z-index: 99; backdrop-filter: blur(16px);
     }
     .nav-wrap {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      max-width: 1380px; margin: 0 auto; padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
     }
-    .brand {
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-    }
-    .brand-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--gold);
-      letter-spacing: 0.08em;
-    }
-    .brand-sub {
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
+    .brand-title { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 800; color: var(--gold); letter-spacing: 0.08em; display: block; }
+    .brand-sub { font-size: 0.68rem; color: var(--mut); letter-spacing: 0.1em; text-transform: uppercase; }
     .tab-nav {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      list-style: none;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-      padding: 4px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      display: flex; align-items: center; gap: 5px; list-style: none;
+      overflow-x: auto; scrollbar-width: none; padding: 4px;
+      background: rgba(255,255,255,0.02); border: 1px solid var(--bdr); border-radius: 12px;
     }
     .tab-nav::-webkit-scrollbar { display: none; }
-
     .tab-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      padding: 8px 13px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-sub);
-      cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      white-space: nowrap;
-      position: relative;
+      background: none; border: none; padding: 8px 13px; font: 600 0.8rem 'Inter', sans-serif;
+      color: var(--sub); cursor: pointer; border-radius: 8px; transition: 0.25s; white-space: nowrap;
     }
-    .tab-btn:hover {
-      color: var(--gold-light);
-      background: rgba(214, 178, 74, 0.1);
-      transform: translateY(-1px);
-    }
+    .tab-btn:hover { color: var(--gold-lt); background: rgba(214,178,74,0.1); transform: translateY(-1px); }
     .tab-btn.active {
-      color: #0b0800;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      font-weight: 700;
-      border-color: var(--gold-light);
-      box-shadow: 0 4px 16px rgba(214, 178, 74, 0.35);
+      color: #0b0800; background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      font-weight: 700; box-shadow: 0 4px 15px rgba(214,178,74,0.35);
     }
-    :root[data-theme="light"] .tab-btn.active {
-      color: #ffffff;
-      background: linear-gradient(135deg, #b08520, #7d5a08);
+    :root[data-theme="light"] .tab-btn.active { color: #fff; background: linear-gradient(135deg, #b08520, #7d5a08); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .theme-btn {
+      background: var(--surf); border: 1px solid var(--bdr); color: var(--gold);
+      width: 38px; height: 38px; border-radius: 50%; cursor: pointer; font-size: 1.05rem; transition: 0.25s;
     }
+    .theme-btn:hover { border-color: var(--gold); transform: rotate(30deg) scale(1.08); }
+    .btn-gold {
+      background: linear-gradient(135deg, #f3be56, #b8770e); color: #0b0700; font-weight: 700;
+      padding: 10px 20px; border-radius: 999px; font-size: 0.84rem; letter-spacing: 0.04em;
+      border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+      gap: 6px; box-shadow: 0 4px 18px rgba(229,169,59,0.35); transition: 0.25s;
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(229,169,59,0.55); }
+    .btn-outline {
+      background: var(--surf); border: 1px solid var(--bdr-hi); color: var(--gold-lt);
+      padding: 10px 20px; border-radius: 999px; font-size: 0.84rem; font-weight: 600; cursor: pointer; transition: 0.25s;
+    }
+    .btn-outline:hover { background: rgba(214,178,74,0.12); transform: translateY(-2px); }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-    .theme-toggle-btn {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      color: var(--gold);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      transition: all 0.25s;
-    }
-    .theme-toggle-btn:hover {
-      border-color: var(--gold);
-      transform: rotate(35deg) scale(1.08);
-    }
-    .btn-amazon {
-      background: linear-gradient(135deg, #f3be56, #b8770e);
-      color: #0b0700;
-      font-weight: 700;
-      padding: 9px 18px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      box-shadow: 0 4px 18px rgba(229, 169, 59, 0.35);
-      white-space: nowrap;
-    }
-    .btn-amazon:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 10px 28px rgba(229, 169, 59, 0.55);
-    }
-
-    /* ==========================================================================
-       4. TAB PANES & COMMON LAYOUT
-       ========================================================================== */
-    .tab-pane {
-      display: none !important;
-      animation: paneFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      min-height: calc(100vh - 160px);
-    }
-    .tab-pane.active-tab {
-      display: block !important;
-    }
-    @keyframes paneFade {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .wrap {
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 50px 20px 80px;
-    }
-
+    /* Tab Panes & Layout */
+    .tab-pane { display: none; min-height: calc(100vh - 120px); }
+    .tab-pane.active-tab { display: block; animation: riseUp 0.45s ease both; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 50px 20px 80px; }
     .kicker {
-      color: var(--gold);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: rgba(214, 178, 74, 0.1);
-      border: 1px solid var(--border);
+      color: var(--gold); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.16em;
+      font-weight: 700; margin-bottom: 12px; display: inline-block; padding: 4px 12px;
+      border-radius: 999px; background: rgba(214,178,74,0.1); border: 1px solid var(--bdr);
     }
-    .section-title {
-      font-size: clamp(2.1rem, 4vw, 3.3rem);
-      line-height: 1.14;
-      margin-bottom: 16px;
-    }
-    .section-desc {
-      color: var(--text-sub);
-      font-size: 1.08rem;
-      max-width: 820px;
-      line-height: 1.75;
-      margin-bottom: 40px;
-    }
-
+    .sec-title { font-size: clamp(2.1rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 16px; }
+    .sec-desc { color: var(--sub); font-size: 1.06rem; max-width: 840px; margin-bottom: 38px; }
     .card {
-      background: var(--bg-card);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 30px;
-      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, box-shadow 0.35s ease;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      background: var(--card); backdrop-filter: blur(12px); border: 1px solid var(--bdr);
+      border-radius: 16px; padding: 28px; box-shadow: var(--shd); transition: 0.3s; position: relative; overflow: hidden;
     }
-    .card:hover {
-      border-color: var(--border-bright);
-      transform: translateY(-5px);
-      box-shadow: 0 22px 55px rgba(0, 0, 0, 0.65), 0 0 25px rgba(214, 178, 74, 0.12);
-    }
+    .card:hover { border-color: var(--bdr-hi); transform: translateY(-4px); }
 
-    /* ==========================================================================
-       5. TAB 1: OVERVIEW, REDESIGNED ASTROLABE CIRCLE & EDITION BOXES
-       ========================================================================== */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 55px;
-      align-items: center;
-      margin-top: 10px;
-    }
-    .hero-headline {
-      font-size: clamp(2.6rem, 5vw, 4.3rem);
-      line-height: 1.06;
-      margin-bottom: 22px;
-      color: var(--text-main);
-    }
-    .hero-lead {
-      font-size: 1.24rem;
-      line-height: 1.68;
-      color: var(--text-sub);
-      margin-bottom: 28px;
-      font-style: italic;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-    }
-    .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 36px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
-    }
-    .stat-box {
-      padding: 14px 18px;
-      border-radius: 12px;
-      background: rgba(214, 178, 74, 0.04);
-      border: 1px solid var(--border);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-    .stat-box:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
-    }
-    .stat-val {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--gold);
-      display: block;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-lbl {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
+    /* TAB 1: Hero & Redesigned Multi-Ring Astrolabe Circle */
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 50px; align-items: center; }
+    .hero-title { font-size: clamp(2.6rem, 5vw, 4.3rem); line-height: 1.06; margin-bottom: 20px; }
+    .hero-lead { font: italic 1.24rem/1.68 'Cormorant Garamond', serif; color: var(--sub); margin-bottom: 26px; }
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--bdr); }
+    .stat-pill { background: rgba(214,178,74,0.05); border: 1px solid var(--bdr); border-radius: 12px; padding: 14px; text-align: center; transition: 0.25s; }
+    .stat-pill:hover { border-color: var(--gold); transform: translateY(-3px); }
+    .stat-val { font: 800 1.9rem/1 'Cinzel', serif; color: var(--gold); display: block; margin-bottom: 4px; }
+    .stat-lbl { font-size: 0.74rem; color: var(--mut); text-transform: uppercase; letter-spacing: 0.06em; }
 
-    /* REDESIGNED PROFESSIONAL CELESTIAL ASTROLABE CIRCLE */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 520px;
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; min-height: 500px; }
+    .astrolabe { position: absolute; width: 470px; height: 470px; display: flex; justify-content: center; align-items: center; pointer-events: none; }
+    .astro-core { position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(214,178,74,0.25) 0%, transparent 70%); animation: pulse 4s infinite ease-in-out; }
+    @keyframes pulse { 0%,100% { transform: scale(0.95); opacity: 0.75; } 50% { transform: scale(1.08); opacity: 1; } }
+    .ring-cw { position: absolute; width: 100%; height: 100%; animation: spin 70s linear infinite; }
+    .ring-ccw { position: absolute; width: 82%; height: 82%; animation: spinRev 45s linear infinite; }
+    .ring-in { position: absolute; width: 65%; height: 65%; animation: spin 30s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spinRev { to { transform: rotate(-360deg); } }
+    .book-3d {
+      width: 245px; border-radius: 6px 14px 14px 6px; position: relative; z-index: 3;
+      box-shadow: -22px 22px 55px rgba(0,0,0,0.85), 0 0 45px rgba(214,178,74,0.3); transition: 0.4s;
     }
-    .astrolabe-container {
-      position: absolute;
-      width: 490px;
-      height: 490px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      pointer-events: none;
-    }
-    .astro-glow {
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(214, 178, 74, 0.24) 0%, rgba(214, 178, 74, 0.05) 45%, transparent 72%);
-      animation: breatheGlow 5s ease-in-out infinite;
-    }
-    @keyframes breatheGlow {
-      0%, 100% { transform: scale(0.95); opacity: 0.75; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
-    .astro-svg-outer {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      animation: spinCW 75s linear infinite;
-    }
-    .astro-svg-mid {
-      position: absolute;
-      width: 82%;
-      height: 82%;
-      animation: spinCCW 48s linear infinite;
-    }
-    .astro-svg-inner {
-      position: absolute;
-      width: 66%;
-      height: 66%;
-      animation: spinCW 32s linear infinite;
-    }
-    @keyframes spinCW { to { transform: rotate(360deg); } }
-    @keyframes spinCCW { to { transform: rotate(-360deg); } }
+    .book-3d:hover { transform: scale(1.06) rotateY(-10deg) translateY(-6px); }
+    .book-3d img { width: 100%; display: block; border-radius: inherit; }
 
-    .book-cover-3d {
-      width: 248px;
-      border-radius: 6px 14px 14px 6px;
-      box-shadow: -22px 22px 55px rgba(0, 0, 0, 0.85), 0 0 45px rgba(214, 178, 74, 0.3);
-      position: relative;
-      z-index: 3;
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
-      cursor: pointer;
+    /* Middle Overview Section: 3 Boxes (Countdown Timer Box + Hardcover Box + Paperback Box) */
+    .mid-boxes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-top: 60px; padding-top: 45px; border-top: 1px solid var(--bdr);
     }
-    .book-cover-3d:hover {
-      transform: scale(1.06) rotateY(-10deg) translateY(-6px);
-      box-shadow: -28px 28px 65px rgba(0, 0, 0, 0.9), 0 0 65px rgba(214, 178, 74, 0.5);
+    .mid-box {
+      background: linear-gradient(155deg, var(--card), rgba(214,178,74,0.08));
+      border: 1px solid var(--bdr-hi); border-radius: 18px; padding: 30px 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      box-shadow: var(--shd); transition: 0.3s;
     }
-    .book-cover-3d img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: inherit;
+    .mid-box:hover { transform: translateY(-6px); box-shadow: 0 22px 50px rgba(0,0,0,0.7), 0 0 25px rgba(214,178,74,0.2); }
+    .badge-live {
+      display: inline-flex; align-items: center; gap: 6px; width: fit-content;
+      background: rgba(52,211,153,0.12); color: var(--em); border: 1px solid rgba(52,211,153,0.35);
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 4px 11px; border-radius: 999px; margin-bottom: 14px;
     }
+    .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--em); box-shadow: 0 0 8px var(--em); }
+    .mid-box h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-lt); margin-bottom: 10px; }
+    .mid-box p { font-size: 0.9rem; color: var(--sub); margin-bottom: 18px; }
+    .timer-cubes { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin: 14px 0 20px; }
+    .t-cube { background: var(--bg); border: 1px solid var(--bdr); border-radius: 10px; padding: 10px 4px; text-align: center; }
+    .t-cube .n { font: 800 1.45rem/1 'Cinzel', serif; color: var(--gold); display: block; }
+    .t-cube .u { font-size: 0.65rem; color: var(--mut); text-transform: uppercase; margin-top: 4px; display: block; }
+    .spec-list { list-style: none; margin-bottom: 20px; border-top: 1px solid var(--bdr); padding-top: 12px; font-size: 0.84rem; color: var(--mut); }
+    .spec-list li { margin-bottom: 6px; padding-left: 16px; position: relative; }
+    .spec-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
 
-    /* MIDDLE SECTION AFTER BOOK DETAILS: HARDCOVER & PAPERBACK AVAILABLE BOXES */
-    .editions-showcase {
-      margin-top: 65px;
-      padding-top: 50px;
-      border-top: 1px solid var(--border);
-    }
-    .editions-header {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-    .editions-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-    }
-    .edition-box {
-      background: linear-gradient(155deg, var(--bg-card), rgba(214, 178, 74, 0.07));
-      border: 1px solid var(--border-bright);
-      border-radius: 18px;
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-    }
-    .edition-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), var(--glow);
-    }
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--emerald-bg);
-      color: var(--emerald);
-      border: 1px solid rgba(52, 211, 153, 0.35);
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 5px 12px;
-      border-radius: 999px;
-      margin-bottom: 16px;
-      width: fit-content;
-    }
-    .status-badge::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--emerald);
-      box-shadow: 0 0 8px var(--emerald);
-    }
-    .edition-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.65rem;
-      color: var(--gold-light);
-      margin-bottom: 10px;
-    }
-    .edition-desc {
-      color: var(--text-sub);
-      font-size: 0.96rem;
-      margin-bottom: 20px;
-    }
-    .edition-specs {
-      list-style: none;
-      margin-bottom: 26px;
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-    .edition-specs li {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-    .edition-specs li::before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-    }
+    /* Interactive Flipper */
+    .flipper { margin-top: 60px; background: var(--surf); border: 1px solid var(--bdr); border-radius: 18px; padding: 36px; }
+    .flip-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .leaf-box { background: var(--card); border: 1px solid var(--bdr); border-radius: 12px; padding: 32px; min-height: 230px; position: relative; }
+    .leaf-num { position: absolute; bottom: 16px; right: 22px; font-size: 0.8rem; color: var(--mut); }
 
-    /* Interactive Book Page Flip Simulator */
-    .flipper-section {
-      margin-top: 65px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 40px;
-      box-shadow: var(--shadow);
+    /* Grids & Cards for All Tabs */
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+    .quote-banner {
+      background: linear-gradient(135deg, rgba(214,178,74,0.1), var(--card));
+      border-left: 4px solid var(--crim); border-radius: 0 16px 16px 0;
+      padding: 30px 34px; margin-bottom: 36px; border-top: 1px solid var(--bdr); border-right: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr);
     }
-    .flipper-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-    .flipper-buttons { display: flex; gap: 10px; }
-    .btn-flip {
-      background: var(--bg-base);
-      border: 1px solid var(--border);
-      color: var(--text-main);
-      padding: 9px 18px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.25s;
-    }
-    .btn-flip:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-2px);
-    }
-    .page-sheet {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 35px;
-      min-height: 260px;
-      position: relative;
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    .page-sheet-num {
-      position: absolute;
-      bottom: 20px;
-      right: 25px;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-    }
+    .quote-banner blockquote { font: italic clamp(1.3rem, 2.3vw, 1.75rem)/1.45 'Cormorant Garamond', serif; margin-bottom: 10px; }
+    .quote-banner cite { font-size: 0.85rem; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-style: normal; }
+    .tag-crim { font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--crim); display: block; margin-bottom: 8px; }
+    .bullet-ul { list-style: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--bdr); }
+    .bullet-ul li { position: relative; padding-left: 18px; font-size: 0.86rem; color: var(--mut); margin-bottom: 7px; }
+    .bullet-ul li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
 
-    /* ==========================================================================
-       6. TAB 2, 3, 4, 5, 6, 7 STYLES
-       ========================================================================== */
-    .quote-box-expose {
-      background: var(--quote-bg);
-      border-left: 4px solid var(--crimson);
-      border-top: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 34px 38px;
-      border-radius: 0 16px 16px 0;
-      margin-bottom: 45px;
-      box-shadow: var(--shadow);
-    }
-    .quote-box-expose blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-      font-style: italic;
-      line-height: 1.45;
-      color: var(--text-main);
-      margin-bottom: 12px;
-    }
-    .quote-box-expose cite {
-      font-size: 0.88rem;
-      font-style: normal;
-      color: var(--gold);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .expose-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 25px;
-      margin-top: 25px;
-    }
-    .expose-card.highlight {
-      border-color: var(--crimson);
-      background: linear-gradient(160deg, var(--bg-card), var(--crimson-bg));
-    }
-    .expose-tag {
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--crimson);
-      margin-bottom: 10px;
-      display: block;
-    }
-    .expose-card h3 { font-size: 1.6rem; margin-bottom: 12px; }
-    .expose-card p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 14px; }
-    .expose-bullets {
-      list-style: none;
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid var(--border);
-    }
-    .expose-bullets li {
-      position: relative;
-      padding-left: 20px;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .expose-bullets li::before {
-      content: "✦";
-      position: absolute;
-      left: 0;
-      color: var(--gold);
-    }
-
-    /* Two Traps */
-    .traps-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      margin-top: 30px;
-    }
-    .trap-card.left { border-top: 4px solid var(--crimson); }
-    .trap-card.right { border-top: 4px solid #d99b26; }
-    .trap-title { font-size: 1.8rem; margin-bottom: 12px; }
-    .solution-box {
-      margin-top: 40px;
-      background: var(--quote-bg);
-      border: 1px solid var(--border-bright);
-      border-radius: 16px;
-      padding: 40px;
-    }
-
-    /* 26 Surahs */
-    .surahs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 22px;
-      margin-top: 30px;
-    }
-    .surah-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
-    }
-    .surah-num { color: var(--gold); font-weight: 700; font-size: 0.85rem; }
-    .chapter-tag { font-size: 0.8rem; color: var(--text-muted); }
-    .arabic-text {
-      font-family: 'Amiri', serif;
-      font-size: 1.45rem;
-      direction: rtl;
-      text-align: right;
-      color: var(--gold-light);
-      line-height: 1.9;
-      margin: 12px 0 16px;
-    }
-    .translation-text {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--text-main);
-      margin-bottom: 10px;
-    }
-    .surah-comment {
-      font-size: 0.86rem;
-      color: var(--text-sub);
-      border-top: 1px dashed var(--border);
-      padding-top: 10px;
-      margin-top: 10px;
-    }
+    /* Surahs */
+    .arabic { font: 1.42rem/1.85 'Amiri', serif; direction: rtl; text-align: right; color: var(--gold-lt); margin: 10px 0 14px; }
+    .trans { font: italic 1.04rem 'Cormorant Garamond', serif; color: var(--txt); margin-bottom: 10px; }
+    .note-box { font-size: 0.85rem; color: var(--sub); border-top: 1px dashed var(--bdr); padding-top: 10px; margin-top: 10px; }
 
     /* Author */
-    .author-grid {
-      display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
-      gap: 50px;
-      align-items: start;
-    }
-    .author-photo-card {
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      background: var(--bg-card);
-      box-shadow: var(--shadow);
-    }
-    .author-photo-card img { width: 100%; height: auto; display: block; }
-    .author-caption {
-      padding: 20px;
-      text-align: center;
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border);
-    }
-    .author-name { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 700; color: var(--gold); }
-    .author-title { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; }
-    .author-bio p { color: var(--text-sub); font-size: 1.02rem; margin-bottom: 18px; }
+    .author-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 45px; align-items: start; }
+    .author-card { border-radius: 16px; overflow: hidden; border: 1px solid var(--bdr); background: var(--card); }
+    .author-card img { width: 100%; display: block; }
+    .author-cap { padding: 18px; text-align: center; background: var(--surf); border-top: 1px solid var(--bdr); }
 
-    /* Chapters Accordion */
-    .parts-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 30px; }
-    .part-accordion {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: border-color 0.25s ease;
-    }
-    .part-accordion:hover { border-color: var(--border-bright); }
-    .part-summary {
-      padding: 20px 25px;
-      cursor: pointer;
-      font-size: 1.3rem;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-weight: 700;
-      color: var(--gold);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-    }
-    .part-chapters-list {
-      padding: 10px 30px 25px;
-      border-top: 1px solid var(--border);
-      list-style-position: inside;
-      color: var(--text-sub);
-    }
-    .part-chapters-list li {
-      padding: 10px 0;
-      border-bottom: 1px dashed var(--border);
-      font-size: 0.95rem;
-    }
-    .part-chapters-list li:last-child { border-bottom: none; }
+    /* Accordion */
+    .acc-item { background: var(--card); border: 1px solid var(--bdr); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+    .acc-head { padding: 18px 24px; cursor: pointer; font: 700 1.28rem 'Cormorant Garamond', serif; color: var(--gold); display: flex; justify-content: space-between; align-items: center; }
+    .acc-head:hover { background: rgba(214,178,74,0.05); }
+    .acc-list { padding: 8px 28px 22px; border-top: 1px solid var(--bdr); color: var(--sub); list-style-position: inside; }
+    .acc-list li { padding: 9px 0; border-bottom: 1px dashed var(--bdr); font-size: 0.93rem; }
+    .acc-list li:last-child { border: none; }
 
     /* Review System */
-    .reports-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .form-group { margin-bottom: 18px; }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-    .form-control {
-      width: 100%;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 12px 14px;
-      color: var(--text-main);
-      font-family: inherit;
-      font-size: 0.92rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-control:focus { border-color: var(--gold); }
-    .star-rating-select {
-      display: flex;
-      gap: 6px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--text-muted);
-      user-select: none;
-    }
-    .star-rating-select span.selected { color: var(--gold); }
-    .review-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-      margin-bottom: 18px;
-    }
-    .review-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
-    .review-name { font-weight: 700; color: var(--gold); }
-    .review-role { font-size: 0.8rem; color: var(--text-muted); }
-    .review-comment { color: var(--text-sub); font-size: 0.92rem; margin-top: 10px; }
+    .rev-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 36px; align-items: start; }
+    .inp-grp { margin-bottom: 15px; }
+    .inp-grp label { display: block; font-size: 0.78rem; color: var(--mut); text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+    .inp { width: 100%; background: var(--surf); border: 1px solid var(--bdr); border-radius: 8px; padding: 11px 13px; color: var(--txt); font: inherit; outline: none; }
+    .inp:focus { border-color: var(--gold); }
+    .stars { display: flex; gap: 6px; font-size: 1.75rem; cursor: pointer; color: var(--mut); user-select: none; }
+    .stars span.sel { color: var(--gold); }
 
-    /* ==========================================================================
-       7. TAB 8 (LAST TOPIC): DYNAMIC SECRET SOCIETIES & CONSPIRACY DOSSIERS
-       ========================================================================== */
-    .dynamic-society-banner {
-      background: linear-gradient(145deg, rgba(224, 74, 74, 0.12), var(--bg-card));
-      border: 1px solid var(--crimson);
-      border-radius: 18px;
-      padding: 38px 34px;
-      margin-bottom: 45px;
-      box-shadow: var(--shadow);
+    /* TAB 8: Dynamic Secret Societies Heading & Conspiracy Dossiers */
+    .soc-hero {
+      background: linear-gradient(145deg, rgba(224,72,72,0.14), var(--card));
+      border: 1px solid var(--crim); border-radius: 18px; padding: 34px; margin-bottom: 38px;
     }
-    .dynamic-heading-wrap {
-      font-size: clamp(1.9rem, 3.8vw, 3.1rem);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      min-height: 1.3em;
-    }
-    .dynamic-society-name {
-      color: var(--gold-light);
-      font-family: 'Cinzel', serif;
-      border-bottom: 2px solid var(--crimson);
-      border-right: 3px solid var(--gold);
-      padding-right: 6px;
-      animation: blinkCaret 0.75s step-end infinite;
-    }
-    @keyframes blinkCaret {
-      50% { border-right-color: transparent; }
-    }
-    .society-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-    }
-    .society-pill {
-      font-size: 0.76rem;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: var(--bg-base);
-      border: 1px solid var(--border);
-      color: var(--text-sub);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .society-pill:hover, .society-pill.active-pill {
-      border-color: var(--gold);
-      color: var(--gold-light);
-      background: rgba(214, 178, 74, 0.12);
-    }
+    .dyn-title { font-size: clamp(1.85rem, 3.6vw, 2.9rem); line-height: 1.2; min-height: 1.3em; margin-bottom: 12px; }
+    .dyn-span { color: var(--gold-lt); font-family: 'Cinzel', serif; border-bottom: 2px solid var(--crim); border-right: 3px solid var(--gold); padding-right: 6px; animation: blink 0.75s infinite; }
+    @keyframes blink { 50% { border-right-color: transparent; } }
+    .pill-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .soc-pill { font-size: 0.76rem; padding: 6px 13px; border-radius: 999px; background: var(--bg); border: 1px solid var(--bdr); color: var(--sub); cursor: pointer; transition: 0.2s; }
+    .soc-pill:hover, .soc-pill.act { border-color: var(--gold); color: var(--gold-lt); background: rgba(214,178,74,0.14); }
+    .dos-blk { background: var(--surf); border-left: 3px solid var(--gold); padding: 11px 14px; border-radius: 0 8px 8px 0; margin-bottom: 10px; font-size: 0.87rem; color: var(--sub); }
+    .dos-blk.th { border-left-color: #d99b26; }
+    .dos-blk.ar { border-left-color: var(--crim); }
+    .dos-blk strong { color: var(--txt); display: block; font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 3px; }
 
-    .dossier-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 26px;
-    }
-    .dossier-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .dossier-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-      margin-bottom: 14px;
-      font-size: 0.78rem;
-      color: var(--gold);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .dossier-block {
-      background: var(--bg-surface);
-      border-left: 3px solid var(--gold);
-      padding: 12px 15px;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 12px;
-      font-size: 0.88rem;
-      color: var(--text-sub);
-    }
-    .dossier-block.theory { border-left-color: #d99b26; }
-    .dossier-block.archive { border-left-color: var(--crimson); }
-    .dossier-block strong {
-      color: var(--text-main);
-      display: block;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      background: var(--bg-surface);
-      padding: 50px 20px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.86rem;
-    }
-    .footer-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
+    footer { border-top: 1px solid var(--bdr); background: var(--surf); padding: 45px 20px; text-align: center; color: var(--mut); font-size: 0.85rem; }
     @media (max-width: 980px) {
-      .hero-grid, .author-grid, .traps-container, .reports-layout, .editions-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-      }
-      .astrolabe-container { width: 350px; height: 350px; }
-      .counter-box { justify-content: center; text-align: center; }
+      .hero-grid, .mid-boxes-grid, .author-layout, .rev-layout { grid-template-columns: 1fr; }
+      .astrolabe { width: 340px; height: 340px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. DEDICATED COUNTER BOX (REPLACES OLD STICKY TIMER BAR) -->
-  <div class="top-counter-wrapper">
-    <div class="counter-box">
-      <div class="counter-label-group">
-        <span class="pulse-dot"></span>
-        <div>
-          <div class="counter-heading" id="counterStatusHeading">Global Digital Release Countdown</div>
-          <div class="counter-sub">Amazon KDP Worldwide Launch · Hardcover &amp; Paperback Live</div>
-        </div>
-      </div>
-
-      <div class="counter-blocks" id="kdpCountdown">
-        <div class="time-cube"><span class="num" id="cdDays">00</span><span class="unit">Days</span></div>
-        <div class="time-cube"><span class="num" id="cdHours">00</span><span class="unit">Hours</span></div>
-        <div class="time-cube"><span class="num" id="cdMins">00</span><span class="unit">Mins</span></div>
-        <div class="time-cube"><span class="num" id="cdSecs">00</span><span class="unit">Secs</span></div>
-      </div>
-
-      <a class="btn-amazon" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">
-        Order on Amazon →
-      </a>
-    </div>
-  </div>
-
-  <!-- 2. STICKY NAVIGATION & PROFESSIONAL TABS (DIRECTLY BELOW COUNTER) -->
+  <!-- STICKY HEADER WITH PROFESSIONAL TABS -->
   <header class="site-header">
     <div class="nav-wrap">
-      <div class="brand">
+      <div>
         <span class="brand-title">The Great Game</span>
         <span class="brand-sub">Muhammad Rohaan Zahid</span>
       </div>
-
       <nav>
         <ul class="tab-nav">
           <li><button class="tab-btn active" data-tab="tab-overview">Overview</button></li>
-          <li><button class="tab-btn" data-tab="tab-societies">Occult Framework</button></li>
+          <li><button class="tab-btn" data-tab="tab-occult">Occult Framework</button></li>
           <li><button class="tab-btn" data-tab="tab-traps">The Two Traps</button></li>
           <li><button class="tab-btn" data-tab="tab-quran">Qur'anic Sunan</button></li>
           <li><button class="tab-btn" data-tab="tab-author">The Author</button></li>
           <li><button class="tab-btn" data-tab="tab-archive">Chapter Archive</button></li>
           <li><button class="tab-btn" data-tab="tab-reviews">Review System</button></li>
-          <li><button class="tab-btn" data-tab="tab-dossiers">Secret Societies Dossier</button></li>
+          <li><button class="tab-btn" data-tab="tab-societies">Secret Societies</button></li>
         </ul>
       </nav>
-
       <div class="nav-actions">
-        <button class="theme-toggle-btn" id="themeToggle" title="Toggle Dark/Light Mode">☀</button>
+        <button class="theme-btn" id="themeToggle" title="Toggle Theme">☀</button>
+        <a class="btn-gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Order Now</a>
       </div>
     </div>
   </header>
 
-  <!-- ==========================================================================
-       TAB 1: OVERVIEW, ASTROLABE CIRCLE, EDITION BOXES & PREVIEWER
-       ========================================================================== -->
+  <!-- TAB 1: OVERVIEW -->
   <main class="tab-pane active-tab" id="tab-overview">
     <div class="wrap">
       <div class="hero-grid">
-        <div class="reveal-item">
+        <div class="anim-box">
           <span class="kicker">Forensic Geopolitics · Clandestine Orders · Qur'anic Sunan</span>
-          <h1 class="hero-headline animate-words">The Great Game &amp; The Echoes of 1400 Years</h1>
+          <h1 class="hero-title anim-words">The Great Game &amp; The Echoes of 1400 Years</h1>
           <p class="hero-lead">
-            How did the heirs of a world-shaping <span class="hl-word">intellectual</span>, <span class="hl-word">economic</span>, and <span class="hl-word">moral superpower</span> become fragmented spectators on the global stage? Fourteen centuries of ascent, institutional subterfuge, and the Qur'anic sociological laws that govern both.
+            How did the heirs of a world-shaping <span class="hl">intellectual</span>, <span class="hl">economic</span>, and <span class="hl">moral superpower</span> become fragmented spectators on the global stage? Fourteen centuries of ascent, institutional subterfuge, and the Qur'anic sociological laws that govern both.
           </p>
-
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a class="btn-amazon" style="padding: 13px 28px; font-size: 0.92rem;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">
-              Get Your Copy on Amazon →
-            </a>
-            <button class="btn-flip" onclick="switchTab('tab-dossiers')" style="padding: 13px 22px;">
-              Explore Secret Societies Dossier →
-            </button>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn-gold" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Get Your Copy on Amazon →</a>
+            <button class="btn-outline" onclick="switchTab('tab-societies')">Expose Secret Societies →</button>
           </div>
-
-          <div class="hero-stats">
-            <div class="stat-box">
-              <span class="stat-val">26</span>
-              <span class="stat-lbl">Detailed Chapters</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-val">6</span>
-              <span class="stat-lbl">Thematic Parts</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-val">1400</span>
-              <span class="stat-lbl">Years Traced</span>
-            </div>
+          <div class="stats-row">
+            <div class="stat-pill"><span class="stat-val">26</span><span class="stat-lbl">Detailed Chapters</span></div>
+            <div class="stat-pill"><span class="stat-val">6</span><span class="stat-lbl">Thematic Parts</span></div>
+            <div class="stat-pill"><span class="stat-val">1400</span><span class="stat-lbl">Years Traced</span></div>
           </div>
         </div>
 
-        <!-- REDESIGNED MULTI-LAYER ASTROLABE & GEOMETRIC SEAL -->
-        <div class="hero-visual reveal-item">
-          <div class="astrolabe-container">
-            <div class="astro-glow"></div>
-
-            <!-- Outer Ring: Celestial Ticks & Inscribed Text -->
-            <svg class="astro-svg-outer" viewBox="0 0 500 500">
-              <defs>
-                <path id="outerTextPath" d="M 250, 250 m -212, 0 a 212,212 0 1,1 424,0 a 212,212 0 1,1 -424,0" fill="none"/>
-              </defs>
-              <circle cx="250" cy="250" r="240" fill="none" stroke="var(--border)" stroke-width="1" stroke-dasharray="3 7"/>
-              <circle cx="250" cy="250" r="224" fill="none" stroke="var(--gold)" stroke-width="1.2" opacity="0.55"/>
-              <circle cx="250" cy="250" r="200" fill="none" stroke="var(--border)" stroke-width="1"/>
-              <text fill="var(--gold)" font-family="Cinzel, serif" font-size="10.2" letter-spacing="3.5px" font-weight="700">
-                <textPath href="#outerTextPath">
-                  • BAVARIAN ILLUMINATI 1776 • SALONICA LODGES • BAAL &amp; MOLECH • SKULL &amp; BONES • TAVISTOCK COGNITIVE REGIMES • PETRODOLLAR RIBA •
-                </textPath>
+        <!-- REDESIGNED MULTI-RING ASTROLABE CIRCLE -->
+        <div class="hero-visual anim-box">
+          <div class="astrolabe">
+            <div class="astro-core"></div>
+            <svg class="ring-cw" viewBox="0 0 500 500">
+              <defs><path id="tp" d="M 250,250 m -210,0 a 210,210 0 1,1 420,0 a 210,210 0 1,1 -420,0"/></defs>
+              <circle cx="250" cy="250" r="236" fill="none" stroke="var(--bdr)" stroke-dasharray="4 7"/>
+              <circle cx="250" cy="250" r="222" fill="none" stroke="var(--gold)" stroke-width="1.2" opacity="0.55"/>
+              <text fill="var(--gold)" font-family="Cinzel,serif" font-size="10.2" letter-spacing="3.4px" font-weight="700">
+                <textPath href="#tp">• BAVARIAN ILLUMINATI 1776 • SALONICA LODGES • BAAL &amp; MOLECH • SKULL &amp; BONES • TAVISTOCK COGNITIVE REGIMES • PETRODOLLAR RIBA •</textPath>
               </text>
             </svg>
-
-            <!-- Middle Ring: Counter-Rotating Islamic 8-Pointed Rub el Hizb Star Geometry -->
-            <svg class="astro-svg-mid" viewBox="0 0 400 400">
-              <circle cx="200" cy="200" r="185" fill="none" stroke="var(--gold)" stroke-width="1" stroke-dasharray="10 6" opacity="0.6"/>
-              <rect x="75" y="75" width="250" height="250" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35"/>
-              <rect x="75" y="75" width="250" height="250" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.35" transform="rotate(45 200 200)"/>
-              <circle cx="200" cy="23" r="4" fill="var(--gold)"/>
-              <circle cx="200" cy="377" r="4" fill="var(--gold)"/>
-              <circle cx="23" cy="200" r="4" fill="var(--gold)"/>
-              <circle cx="377" cy="200" r="4" fill="var(--gold)"/>
+            <svg class="ring-ccw" viewBox="0 0 400 400">
+              <circle cx="200" cy="200" r="185" fill="none" stroke="var(--gold)" stroke-dasharray="10 6" opacity="0.6"/>
+              <rect x="75" y="75" width="250" height="250" fill="none" stroke="var(--gold)" opacity="0.35"/>
+              <rect x="75" y="75" width="250" height="250" fill="none" stroke="var(--gold)" opacity="0.35" transform="rotate(45 200 200)"/>
             </svg>
-
-            <!-- Inner Ring: Precision Compass -->
-            <svg class="astro-svg-inner" viewBox="0 0 300 300">
-              <circle cx="150" cy="150" r="140" fill="none" stroke="var(--gold-light)" stroke-width="1.2" stroke-dasharray="2 10" opacity="0.7"/>
-              <polygon points="150,20 262,215 38,215" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.35"/>
-              <polygon points="150,280 38,85 262,85" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.35"/>
+            <svg class="ring-in" viewBox="0 0 300 300">
+              <circle cx="150" cy="150" r="138" fill="none" stroke="var(--gold-lt)" stroke-dasharray="2 10" opacity="0.75"/>
+              <polygon points="150,20 262,215 38,215" fill="none" stroke="var(--gold)" opacity="0.35"/>
+              <polygon points="150,280 38,85 262,85" fill="none" stroke="var(--gold)" opacity="0.35"/>
             </svg>
           </div>
-
-          <div class="book-cover-3d" title="The Great Game &amp; The Echoes of 1400 Years">
+          <div class="book-3d">
             <img src="https://res.cloudinary.com/bpqdnyog/image/upload/f_auto,q_auto/the_great_game_front_cover_6x9_300dpi" alt="The Great Game Book Cover">
           </div>
         </div>
       </div>
 
-      <!-- MIDDLE SECTION: HARDCOVER & PAPERBACK AVAILABILITY BOXES -->
-      <section class="editions-showcase reveal-item">
-        <div class="editions-header">
-          <span class="kicker">Official Global Print Editions</span>
-          <h2 class="section-title animate-words">Hardcover &amp; Paperback Now Available</h2>
-          <p class="section-desc" style="margin: 0 auto;">
-            Acquire the complete 26-chapter forensic treatise in your preferred archival print format directly via Amazon.
-          </p>
+      <!-- MIDDLE SECTION AFTER BOOK DETAILS: TIMER BOX + HARDCOVER BOX + PAPERBACK BOX -->
+      <section class="mid-boxes-grid anim-box">
+        <!-- Box 1: Countdown Timer Box -->
+        <div class="mid-box">
+          <div>
+            <span class="badge-live">Global Launch Schedule</span>
+            <h3>Amazon KDP Countdown</h3>
+            <p>Official worldwide digital and archival print synchronization countdown to November 1, 2026.</p>
+            <div class="timer-cubes">
+              <div class="t-cube"><span class="n" id="cdDays">00</span><span class="u">Days</span></div>
+              <div class="t-cube"><span class="n" id="cdHours">00</span><span class="u">Hours</span></div>
+              <div class="t-cube"><span class="n" id="cdMins">00</span><span class="u">Mins</span></div>
+              <div class="t-cube"><span class="n" id="cdSecs">00</span><span class="u">Secs</span></div>
+            </div>
+          </div>
+          <a class="btn-outline" style="width:100%; text-align:center;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">View Release Page →</a>
         </div>
 
-        <div class="editions-grid">
-          <!-- Box 1: Hardcover Edition -->
-          <div class="edition-box">
-            <div>
-              <span class="status-badge">Now Available · Collector's Print</span>
-              <h3 class="edition-title">Hardcover Archival Edition</h3>
-              <p class="edition-desc">
-                Case-laminate collector's hardcover engineered for durability, libraries, and permanent personal collections. Features full 6×9 archival typesetting and complete source mappings.
-              </p>
-              <ul class="edition-specs">
-                <li><strong>Format:</strong> 6 × 9 inches · Case-Laminate Hardcover</li>
-                <li><strong>Content:</strong> All 6 Thematic Parts, 26 Chapters &amp; 26 Surah Mappings</li>
-                <li><strong>Fulfillment:</strong> Direct global shipping via Amazon KDP</li>
-              </ul>
-            </div>
-            <a class="btn-amazon" style="width: 100%; padding: 14px;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">
-              Order Hardcover on Amazon →
-            </a>
+        <!-- Box 2: Hardcover Available -->
+        <div class="mid-box">
+          <div>
+            <span class="badge-live">Now Available · Collector's Edition</span>
+            <h3>Hardcover Edition</h3>
+            <p>Premium case-laminate archival hardcover built for libraries, scholars, and permanent collections.</p>
+            <ul class="spec-list">
+              <li>6 × 9 in · Archival Case-Laminate Hardcover</li>
+              <li>Complete 26 Chapters &amp; 26 Surah Mappings</li>
+              <li>Global fulfillment via Amazon KDP</li>
+            </ul>
           </div>
+          <a class="btn-gold" style="width:100%;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Order Hardcover on Amazon →</a>
+        </div>
 
-          <!-- Box 2: Paperback Edition -->
-          <div class="edition-box">
-            <div>
-              <span class="status-badge">Now Available · Study Edition</span>
-              <h3 class="edition-title">Paperback Trade Edition</h3>
-              <p class="edition-desc">
-                Lightweight, flexible trade paperback crafted for researchers, university students, reading circles, and everyday annotation across all 26 chapters.
-              </p>
-              <ul class="edition-specs">
-                <li><strong>Format:</strong> 6 × 9 inches · High-Contrast Trade Paperback</li>
-                <li><strong>Content:</strong> Identical unabridged 26-chapter text &amp; archival citations</li>
-                <li><strong>Fulfillment:</strong> Direct global shipping via Amazon KDP</li>
-              </ul>
-            </div>
-            <a class="btn-amazon" style="width: 100%; padding: 14px;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">
-              Order Paperback on Amazon →
-            </a>
+        <!-- Box 3: Paperback Available -->
+        <div class="mid-box">
+          <div>
+            <span class="badge-live">Now Available · Trade Edition</span>
+            <h3>Paperback Edition</h3>
+            <p>Lightweight, portable trade paperback crafted for researchers, study circles, and everyday reading.</p>
+            <ul class="spec-list">
+              <li>6 × 9 in · High-Contrast Trade Paperback</li>
+              <li>Unabridged 6 Parts &amp; Forensic Citations</li>
+              <li>Global fulfillment via Amazon KDP</li>
+            </ul>
           </div>
+          <a class="btn-gold" style="width:100%;" href="https://www.amazon.com/dp/B0HDV4YNTK" target="_blank" rel="noopener">Order Paperback on Amazon →</a>
         </div>
       </section>
 
-      <!-- Interactive Book Page Flip Simulator -->
-      <section class="flipper-section reveal-item">
-        <div class="flipper-controls">
+      <!-- Manuscript Excerpt Flipper -->
+      <section class="flipper anim-box">
+        <div class="flip-top">
           <div>
-            <span class="kicker" style="margin-bottom: 4px;">Manuscript Excerpts</span>
-            <h3 style="font-size: 1.6rem;">Interactive Book Previewer</h3>
+            <span class="kicker" style="margin-bottom:4px;">Manuscript Excerpts</span>
+            <h3 style="font-size:1.55rem;">Interactive Book Previewer</h3>
           </div>
-          <div class="flipper-buttons">
-            <button class="btn-flip" id="prevPageBtn">← Previous Leaf</button>
-            <button class="btn-flip" id="nextPageBtn">Next Leaf →</button>
+          <div style="display:flex; gap:10px;">
+            <button class="btn-outline" id="prevLeaf">← Previous Leaf</button>
+            <button class="btn-outline" id="nextLeaf">Next Leaf →</button>
           </div>
         </div>
-
-        <div class="page-sheet" id="pageViewer">
-          <div id="pageContent"></div>
-          <div class="page-sheet-num" id="pageIndicator">Leaf 1 of 4</div>
+        <div class="leaf-box">
+          <div id="leafBody"></div>
+          <div class="leaf-num" id="leafNum">Leaf 1 of 4</div>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- ==========================================================================
-       TAB 2: OCCULT FRAMEWORK & SYMBOLIC INVERSION
-       ========================================================================== -->
-  <section class="tab-pane" id="tab-societies">
+  <!-- TAB 2: OCCULT FRAMEWORK -->
+  <section class="tab-pane" id="tab-occult">
     <div class="wrap">
       <span class="kicker">Deconstructing Clandestine Hegemony</span>
-      <h2 class="section-title animate-words">The Occult Framework &amp; The Inversion of Divine Covenant</h2>
-      <p class="section-desc">
-        A documented forensic analysis of clandestine organizations, ritualistic blood covenants, and the systematic psychological conditioning designed to detach the human soul from Allah.
-      </p>
-
-      <div class="quote-box-expose reveal-item">
-        <blockquote>
-          "They do not merely seek geopolitical dominance; their ultimate war is spiritual: to ensure humanity and Muslims cease bowing before Allah, and instead bow before Baal, Molech, and the Luciferian doctrine."
-        </blockquote>
-        <cite>— Muhammad Rohaan Zahid, <em>The Great Game &amp; The Echoes of 1400 Years</em></cite>
+      <h2 class="sec-title anim-words">The Occult Framework &amp; The Inversion of Covenant</h2>
+      <p class="sec-desc">A documented forensic analysis of ritualistic blood covenants, lodge networks, and mass psychological conditioning.</p>
+      <div class="quote-banner">
+        <blockquote>"They do not merely seek geopolitical dominance; their ultimate war is spiritual: to ensure humanity and Muslims cease bowing before Allah, and instead bow before Baal, Molech, and the Luciferian doctrine."</blockquote>
+        <cite>— Muhammad Rohaan Zahid, The Great Game &amp; The Echoes of 1400 Years</cite>
       </div>
-
-      <div class="expose-grid">
-        <article class="card expose-card highlight reveal-item">
-          <span class="expose-tag">Ancient Roots · Blood Covenants</span>
-          <h3>The Worship of Baal &amp; Molech</h3>
-          <p>
-            From ancient Canaan to modern elite retreats like the Bohemian Grove, the veneration of Baal and Molech has always revolved around human sacrifice, the destruction of purity, and transactional power.
-          </p>
-          <p>
-            Rulers of antiquity traded infant life for agrarian and military dominance; today's elite cadres practice symbolic and moral sacrifices to bind initiates into blackmail-proof hierarchies.
-          </p>
-          <ul class="expose-bullets">
-            <li>Canaanite child sacrifice to Molech reframed through modern utilitarian eugenics.</li>
-            <li>Power extracted through deliberate transgression of divine boundaries.</li>
-            <li>Direct confrontation with Surah As-Saffat (37:125): <em>"Do you call upon Baal and forsake the best of creators?"</em></li>
-          </ul>
-        </article>
-
-        <article class="card expose-card reveal-item">
-          <span class="expose-tag">Institutional Sabotage</span>
-          <h3>Freemasonry &amp; The Fall of the Khilafah</h3>
-          <p>
-            How Masonic lodges served as sovereign diplomatic sanctuaries to subvert traditional Islamic governance. The Salonica lodges in Ottoman Macedonia sheltered conspirators who could not be investigated under Ottoman law.
-          </p>
-          <p>
-            Through these clandestine networks, the Committee of Union and Progress orchestrated the 1908 revolution and the deposition of Sultan Abdulhamid II, paving the way for the abolition of the Caliphate in 1924.
-          </p>
-          <ul class="expose-bullets">
-            <li>Lodge Veritas, Macedonia Risorta, and foreign capitulation treaties.</li>
-            <li>Strategic alignment between Anglo-French intelligence and secular Masonic cadres.</li>
-            <li>Replacement of the universal Islamic Ummah with fragmented nation-states.</li>
-          </ul>
-        </article>
-
-        <article class="card expose-card reveal-item">
-          <span class="expose-tag">Cognitive Inversion</span>
-          <h3>The Bavarian Illuminati &amp; Luciferian Doctrine</h3>
-          <p>
-            Founded on May 1, 1776, by Adam Weishaupt under the financial patronage of European banking dynasties, the Order of the Illuminati formulated the blueprint for dissolving religion, sovereignty, and family inheritance.
-          </p>
-          <p>
-            The doctrine treats Lucifer as the bearer of forbidden gnosis who urges man to become his own deity while enslaving the masses in moral degradation.
-          </p>
-          <ul class="expose-bullets">
-            <li>Albert Pike's <em>Morals and Dogma</em> on the Luciferian light in esoteric degrees.</li>
-            <li>Weishaupt's principle of infiltrating public offices under the guise of philanthropy.</li>
-            <li>Systematic reversal of divine commandments to neutralize human conscience.</li>
-          </ul>
-        </article>
-
-        <article class="card expose-card highlight reveal-item">
-          <span class="expose-tag">Mass Conditioning</span>
-          <h3>Pop Culture, Music &amp; Sports Desensitization</h3>
-          <p>
-            Occult iconography is no longer confined to cloistered chambers. Through the music industry, corporate advertising, halftime sporting spectacles, and cinema, ancient satanic sigils are systematically normalized.
-          </p>
-          <p>
-            When an entire generation is conditioned to celebrate occult imagery as entertainment, their spiritual immune system collapses.
-          </p>
-          <ul class="expose-bullets">
-            <li>Tavistock Institute techniques for mass psychological engineering.</li>
-            <li>Normalizing degeneracy through celebrity idols and algorithmic feeds.</li>
-            <li>Weakening the <em>fitrah</em> (natural disposition) so moral outrage turns into apathy.</li>
-          </ul>
-        </article>
-      </div>
+      <div class="grid-2" id="occultGrid"></div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 3: THE TWO TRAPS
-       ========================================================================== -->
+  <!-- TAB 3: THE TWO TRAPS -->
   <section class="tab-pane" id="tab-traps">
     <div class="wrap">
       <span class="kicker">Intellectual Rigor &amp; Epistemology</span>
-      <h2 class="section-title animate-words">The Two Traps of Modern Discourse</h2>
-      <p class="section-desc">
-        Nearly every treatise on the decline of the Muslim world collapses into one of two intellectual dead ends. <em>The Great Game</em> builds a disciplined middle way.
-      </p>
-
-      <div class="traps-container">
-        <div class="card trap-card left reveal-item">
-          <span class="expose-tag">Trap Number One</span>
-          <h3 class="trap-title">Helpless Victimhood</h3>
-          <p>
-            <strong>The Fallacy:</strong> Attributing every systemic collapse, economic failure, and military defeat exclusively to foreign colonization, Western interventions, and external plots.
-          </p>
-          <p>
-            <strong>The Theological &amp; Strategic Flaw:</strong> It strips Muslims of moral agency. If your destruction is entirely caused by others, your revival is forever dependent on their permission.
-          </p>
-          <div style="background: var(--bg-surface); padding: 15px; border-radius: 8px; font-style: italic; color: var(--gold-light); margin-top: 15px;">
-            "Indeed, Allah will not change the condition of a people until they change what is in themselves." (Surah Ar-Ra'd 13:11)
-          </div>
+      <h2 class="sec-title anim-words">The Two Traps of Modern Discourse</h2>
+      <p class="sec-desc">Nearly every treatise on the decline of the Muslim world collapses into one of two intellectual dead ends. <em>The Great Game</em> builds a disciplined middle way.</p>
+      <div class="grid-2">
+        <div class="card" style="border-top:4px solid var(--crim);">
+          <span class="tag-crim">Trap Number One</span>
+          <h3 style="font-size:1.75rem; margin-bottom:10px;">Helpless Victimhood</h3>
+          <p style="color:var(--sub); margin-bottom:12px;"><strong>The Fallacy:</strong> Attributing every systemic collapse, economic failure, and defeat exclusively to foreign colonization and external plots.</p>
+          <p style="color:var(--sub);"><strong>The Strategic Flaw:</strong> It strips Muslims of moral agency. If your destruction is entirely caused by others, your revival depends on their permission.</p>
+          <div style="background:var(--surf); padding:14px; border-radius:8px; font-style:italic; color:var(--gold-lt); margin-top:14px;">"Indeed, Allah will not change the condition of a people until they change what is in themselves." (13:11)</div>
         </div>
-
-        <div class="card trap-card right reveal-item">
-          <span class="expose-tag" style="color: #d99b26;">Trap Number Two</span>
-          <h3 class="trap-title">Unhinged Conspiracy Hysteria</h3>
-          <p>
-            <strong>The Fallacy:</strong> Viewing shadowy cabals, Masonic lodges, and secret elites as omnipotent masters of history who control every single historical turn and geopolitical outcome.
-          </p>
-          <p>
-            <strong>The Epistemological Flaw:</strong> It replaces verifiable evidence with paranoid dread, attributing divine attributes (omniscience and omnipotence) to fallible men and inducing paralysis.
-          </p>
-          <div style="background: var(--bg-surface); padding: 15px; border-radius: 8px; font-style: italic; color: var(--gold-light); margin-top: 15px;">
-            "Indeed, the plot of Satan has ever been weak." (Surah An-Nisa 4:76)
-          </div>
+        <div class="card" style="border-top:4px solid #d99b26;">
+          <span class="tag-crim" style="color:#d99b26;">Trap Number Two</span>
+          <h3 style="font-size:1.75rem; margin-bottom:10px;">Unhinged Conspiracy Hysteria</h3>
+          <p style="color:var(--sub); margin-bottom:12px;"><strong>The Fallacy:</strong> Viewing shadowy cabals and lodges as omnipotent masters of history who control every single geopolitical outcome.</p>
+          <p style="color:var(--sub);"><strong>The Epistemological Flaw:</strong> It replaces verifiable evidence with paranoid dread, attributing divine omnipotence to fallible men and inducing paralysis.</p>
+          <div style="background:var(--surf); padding:14px; border-radius:8px; font-style:italic; color:var(--gold-lt); margin-top:14px;">"Indeed, the plot of Satan has ever been weak." (4:76)</div>
         </div>
       </div>
-
-      <div class="solution-box reveal-item">
-        <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--gold);">The Three-Tier Forensic Methodology</h3>
-        <p style="color: var(--text-sub); font-size: 1.05rem; line-height: 1.8;">
-          This book separates every finding into three disciplined tiers of verification:
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
-          <div style="background: var(--bg-surface); padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
-            <strong style="color: var(--gold); display: block; margin-bottom: 8px;">Tier 1: Documented Archival Fact</strong>
-            Declassified treaties (Sykes-Picot, Balfour), central bank charters, parliamentary records, and verifiable lodge memoirs.
-          </div>
-          <div style="background: var(--bg-surface); padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
-            <strong style="color: var(--gold); display: block; margin-bottom: 8px;">Tier 2: Geopolitical Systems Analysis</strong>
-            Petrodollar recycling, fractional-reserve lending mechanisms, IMF structural adjustment, and media monopoly structures.
-          </div>
-          <div style="background: var(--bg-surface); padding: 20px; border-radius: 10px; border: 1px solid var(--border);">
-            <strong style="color: var(--gold); display: block; margin-bottom: 8px;">Tier 3: Qur'anic Laws (Sunan)</strong>
-            The immutable universal laws established by Allah that govern the life cycles, heights, and ruins of human civilizations.
-          </div>
+      <div class="card" style="margin-top:30px; border-color:var(--bdr-hi);">
+        <h3 style="font-size:1.7rem; color:var(--gold); margin-bottom:14px;">The Three-Tier Forensic Methodology</h3>
+        <div class="mid-boxes-grid" style="margin-top:10px; padding-top:0; border:none;">
+          <div style="background:var(--surf); padding:18px; border-radius:10px; border:1px solid var(--bdr);"><strong style="color:var(--gold); display:block; margin-bottom:6px;">Tier 1: Documented Archival Fact</strong>Declassified treaties (Sykes-Picot, Balfour), central bank charters, and verifiable lodge records.</div>
+          <div style="background:var(--surf); padding:18px; border-radius:10px; border:1px solid var(--bdr);"><strong style="color:var(--gold); display:block; margin-bottom:6px;">Tier 2: Geopolitical Systems Analysis</strong>Petrodollar recycling, fractional-reserve lending mechanisms, and media monopoly structures.</div>
+          <div style="background:var(--surf); padding:18px; border-radius:10px; border:1px solid var(--bdr);"><strong style="color:var(--gold); display:block; margin-bottom:6px;">Tier 3: Qur'anic Laws (Sunan)</strong>The immutable sociological laws established by Allah that govern the rise and fall of civilizations.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 4: QUR'ANIC SUNAN (26 SURAHS MAPPING)
-       ========================================================================== -->
+  <!-- TAB 4: QUR'ANIC SUNAN (ALL 26 SURAHS) -->
   <section class="tab-pane" id="tab-quran">
     <div class="wrap">
       <span class="kicker">Diagnostic Revelation</span>
-      <h2 class="section-title animate-words">The 26 Qur'anic Surahs: Mapping All 26 Chapters</h2>
-      <p class="section-desc">
-        The Qur'an is not merely a book of personal devotional rituals; it contains universal sociological blueprints (<em>Sunan</em>) that govern nations, economics, and warfare.
-      </p>
-
-      <div class="surahs-grid" id="surahsContainer"></div>
+      <h2 class="sec-title anim-words">The 26 Qur'anic Surahs: Mapping All 26 Chapters</h2>
+      <p class="sec-desc">How each of the 26 chapters of the treatise maps directly to divine sociological laws (<em>Sunan</em>) in the Qur'an.</p>
+      <div class="grid-2" id="surahsGrid"></div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 5: THE AUTHOR
-       ========================================================================== -->
+  <!-- TAB 5: THE AUTHOR -->
   <section class="tab-pane" id="tab-author">
     <div class="wrap">
-      <div class="author-grid">
-        <div class="author-photo-card reveal-item">
+      <div class="author-layout">
+        <div class="author-card">
           <img src="https://res.cloudinary.com/bpqdnyog/image/upload/v1786877340/004.jpg" alt="Muhammad Rohaan Zahid">
-          <div class="author-caption">
-            <div class="author-name">Muhammad Rohaan Zahid</div>
-            <div class="author-title">Author · AI Engineer · Geopolitical Researcher</div>
+          <div class="author-cap">
+            <div style="font:700 1.25rem 'Cinzel',serif; color:var(--gold);">Muhammad Rohaan Zahid</div>
+            <div style="font-size:0.78rem; color:var(--mut); text-transform:uppercase; margin-top:4px;">Author · AI Engineer · Geopolitical Researcher</div>
           </div>
         </div>
-
-        <div class="author-bio reveal-item">
+        <div>
           <span class="kicker">The Mind Behind the Work</span>
-          <h2 class="animate-words" style="font-size: 2.6rem; line-height: 1.2; margin-bottom: 24px;">
-            A voice from within the Ummah, refusing historical amnesia.
-          </h2>
-          <p>
-            Muhammad Rohaan Zahid is a Computer Science and Artificial Intelligence researcher based in Islamabad, Pakistan, studying at the Sir Syed CASE Institute of Technology. His work spans machine learning predictive modeling, cryptography, and modern digital network structures alongside civilizational history.
-          </p>
-          <p>
-            <em>The Great Game &amp; The Echoes of 1400 Years</em> was written from the friction between what Islamic civilization was commissioned by God to embody—a beacon of universal justice, mathematical clarity, and moral leadership—and the fractured, debt-burdened dependency in which it finds itself today.
-          </p>
-
-          <div class="quote-box-expose" style="margin: 30px 0; padding: 25px 30px;">
-            <blockquote style="font-size: 1.25rem;">
-              "Any strengths, insights, and structural clarity belong to Allah and the scholarship passed down through generations. Every imperfection is entirely my own."
-            </blockquote>
+          <h2 class="sec-title anim-words">A voice from within the Ummah, refusing historical amnesia.</h2>
+          <p style="color:var(--sub); margin-bottom:16px;">Muhammad Rohaan Zahid is a Computer Science and Artificial Intelligence researcher based in Islamabad, Pakistan, studying at the Sir Syed CASE Institute of Technology. His work spans machine learning predictive modeling, cryptography, and modern digital network structures alongside civilizational history.</p>
+          <p style="color:var(--sub); margin-bottom:20px;"><em>The Great Game &amp; The Echoes of 1400 Years</em> was written from the friction between what Islamic civilization was commissioned by God to embody—a beacon of universal justice, mathematical clarity, and moral leadership—and the fractured, debt-burdened dependency in which it finds itself today.</p>
+          <div class="quote-banner" style="padding:22px 26px; margin:24px 0;">
+            <blockquote style="font-size:1.2rem;">"Any strengths, insights, and structural clarity belong to Allah and the scholarship passed down through generations. Every imperfection is entirely my own."</blockquote>
           </div>
-
-          <h3 style="font-size: 1.5rem; margin: 25px 0 12px; color: var(--gold);">Why I Wrote This Book</h3>
-          <p>
-            "I wrote this treatise because our youth are trapped between self-loathing victimhood on one side and speculative social-media conspiracy hysteria on the other. Neither provides a path to dignity. By uniting primary-source geopolitical archives with the sociological laws (<em>Sunan</em>) revealed in the Qur'an, this book equips the reader to see the modern world with sober clarity, immune to psychological manipulation."
-          </p>
-          <p style="color: var(--gold-light); font-weight: 500;">
-            Dedicated to my beloved parents, whose prayers, unconditional support, and sacrifices made this endeavor possible.
-          </p>
+          <h3 style="font-size:1.45rem; color:var(--gold); margin-bottom:10px;">Why I Wrote This Book</h3>
+          <p style="color:var(--sub); margin-bottom:16px;">"I wrote this treatise because our youth are trapped between self-loathing victimhood on one side and speculative social-media conspiracy hysteria on the other. By uniting primary-source geopolitical archives with the sociological laws (<em>Sunan</em>) revealed in the Qur'an, this book equips the reader to see the modern world with sober clarity."</p>
+          <p style="color:var(--gold-lt); font-weight:600;">Dedicated to my beloved parents, whose prayers, unconditional support, and sacrifices made this endeavor possible.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 6: 26 CHAPTERS ARCHIVE
-       ========================================================================== -->
+  <!-- TAB 6: CHAPTER ARCHIVE (ALL 6 PARTS & 26 CHAPTERS) -->
   <section class="tab-pane" id="tab-archive">
     <div class="wrap">
       <span class="kicker">Structural Roadmap</span>
-      <h2 class="section-title animate-words">The Complete 26-Chapter Curriculum</h2>
-      <p class="section-desc">
-        Organized into six overarching parts, charting fourteen centuries from the pagan desert collapse of antiquity to modern clandestine wars and the eschatological horizon.
-      </p>
-
-      <div class="parts-grid" id="partsContainer"></div>
+      <h2 class="sec-title anim-words">The Complete 26-Chapter Curriculum</h2>
+      <p class="sec-desc">Organized into six overarching parts charting fourteen centuries of ascent, subversion, and renewal.</p>
+      <div id="partsContainer"></div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 7: REVIEW SYSTEM (RENAMED FROM REPORT TAB)
-       ========================================================================== -->
+  <!-- TAB 7: REVIEW SYSTEM -->
   <section class="tab-pane" id="tab-reviews">
     <div class="wrap">
       <span class="kicker">Verified Reader Reviews</span>
-      <h2 class="section-title animate-words">Reader Review System</h2>
-      <p class="section-desc">
-        Verified book reviews and critical reflections submitted by readers, students, and researchers. Every review is verified before publication.
-      </p>
-
-      <div class="reports-layout">
-        <!-- Review Submission Form -->
-        <div class="card reveal-item">
-          <h3 style="font-size: 1.6rem; margin-bottom: 18px; color: var(--gold);">Submit a Book Review</h3>
+      <h2 class="sec-title anim-words">Reader Review System</h2>
+      <p class="sec-desc">Submit your review of the book. Every review is verified before appearing on the public feed.</p>
+      <div class="rev-layout">
+        <div class="card">
+          <h3 style="font-size:1.55rem; color:var(--gold); margin-bottom:16px;">Write a Review</h3>
           <form id="reviewForm">
-            <div class="form-group">
-              <label>Your Star Rating</label>
-              <div class="star-rating-select" id="starPicker">
-                <span data-val="1">★</span>
-                <span data-val="2">★</span>
-                <span data-val="3">★</span>
-                <span data-val="4">★</span>
-                <span data-val="5">★</span>
-              </div>
+            <div class="inp-grp">
+              <label>Star Rating</label>
+              <div class="stars" id="starPicker"><span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span></div>
             </div>
-
-            <div class="form-group">
-              <label for="revName">Your Name or Initials *</label>
-              <input type="text" id="revName" class="form-control" maxlength="60" required placeholder="e.g. Tariq K.">
-            </div>
-
-            <div class="form-group">
-              <label for="revRole">Role &amp; City (Optional)</label>
-              <input type="text" id="revRole" class="form-control" maxlength="60" placeholder="e.g. Researcher, Islamabad">
-            </div>
-
-            <div class="form-group">
-              <label for="revEngine">Most Impactful Section *</label>
-              <select id="revEngine" class="form-control">
+            <div class="inp-grp"><label>Name or Initials *</label><input type="text" id="revName" class="inp" maxlength="60" required placeholder="e.g. Tariq K."></div>
+            <div class="inp-grp"><label>Role &amp; City</label><input type="text" id="revRole" class="inp" maxlength="60" placeholder="e.g. Researcher, Islamabad"></div>
+            <div class="inp-grp">
+              <label>Favorite Section *</label>
+              <select id="revEngine" class="inp">
                 <option value="Secret Societies & Rituals">Secret Societies &amp; Rituals</option>
                 <option value="Sykes-Picot & Cartographic Warfare">Sykes-Picot &amp; Cartographic Warfare</option>
                 <option value="Central Banking, Riba & Debt">Central Banking, Riba &amp; Debt</option>
-                <option value="Cognitive & Psychological Warfare">Cognitive &amp; Psychological Warfare</option>
                 <option value="The 26 Qur'anic Sunan Laws">The 26 Qur'anic Sunan Laws</option>
-                <option value="Khilafah & The Roadmap to Renewal">Khilafah &amp; The Roadmap to Renewal</option>
+                <option value="Khilafah & Roadmap to Renewal">Khilafah &amp; Roadmap to Renewal</option>
               </select>
             </div>
-
-            <div class="form-group">
-              <label for="revTrap">Perspective Shift Experienced *</label>
-              <select id="revTrap" class="form-control">
+            <div class="inp-grp">
+              <label>Key Takeaway *</label>
+              <select id="revTrap" class="inp">
                 <option value="Overcame Helpless Victimhood">Overcame Helpless Victimhood</option>
                 <option value="Overcame Conspiracy Hysteria">Overcame Conspiracy Hysteria</option>
                 <option value="Balanced Both Perspectives">Balanced Both Perspectives</option>
-                <option value="Gained Archival Clarity">Gained Archival Clarity</option>
               </select>
             </div>
-
-            <div class="form-group">
-              <label for="revComment">Your Review (20 - 1200 chars) *</label>
-              <textarea id="revComment" class="form-control" rows="5" minlength="20" maxlength="1200" required placeholder="Share your review of the book, specific chapters, or historical sources..."></textarea>
-            </div>
-
-            <button type="submit" id="submitRevBtn" class="btn-amazon" style="width: 100%; justify-content: center; padding: 13px;">
-              Submit Review for Verification
-            </button>
-            <div id="formStatusMsg" style="margin-top: 14px; font-size: 0.88rem; text-align: center;"></div>
+            <div class="inp-grp"><label>Your Review (20–1200 chars) *</label><textarea id="revComment" class="inp" rows="4" minlength="20" maxlength="1200" required placeholder="Share your review of the book..."></textarea></div>
+            <button type="submit" id="submitRevBtn" class="btn-gold" style="width:100%;">Submit Review</button>
+            <div id="formMsg" style="margin-top:12px; font-size:0.86rem; text-align:center;"></div>
           </form>
         </div>
-
-        <!-- Approved Reviews Feed -->
-        <div class="reveal-item">
-          <div class="card" style="margin-bottom: 25px; padding: 20px 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <div>
-                <span style="font-size: 2.2rem; font-weight: 700; color: var(--gold);" id="avgRatingDisplay">5.0</span>
-                <span style="color: var(--gold); font-size: 1.3rem;"> ★★★★★</span>
-              </div>
-              <span id="totalReviewsCount" style="color: var(--text-muted); font-size: 0.9rem;">Loading verified reviews...</span>
-            </div>
+        <div>
+          <div class="card" style="margin-bottom:20px; padding:18px 24px; display:flex; justify-content:space-between; align-items:center;">
+            <div><span style="font-size:2rem; font-weight:700; color:var(--gold);" id="avgRating">5.0</span> <span style="color:var(--gold); font-size:1.25rem;">★★★★★</span></div>
+            <span id="totalRevs" style="color:var(--mut); font-size:0.88rem;">Loading reviews...</span>
           </div>
-
           <div id="approvedFeed"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       TAB 8 (NEW TOPIC AT THE END): SECRET SOCIETIES DYNAMIC HEADING & DOSSIERS
-       ========================================================================== -->
-  <section class="tab-pane" id="tab-dossiers">
+  <!-- TAB 8: SECRET SOCIETIES DYNAMIC HEADING & CONSPIRACY DOSSIERS -->
+  <section class="tab-pane" id="tab-societies">
     <div class="wrap">
-      <span class="kicker">Declassified Intelligence &amp; Archival Exposé</span>
-
-      <!-- Dynamic Changing Heading Cycling Through Every Secret Society Name -->
-      <div class="dynamic-society-banner reveal-item">
-        <div style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--crimson); font-weight: 700; margin-bottom: 8px;">
-          ● Live Archival Dossier Target:
-        </div>
-        <h2 class="dynamic-heading-wrap">
-          Exposing <span class="dynamic-society-name" id="changingSocietyTitle">The Bavarian Illuminati (1776)</span>
-        </h2>
-        <p style="color: var(--text-sub); font-size: 1.02rem; max-width: 850px;">
-          Separating popular internet conspiracy theories from verifiable state archives, seized lodge correspondence, parliamentary records, and declassified intelligence files. Click any society below or watch the live header cycle through the documented networks.
-        </p>
-
-        <div class="society-pills" id="societyPillBar">
-          <button class="society-pill active-pill" data-index="0">Bavarian Illuminati</button>
-          <button class="society-pill" data-index="1">Salonica Masonic Lodges</button>
-          <button class="society-pill" data-index="2">Order of Skull &amp; Bones</button>
-          <button class="society-pill" data-index="3">Tavistock Institute</button>
-          <button class="society-pill" data-index="4">Bohemian Grove</button>
-          <button class="society-pill" data-index="5">Bilderberg &amp; Trilateral</button>
-          <button class="society-pill" data-index="6">Central Banking Cartels</button>
-        </div>
+      <span class="kicker">Declassified Archival Exposé</span>
+      <div class="soc-hero">
+        <div style="font-size:0.76rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--crim); font-weight:700; margin-bottom:6px;">● Live Changing Intelligence Dossier:</div>
+        <h2 class="dyn-title">Exposing <span class="dyn-span" id="dynSocName">The Bavarian Illuminati (1776)</span></h2>
+        <p style="color:var(--sub); font-size:0.98rem;">Examining the available conspiracy theories alongside the documented historical archives, seized lodge papers, and state files that expose their true operations.</p>
+        <div class="pill-bar" id="socPills"></div>
       </div>
-
-      <!-- Complete Dossiers Grid: Conspiracy Theory vs Documented Evidence -->
-      <div class="dossier-grid" id="dossiersContainer"></div>
+      <div class="grid-2" id="dossiersGrid"></div>
     </div>
   </section>
 
-  <!-- Global Footer -->
   <footer>
-    <div class="footer-title">The Great Game &amp; The Echoes of 1400 Years</div>
+    <div style="font:700 1.1rem 'Cinzel',serif; color:var(--gold); margin-bottom:6px;">The Great Game &amp; The Echoes of 1400 Years</div>
     <p>Authored by Muhammad Rohaan Zahid · © 2026 · Written in Islamabad, Pakistan</p>
-    <p style="margin-top: 8px; font-size: 0.8rem; color: var(--text-muted);">
-      Documented Geopolitical Analysis &amp; Qur'anic Sunan · Hardcover &amp; Paperback Available Globally via Amazon KDP
-    </p>
   </footer>
 
-  <!-- ==========================================================================
-       MAIN APPLICATION JAVASCRIPT
-       ========================================================================== -->
   <script>
-    /* -------------------------------------------------------------
-       1. WORD-BY-WORD ANIMATION & SCROLL REVEAL ENGINE
-       ------------------------------------------------------------- */
-    function initWordAnimations(root = document) {
-      const headings = root.querySelectorAll('.animate-words:not(.words-ready)');
-      headings.forEach(h => {
-        const text = h.textContent.trim();
-        const words = text.split(/\s+/);
-        h.innerHTML = words.map((w, idx) => 
-          `<span class="word-anim" style="animation-delay:${idx * 0.055}s">${w}</span>`
+    /* 1. Word-by-Word Heading Animator */
+    function animateHeadings(scope = document) {
+      scope.querySelectorAll('.anim-words:not(.done)').forEach(el => {
+        el.innerHTML = el.textContent.trim().split(/\s+/).map((w, i) =>
+          `<span class="w-anim" style="animation-delay:${i * 0.05}s">${w}</span>`
         ).join(' ');
-        h.classList.add('words-ready');
+        el.classList.add('done');
       });
     }
+    animateHeadings();
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    /* 2. Tab Navigation */
+    const tabBtns = document.querySelectorAll('.tab-btn'), tabPanes = document.querySelectorAll('.tab-pane');
+    function switchTab(id) {
+      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+      tabPanes.forEach(p => {
+        const match = p.id === id;
+        p.classList.toggle('active-tab', match);
+        if (match) { p.querySelectorAll('.done').forEach(e => e.classList.remove('done')); animateHeadings(p); }
       });
-    }, { threshold: 0.08 });
-
-    function observeReveals(root = document) {
-      root.querySelectorAll('.reveal-item').forEach(el => {
-        revealObserver.observe(el);
-      });
-    }
-
-    initWordAnimations();
-    observeReveals();
-
-    /* -------------------------------------------------------------
-       2. STRICT TAB SWITCHING LOGIC
-       ------------------------------------------------------------- */
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    function switchTab(targetTabId) {
-      tabButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.tab === targetTabId);
-      });
-
-      tabPanes.forEach(pane => {
-        if (pane.id === targetTabId) {
-          pane.classList.add('active-tab');
-          pane.querySelectorAll('.words-ready').forEach(el => el.classList.remove('words-ready'));
-          initWordAnimations(pane);
-          observeReveals(pane);
-        } else {
-          pane.classList.remove('active-tab');
-        }
-      });
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    tabBtns.forEach(b => b.addEventListener('click', () => switchTab(b.dataset.tab)));
 
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-    });
+    /* 3. Theme Toggle */
+    const tBtn = document.getElementById('themeToggle');
+    const setTheme = t => { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme_preference', t); tBtn.textContent = t === 'dark' ? '☀' : '☾'; };
+    setTheme(localStorage.getItem('theme_preference') || 'dark');
+    tBtn.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 
-    /* -------------------------------------------------------------
-       3. DUAL-THEME ENGINE (DARK / LIGHT)
-       ------------------------------------------------------------- */
-    const themeToggleBtn = document.getElementById('themeToggle');
-    const currentSavedTheme = localStorage.getItem('theme_preference') || 'dark';
-    document.documentElement.setAttribute('data-theme', currentSavedTheme);
-    updateThemeIcon(currentSavedTheme);
+    /* 4. Countdown Timer (Middle Box) */
+    const targetTime = new Date('2026-11-01T00:00:00Z').getTime();
+    setInterval(() => {
+      const d = Math.max(0, targetTime - Date.now());
+      document.getElementById('cdDays').textContent = String(Math.floor(d / 86400000)).padStart(2, '0');
+      document.getElementById('cdHours').textContent = String(Math.floor((d % 86400000) / 3600000)).padStart(2, '0');
+      document.getElementById('cdMins').textContent = String(Math.floor((d % 3600000) / 60000)).padStart(2, '0');
+      document.getElementById('cdSecs').textContent = String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
+    }, 1000);
 
-    themeToggleBtn.addEventListener('click', () => {
-      const activeTheme = document.documentElement.getAttribute('data-theme');
-      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme_preference', newTheme);
-      updateThemeIcon(newTheme);
-    });
-
-    function updateThemeIcon(theme) {
-      themeToggleBtn.textContent = theme === 'dark' ? '☀' : '☾';
-      themeToggleBtn.title = theme === 'dark' ? 'Switch to Light Theme' : 'Switch to Dark Theme';
-    }
-
-    /* -------------------------------------------------------------
-       4. DEDICATED COUNTER BOX LOGIC (Nov 1, 2026)
-       ------------------------------------------------------------- */
-    const launchDate = new Date('2026-11-01T00:00:00Z').getTime();
-
-    function updateKdpCountdown() {
-      const now = new Date().getTime();
-      const difference = launchDate - now;
-
-      if (difference <= 0) {
-        document.getElementById('counterStatusHeading').textContent = 'Worldwide Release Live on Amazon KDP';
-        return;
-      }
-
-      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-      document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
-      document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('cdMins').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('cdSecs').textContent = String(seconds).padStart(2, '0');
-    }
-    setInterval(updateKdpCountdown, 1000);
-    updateKdpCountdown();
-
-    /* -------------------------------------------------------------
-       5. INTERACTIVE MANUSCRIPT LEAF PREVIEWER
-       ------------------------------------------------------------- */
-    const manuscriptLeaves = [
-      {
-        title: "Title Page & Solemn Dedication",
-        content: `
-          <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-size:1.4rem; margin-bottom:12px;">In the Name of Allah, the Entirely Merciful, the Especially Merciful</h4>
-          <p style="font-style:italic; font-size:1.15rem; color:var(--text-main); margin-bottom:16px;">
-            "Dedicated to my parents, whose unceasing sacrifices laid the bedrock upon which my education was built; and to every believer who recognizes that the Muslim story has not reached its end, but stands before its greatest test of revival."
-          </p>
-          <p style="color:var(--text-sub); font-size:0.92rem;">
-            This treatise rejects both the paralyzing slumber of victimhood and the hysterical paranoia of unverified conspiracies. It calls for intellectual sovereignty, economic independence, and the reactivation of the Qur'anic Sunan.
-          </p>
-        `
-      },
-      {
-        title: "Preface: Breaking the Psychological Cage",
-        content: `
-          <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-size:1.3rem; margin-bottom:12px;">The Rupture of Civilizational Memory</h4>
-          <p style="color:var(--text-sub); font-size:0.95rem; margin-bottom:12px;">
-            A nation that forgets how it rose cannot understand why it fell. For over a millennium, Islam was not merely a private prayer ritual; it was a civilizational paradigm that merged moral law (Shariah) with experimental sciences, asset-backed wealth, and geopolitical deterrence.
-          </p>
-          <p style="color:var(--text-sub); font-size:0.95rem;">
-            The modern defeat began long before European armies set foot on Muslim soil. It began when speculative mysticism replaced empirical inquiry, and when the internal unity of the Khilafah dissolved into palace intrigues.
-          </p>
-        `
-      },
-      {
-        title: "Table of Contents: The Grand Architecture",
-        content: `
-          <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-size:1.3rem; margin-bottom:12px;">The Six Structural Pillars</h4>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.88rem; color:var(--text-sub);">
-            <div><strong>Part I:</strong> From Deserts to Superpowers (Ch. 1–5)</div>
-            <div><strong>Part II:</strong> Why Superpowers Collapse (Ch. 6–9)</div>
-            <div><strong>Part III:</strong> The Great Game Unveiled (Ch. 10–14)</div>
-            <div><strong>Part IV:</strong> Hidden Powers &amp; Lodges (Ch. 15–18)</div>
-            <div><strong>Part V:</strong> The Question of Khilafat (Ch. 19–23)</div>
-            <div><strong>Part VI:</strong> Escape &amp; The Final Hour (Ch. 24–26)</div>
-          </div>
-        `
-      },
-      {
-        title: "Epilogue: The Roadmap to Islamic Renewal",
-        content: `
-          <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-size:1.3rem; margin-bottom:12px;">Beyond Rhetoric: Building Institutional Power</h4>
-          <p style="color:var(--text-sub); font-size:0.95rem; margin-bottom:12px;">
-            Revival will not arrive via emotional street protests, political slogans, or weaponized nihilism. It will be built by engineers, economists, scholars, and strategists who combine unyielding Tawhid with technical dominance.
-          </p>
-          <p style="font-style:italic; color:var(--gold-light); font-size:1rem;">
-            "The Great Game continues. But the final decree does not belong to secret councils, central bankers, or occult lodges. It belongs to the Lord of the Worlds."
-          </p>
-        `
-      }
+    /* 5. Manuscript Leaves */
+    const leaves = [
+      ["Title Page & Solemn Dedication", "In the Name of Allah, the Entirely Merciful, the Especially Merciful", "Dedicated to my parents, whose unceasing sacrifices laid the bedrock upon which my education was built; and to every believer who recognizes that the Muslim story stands before its greatest test of revival."],
+      ["Preface: Breaking the Psychological Cage", "The Rupture of Civilizational Memory", "A nation that forgets how it rose cannot understand why it fell. For over a millennium, Islam merged moral law (Shariah) with experimental sciences, asset-backed wealth, and geopolitical deterrence."],
+      ["Table of Contents: The Six Pillars", "Structural Overview of the 26 Chapters", "Part I: From Deserts to Superpowers (Ch. 1–5) · Part II: Why Superpowers Collapse (Ch. 6–9) · Part III: The Great Game Unveiled (Ch. 10–14) · Part IV: Hidden Powers & Lodges (Ch. 15–18) · Part V: The Question of Khilafat (Ch. 19–23) · Part VI: Escape & The Final Hour (Ch. 24–26)."],
+      ["Epilogue: Roadmap to Renewal", "Beyond Rhetoric: Building Institutional Power", "Revival will not arrive via emotional street slogans. It will be built by engineers, economists, scholars, and strategists who combine unyielding Tawhid with technical dominance."]
     ];
-
-    let currentLeafIndex = 0;
-    const pageContent = document.getElementById('pageContent');
-    const pageIndicator = document.getElementById('pageIndicator');
-    const pageViewer = document.getElementById('pageViewer');
-
-    function renderLeaf(idx) {
-      pageViewer.style.opacity = '0';
-      pageViewer.style.transform = 'translateY(6px)';
-      setTimeout(() => {
-        const leaf = manuscriptLeaves[idx];
-        pageContent.innerHTML = `<span class="kicker" style="font-size:0.75rem;">${leaf.title}</span>${leaf.content}`;
-        pageIndicator.textContent = `Leaf ${idx + 1} of ${manuscriptLeaves.length}`;
-        pageViewer.style.opacity = '1';
-        pageViewer.style.transform = 'translateY(0)';
-      }, 150);
-    }
+    let lIdx = 0;
+    const renderLeaf = i => {
+      document.getElementById('leafBody').innerHTML = `<span class="kicker">${leaves[i][0]}</span><h4 style="font:700 1.35rem 'Cinzel',serif;color:var(--gold);margin-bottom:10px;">${leaves[i][1]}</h4><p style="color:var(--sub);">${leaves[i][2]}</p>`;
+      document.getElementById('leafNum').textContent = `Leaf ${i + 1} of ${leaves.length}`;
+    };
     renderLeaf(0);
+    document.getElementById('prevLeaf').onclick = () => renderLeaf(lIdx = (lIdx - 1 + leaves.length) % leaves.length);
+    document.getElementById('nextLeaf').onclick = () => renderLeaf(lIdx = (lIdx + 1) % leaves.length);
 
-    document.getElementById('prevPageBtn').addEventListener('click', () => {
-      currentLeafIndex = (currentLeafIndex - 1 + manuscriptLeaves.length) % manuscriptLeaves.length;
-      renderLeaf(currentLeafIndex);
-    });
-    document.getElementById('nextPageBtn').addEventListener('click', () => {
-      currentLeafIndex = (currentLeafIndex + 1) % manuscriptLeaves.length;
-      renderLeaf(currentLeafIndex);
-    });
-
-    /* -------------------------------------------------------------
-       6. 26 QUR'ANIC SURAHS MAPPING
-       ------------------------------------------------------------- */
-    const surahsMappingData = [
-      { ch: 1, title: "Pre-Islamic Collapse", surah: "Al-’Alaq (96:1-5)", ar: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ", en: "Read in the name of your Lord who created.", note: "Knowledge and divine revelation as the sole catalyst to pull humanity out of tribal barbarism." },
-      { ch: 2, title: "How Allah Changes History", surah: "Ar-Ra’d (13:11)", ar: "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ", en: "Indeed, Allah will not change the condition of a people until they change what is in themselves.", note: "The primary law of civilizational rise: internal spiritual and moral transformation." },
-      { ch: 3, title: "The Blueprint for Change", surah: "Al-Asr (103:1-3)", ar: "وَالْعَصْرِ • إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ", en: "By time, indeed mankind is in loss, except those with faith, truth, and patience.", note: "The four non-negotiable criteria for civilizational survival against decay." },
-      { ch: 4, title: "Expansion & Justice", surah: "Al-Hadid (57:25)", ar: "وَأَنْزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ", en: "And We sent down iron, wherein is great military might and benefits for mankind.", note: "Power harnessed strictly for justice, truth, and the protection of the oppressed." },
-      { ch: 5, title: "The Golden Age Foundation", surah: "Al-Baqarah (2:269)", ar: "يُؤْتِي الْحِكْمَةَ مَنْ يَشَاءُ ۚ وَمَنْ يُؤْتَ الْحِكْمَةَ فَقَدْ أُوتِيَ خَيْرًا كَثِيرًا", en: "He gives wisdom to whom He wills, and whoever has been given wisdom has certainly received abundant good.", note: "The scientific explosion sparked by harmonizing revelation with empirical wisdom." },
-      { ch: 6, title: "Power & Knowledge United", surah: "Al-Mujadila (58:11)", ar: "يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ", en: "Allah will raise those who have believed among you and those who were given knowledge, by degrees.", note: "Historical dominance occurs only when geopolitical authority is directed by high scholarship." },
-      { ch: 7, title: "Forgetting the Ancestral Legacy", surah: "Maryam (19:59)", ar: "فَخَلَفَ مِنْ بَعْدِهِمْ خَلْفٌ أَضَاعُوا الصَّلَاةَ وَاتَّبَعُوا الشَّهَوَاتِ", en: "Then there succeeded them successors who neglected prayer and pursued desires; so they will face ruin.", note: "Civilizational decline begins when heirs abandon discipline for luxury and pleasure." },
-      { ch: 8, title: "Fragmentation & Loss of Learning", surah: "Al-Anfal (8:46)", ar: "وَلَا تَنَازَعُوا فَتَفْشَلُوا وَتَذْهَبَ رِيحُكُمْ", en: "And do not dispute and thus lose courage and then your strength would depart.", note: "Internal sectarian disputes directly destroy civilizational momentum and deterrence." },
-      { ch: 9, title: "Warnings on Falling Nations", surah: "Al-A’raf (7:34)", ar: "وَلِكُلِّ أُمَّةٍ أَجَلٌ ۖ فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً", en: "And for every nation is a specified term; so when their time has come, they cannot delay it.", note: "Civilizations have fixed moral lifespans governed by divine sociological law." },
-      { ch: 10, title: "From Empire to Nation-State", surah: "Al-Hujurat (49:13)", ar: "إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ أَتْقَاكُمْ", en: "Indeed, the most noble of you in the sight of Allah is the most righteous of you.", note: "Exposing how tribal nationalism shattered the universal fraternity of the Ummah." },
-      { ch: 11, title: "The Multipolar Threat", surah: "Al-Baqarah (2:251)", ar: "وَلَوْلَا دَفْعُ اللَّهِ النَّاسَ بَعْضَهُمْ بِبَعْضٍ لَفَسَدَتِ الْأَرْضُ", en: "And if Allah did not check one set of people by means of another, the earth would indeed be corrupted.", note: "Geopolitical balance of power as a preservation mechanism ordained by Allah." },
-      { ch: 12, title: "Creation of Israel in Shadows", surah: "Al-Isra (17:4)", ar: "وَقَضَيْنَا إِلَىٰ بَنِي إِسْرَائِيلَ فِي الْكِتَابِ لَتُفْسِدُنَّ فِي الْأَرْضِ مَرَّتَيْنِ", en: "And We warned the Children of Israel in the Scripture: You will certainly cause corruption twice.", note: "The geopolitical and eschatological focal point in the sacred heartland." },
-      { ch: 13, title: "Banking, Debt & Riba", surah: "Al-Baqarah (2:278-279)", ar: "فَأْذَنُوا بِحَرْبٍ مِنَ اللَّهِ وَرَسُولِهِ", en: "Then take notice of a war declared from Allah and His Messenger against interest/riba.", note: "Fractional-reserve fiat currencies enslaving Muslim nations to central bank debt." },
-      { ch: 14, title: "Normalization of Deception", surah: "Fatir (35:43)", ar: "وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ", en: "And the evil plot does not encompass except its own authors.", note: "The systematic institutional deception characterizing modern psychological warfare." },
-      { ch: 15, title: "Secret Societies & Freemasons", surah: "Al-Ma’idah (5:64)", ar: "كُلَّمَا أَوْقَدُوا نَارًا لِلْحَرْبِ أَطْفَأَهَا اللَّهُ", en: "Whenever they kindled a fire of war, Allah extinguished it. And they strive for corruption.", note: "Clandestine infiltration, lodge networks, and subversive political coup d’états." },
-      { ch: 16, title: "Dismantling the Khilafah", surah: "Ali ‘Imran (3:103)", ar: "وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا", en: "And hold firmly to the rope of Allah all together and do not become divided.", note: "The abolition of 1924: breaking the collective political shield of the global Ummah." },
-      { ch: 17, title: "Satanism & Symbolic Inversion", surah: "As-Saffat (37:125)", ar: "أَتَدْعُونَ بَعْلًا وَتَذَرُونَ أَحْسَنَ الْخَالِقِينَ", en: "Do you call upon Baal and forsake the best of creators?", note: "Direct confrontation with Baal worship, Molech sacrifices, and Luciferian public symbolism." },
-      { ch: 18, title: "Why Muslims Feel Contained", surah: "At-Tawbah (9:55)", ar: "إِنَّمَا يُرِيدُ اللَّهُ لِيُعَذِّبَهُمْ بِهَا فِي الْحَيَاةِ الدُّنْيَا", en: "Allah only intends to punish them through their wealth and children in this worldly life.", note: "Understanding strategic encirclement: consumerism and ideological paralysis." },
-      { ch: 19, title: "What Khilafat Really Means", surah: "An-Nur (24:55)", ar: "وَعَدَ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَعَمِلُوا الصَّالِحَاتِ لَيَسْتَخْلِفَنَّهُمْ", en: "Allah has promised those who believe and do righteous deeds that He will grant them succession.", note: "Caliphate as a trust of justice and collective covenant, not tyrannical monarchy." },
-      { ch: 20, title: "Khilafat & The Divine Mission", surah: "Al-Baqarah (2:30)", ar: "إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً", en: "Indeed, I am making upon the earth a vicegerent/trustee.", note: "Man's primary cosmological assignment: establishing divine justice upon the earth." },
-      { ch: 21, title: "Leadership & Responsibility", surah: "An-Nisa (4:58)", ar: "إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا", en: "Indeed, Allah commands you to render trusts to whom they are due and judge with justice.", note: "Competence, moral integrity, and institutional checks in Islamic governance." },
-      { ch: 22, title: "Why a New Order Is Needed", surah: "Al-Anbiya (21:107)", ar: "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ", en: "And We have not sent you, [O Muhammad], except as a mercy to the worlds.", note: "The absolute failure of secular capitalism and Marxism necessitates a divine alternative." },
-      { ch: 23, title: "Pakistan & The Revival Question", surah: "Al-Hajj (22:41)", ar: "الَّذِينَ إِنْ مَكَّنَّاهُمْ فِي الْأَرْضِ أَقَامُوا الصَّلَاةَ وَآتَوُا الزَّكَاةَ", en: "Those who, if We give them authority in the land, establish prayer and give zakah and enjoin right.", note: "The unfulfilled ideological contract of the 1947 founding and the path to real sovereignty." },
-      { ch: 24, title: "Qur'anic Warnings for Today", surah: "Al-Mu'minun (23:115)", ar: "أَفَحَسِبْتُمْ أَنَّمَا خَلَقْنَاكُمْ عَبَثًا وَأَنَّكُمْ إِلَيْنَا لَا تُرْجَعُونَ", en: "Then did you think that We created you uselessly and that to Us you would not be returned?", note: "Rejecting modern nihilism, moral relativity, and civilizational distraction." },
-      { ch: 25, title: "The End of the Game & Prophecy", surah: "Al-Anbiya (21:105)", ar: "أَنَّ الْأَرْضَ يَرِثُهَا عِبَادِيَ الصَّالِحُونَ", en: "That My righteous servants shall inherit the earth.", note: "Eschatological destiny: the collapse of tyrannical systems and the ultimate triumph of truth." },
-      { ch: 26, title: "Toward a New Dawn", surah: "Ash-Sharh (94:5-6)", ar: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا • إِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "For indeed, with hardship comes ease. Indeed, with hardship comes ease.", note: "The sociological certainty of civilizational dawn following historical rupture." }
+    /* 6. Tab 2: Occult Framework Data */
+    const occultData = [
+      ["Ancient Roots · Blood Covenants", "The Worship of Baal & Molech", "From ancient Canaan to modern elite retreats like Bohemian Grove, the veneration of Baal and Molech revolves around sacrifice and transactional power.", ["Canaanite child sacrifice reframed through utilitarian eugenics.", "Power extracted through deliberate transgression of divine boundaries.", "Direct confrontation with Surah As-Saffat (37:125)."]],
+      ["Institutional Sabotage", "Freemasonry & The Fall of the Khilafah", "How Salonica Masonic lodges (Lodge Veritas & Macedonia Risorta) operated under foreign diplomatic protection to shelter Young Turk conspirators against Sultan Abdulhamid II.", ["Foreign capitulation treaties barred Ottoman police from lodge premises.", "Strategic alignment between Anglo-French intelligence and lodge cadres.", "Paved the path to the 1924 abolition of the Caliphate."]],
+      ["Cognitive Inversion", "The Bavarian Illuminati & Luciferian Doctrine", "Founded May 1, 1776 by Adam Weishaupt to abolish organized religion, monarchical sovereignty, and family inheritance through cell infiltration.", ["Albert Pike's Morals and Dogma on esoteric Luciferian doctrine.", "Infiltrating public offices under the cover of philanthropy.", "Systematic reversal of divine commandments."]],
+      ["Mass Conditioning", "Pop Culture, Music & Sports Desensitization", "Through corporate entertainment, halftime spectacles, and algorithmic feeds, ancient occult sigils (the All-Seeing Eye, Baphomet) are normalized as entertainment.", ["Tavistock Institute techniques for mass psychological conditioning.", "Normalizing moral degeneracy through celebrity idols.", "Weakening the fitrah so moral outrage turns into apathy."]]
     ];
-
-    document.getElementById('surahsContainer').innerHTML = surahsMappingData.map(item => `
-      <div class="card surah-card reveal-item">
-        <div>
-          <div class="surah-header">
-            <span class="surah-num">Chapter ${item.ch} · Surah ${item.surah}</span>
-            <span class="chapter-tag">${item.title}</span>
-          </div>
-          <div class="arabic-text">${item.ar}</div>
-          <div class="translation-text">"${item.en}"</div>
-        </div>
-        <div class="surah-comment">
-          <strong>Civilizational Application:</strong> ${item.note}
-        </div>
-      </div>
+    document.getElementById('occultGrid').innerHTML = occultData.map(c => `
+      <article class="card"><span class="tag-crim">${c[0]}</span><h3 style="font-size:1.55rem;margin-bottom:10px;">${c[1]}</h3><p style="color:var(--sub);font-size:0.94rem;">${c[2]}</p><ul class="bullet-ul">${c[3].map(b => `<li>${b}</li>`).join('')}</ul></article>
     `).join('');
 
-    /* -------------------------------------------------------------
-       7. 26 CHAPTERS ARCHIVE
-       ------------------------------------------------------------- */
-    const bookPartsData = [
-      {
-        partNum: "Part I", title: "From Deserts to Superpowers", range: "Chapters 1–5",
-        chapters: [
-          "Chapter 1: The Pre-Islamic World in Collapse — Byzantium, Sassanids, and Arab Tribalism",
-          "Chapter 2: How Allah Changes History — The Spiritual Engine of Radical Social Transformation",
-          "Chapter 3: The Qur'anic Blueprint for Change — The Four Pillars of Surah Al-Asr",
-          "Chapter 4: Jihad, Justice, and Deterrence — Why Muslim Military Power Expanded Ethically",
-          "Chapter 5: How the Qur'an Paved the Way for the Scientific Golden Age"
-        ]
-      },
-      {
-        partNum: "Part II", title: "Why Superpowers Collapse", range: "Chapters 6–9",
-        chapters: [
-          "Chapter 6: When Power & Knowledge Were United — The Golden Age Synthesis",
-          "Chapter 7: When a Nation Forgets the Legacy of Its Ancestors — Luxury and Moral Decay",
-          "Chapter 8: Political Fragmentation and the Loss of Empirical Sciences",
-          "Chapter 9: Qur'anic Warnings on the Inevitable Fall of Corrupted Empires"
-        ]
-      },
-      {
-        partNum: "Part III", title: "The Great Game Unveiled", range: "Chapters 10–14",
-        chapters: [
-          "Chapter 10: From Empire to the Nation-State — Cartographic Warfare and Sykes-Picot",
-          "Chapter 11: The Multipolar World: A Civilizational Trap or an Opportunity?",
-          "Chapter 12: The Creation of Israel: The Balfour Declaration and Working in the Shadows",
-          "Chapter 13: Central Banking, Interest, and the Architecture of Modern Debt Subjugation",
-          "Chapter 14: The Normalization of Institutional Deception in Media & Statecraft"
-        ]
-      },
-      {
-        partNum: "Part IV", title: "Hidden Powers & The Inversion", range: "Chapters 15–18",
-        chapters: [
-          "Chapter 15: Secret Societies, the Bavarian Illuminati, and Salonica Masonic Lodges",
-          "Chapter 16: The New World Order: The 1924 Demolition of the Ottoman Khilafah",
-          "Chapter 17: What Satanism Really Is: Baal Worship, Molech Sacrifices & Media Normalization",
-          "Chapter 18: Why Modern Muslims Feel Strategically Encircled and Mentally Paralyzed"
-        ]
-      },
-      {
-        partNum: "Part V", title: "The Question of Khilafat & Revival", range: "Chapters 19–23",
-        chapters: [
-          "Chapter 19: What Khilafat Actually Means: Institutional Shield vs. Dictatorial Slogans",
-          "Chapter 20: The Khilafat and the Divine Cosmic Commission of Man",
-          "Chapter 21: Principled Leadership, Accountability, and Collective Discipline",
-          "Chapter 22: Why a Renewed Islamic Economic and Social Order Is Crucial Today",
-          "Chapter 23: Pakistan and the Question of Revival: The Unfinished Mission of 1947"
-        ]
-      },
-      {
-        partNum: "Part VI", title: "Escape and the Future", range: "Chapters 24–26",
-        chapters: [
-          "Chapter 24: Direct Qur'anic Warnings for the 21st-Century Generation",
-          "Chapter 25: The Eschatological Climax: Prophecy, Reckoning, and the Demise of False Gods",
-          "Chapter 26: Conclusion: The Practical Steps Toward an Islamic Civilizational Dawn"
-        ]
-      }
+    /* 7. Tab 4: All 26 Surahs Data */
+    const surahs = [
+      [1,"Pre-Islamic Collapse","Al-’Alaq (96:1-5)","اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ","Read in the name of your Lord who created.","Knowledge and revelation as the sole catalyst to pull humanity out of barbarism."],
+      [2,"How Allah Changes History","Ar-Ra’d (13:11)","إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنْفُسِهِمْ","Indeed, Allah will not change the condition of a people until they change what is in themselves.","The primary law of civilizational rise: internal spiritual and moral transformation."],
+      [3,"The Blueprint for Change","Al-Asr (103:1-3)","وَالْعَصْرِ • إِنَّ الْإِنْسَانَ لَفِي خُسْرٍ","By time, indeed mankind is in loss, except those with faith, truth, and patience.","The four non-negotiable criteria for civilizational survival against decay."],
+      [4,"Expansion & Justice","Al-Hadid (57:25)","وَأَنْزَلْنَا الْحَدِيدَ فِيهِ بَأْسٌ شَدِيدٌ وَمَنَافِعُ لِلنَّاسِ","And We sent down iron, wherein is great military might and benefits for mankind.","Power harnessed strictly for justice, truth, and protection of the oppressed."],
+      [5,"The Golden Age Foundation","Al-Baqarah (2:269)","يُؤْتِي الْحِكْمَةَ مَنْ يَشَاءُ ۚ وَمَنْ يُؤْتَ الْحِكْمَةَ فَقَدْ أُوتِيَ خَيْرًا كَثِيرًا","He gives wisdom to whom He wills, and whoever has been given wisdom has received abundant good.","The scientific explosion sparked by harmonizing revelation with empirical inquiry."],
+      [6,"Power & Knowledge United","Al-Mujadila (58:11)","يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ","Allah will raise those who have believed among you and those given knowledge, by degrees.","Historical dominance occurs when authority is directed by high scholarship."],
+      [7,"Forgetting Ancestral Legacy","Maryam (19:59)","فَخَلَفَ مِنْ بَعْدِهِمْ خَلْفٌ أَضَاعُوا الصَّلَاةَ وَاتَّبَعُوا الشَّهَوَاتِ","Then there succeeded them successors who neglected prayer and pursued desires.","Civilizational decline begins when heirs abandon discipline for luxury."],
+      [8,"Fragmentation & Loss","Al-Anfal (8:46)","وَلَا تَنَازَعُوا فَتَفْشَلُوا وَتَذْهَبَ رِيحُكُمْ","And do not dispute and thus lose courage and then your strength would depart.","Internal sectarian disputes directly destroy civilizational deterrence."],
+      [9,"Warnings on Falling Nations","Al-A’raf (7:34)","وَلِكُلِّ أُمَّةٍ أَجَلٌ ۖ فَإِذَا جَاءَ أَجَلُهُمْ لَا يَسْتَأْخِرُونَ سَاعَةً","And for every nation is a specified term; when their time comes, they cannot delay it.","Civilizations have moral lifespans governed by divine sociological law."],
+      [10,"Empire to Nation-State","Al-Hujurat (49:13)","إِنَّ أَكْرَمَكُمْ عِنْدَ اللَّهِ أَتْقَاكُمْ","Indeed, the most noble of you in the sight of Allah is the most righteous of you.","Exposing how tribal nationalism shattered the universal fraternity of the Ummah."],
+      [11,"The Multipolar Threat","Al-Baqarah (2:251)","وَلَوْلَا دَفْعُ اللَّهِ النَّاسَ بَعْضَهُمْ بِبَعْضٍ لَفَسَدَتِ الْأَرْضُ","And if Allah did not check one set of people by means of another, the earth would be corrupted.","Geopolitical balance of power as a preservation mechanism."],
+      [12,"Creation of Israel in Shadows","Al-Isra (17:4)","وَقَضَيْنَا إِلَىٰ بَنِي إِسْرَائِيلَ فِي الْكِتَابِ لَتُفْسِدُنَّ فِي الْأَرْضِ مَرَّتَيْنِ","And We warned the Children of Israel in the Scripture: You will cause corruption twice.","The geopolitical and eschatological focal point in the sacred heartland."],
+      [13,"Banking, Debt & Riba","Al-Baqarah (2:278-279)","فَأْذَنُوا بِحَرْبٍ مِنَ اللَّهِ وَرَسُولِهِ","Then take notice of a war declared from Allah and His Messenger against interest/riba.","Fractional-reserve fiat currencies enslaving nations to central bank debt."],
+      [14,"Normalization of Deception","Fatir (35:43)","وَلَا يَحِيقُ الْمَكْرُ السَّيِّئُ إِلَّا بِأَهْلِهِ","And the evil plot does not encompass except its own authors.","Systematic institutional deception characterizing modern psychological warfare."],
+      [15,"Secret Societies & Lodges","Al-Ma’idah (5:64)","كُلَّمَا أَوْقَدُوا نَارًا لِلْحَرْبِ أَطْفَأَهَا اللَّهُ","Whenever they kindled a fire of war, Allah extinguished it.","Clandestine infiltration, lodge networks, and subversive political coups."],
+      [16,"Dismantling the Khilafah","Ali ‘Imran (3:103)","وَاعْتَصِمُوا بِحَبْلِ اللَّهِ جَمِيعًا وَلَا تَفَرَّقُوا","And hold firmly to the rope of Allah all together and do not become divided.","The abolition of 1924: breaking the collective shield of the global Ummah."],
+      [17,"Satanism & Symbolic Inversion","As-Saffat (37:125)","أَتَدْعُونَ بَعْلًا وَتَذَرُونَ أَحْسَنَ الْخَالِقِينَ","Do you call upon Baal and forsake the best of creators?","Direct confrontation with Baal worship, Molech sacrifices, and Luciferian symbolism."],
+      [18,"Why Muslims Feel Contained","At-Tawbah (9:55)","إِنَّمَا يُرِيدُ اللَّهُ لِيُعَذِّبَهُمْ بِهَا فِي الْحَيَاةِ الدُّنْيَا","Allah only intends to punish them through their wealth and children in this worldly life.","Understanding strategic encirclement, consumerism, and ideological paralysis."],
+      [19,"What Khilafat Really Means","An-Nur (24:55)","وَعَدَ اللَّهُ الَّذِينَ آمَنُوا مِنْكُمْ وَعَمِلُوا الصَّالِحَاتِ لَيَسْتَخْلِفَنَّهُمْ","Allah has promised those who believe and do righteous deeds that He will grant them succession.","Caliphate as a trust of justice and collective covenant."],
+      [20,"Khilafat & Divine Mission","Al-Baqarah (2:30)","إِنِّي جَاعِلٌ فِي الْأَرْضِ خَلِيفَةً","Indeed, I am making upon the earth a vicegerent/trustee.","Man's primary cosmological assignment: establishing divine justice upon the earth."],
+      [21,"Leadership & Responsibility","An-Nisa (4:58)","إِنَّ اللَّهَ يَأْمُرُكُمْ أَنْ تُؤَدُّوا الْأَمَانَاتِ إِلَىٰ أَهْلِهَا","Indeed, Allah commands you to render trusts to whom they are due and judge with justice.","Competence, moral integrity, and institutional checks in governance."],
+      [22,"Why a New Order Is Needed","Al-Anbiya (21:107)","وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِلْعَالَمِينَ","And We have not sent you, [O Muhammad], except as a mercy to the worlds.","The failure of secular capitalism and Marxism necessitates a divine alternative."],
+      [23,"Pakistan & Revival Question","Al-Hajj (22:41)","الَّذِينَ إِنْ مَكَّنَّاهُمْ فِي الْأَرْضِ أَقَامُوا الصَّلَاةَ وَآتَوُا الزَّكَاةَ","Those who, if We give them authority in the land, establish prayer and give zakah.","The unfulfilled ideological contract of 1947 and the path to real sovereignty."],
+      [24,"Qur'anic Warnings for Today","Al-Mu'minun (23:115)","أَفَحَسِبْتُمْ أَنَّمَا خَلَقْنَاكُمْ عَبَثًا وَأَنَّكُمْ إِلَيْنَا لَا تُرْجَعُونَ","Then did you think that We created you uselessly and that to Us you would not be returned?","Rejecting modern nihilism, moral relativity, and civilizational distraction."],
+      [25,"End of the Game & Prophecy","Al-Anbiya (21:105)","أَنَّ الْأَرْضَ يَرِثُهَا عِبَادِيَ الصَّالِحُونَ","That My righteous servants shall inherit the earth.","Eschatological destiny: collapse of tyrannical systems and triumph of truth."],
+      [26,"Toward a New Dawn","Ash-Sharh (94:5-6)","فَإِنَّ مَعَ الْعُسْرِ يُسْرًا • إِنَّ مَعَ الْعُسْرِ يُسْرًا","For indeed, with hardship comes ease. Indeed, with hardship comes ease.","The sociological certainty of civilizational dawn following historical rupture."]
     ];
-
-    document.getElementById('partsContainer').innerHTML = bookPartsData.map((p, idx) => `
-      <div class="part-accordion reveal-item">
-        <div class="part-summary" onclick="toggleAccordion(${idx})">
-          <span>${p.partNum}: ${p.title}</span>
-          <span style="font-size:0.9rem; color:var(--text-muted); font-family:'Inter',sans-serif;">${p.range} ▼</span>
-        </div>
-        <ol class="part-chapters-list" id="partList${idx}">
-          ${p.chapters.map(ch => `<li>${ch}</li>`).join('')}
-        </ol>
-      </div>
+    document.getElementById('surahsGrid').innerHTML = surahs.map(s => `
+      <div class="card"><div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--bdr);padding-bottom:8px;"><span style="color:var(--gold);font-weight:700;font-size:0.84rem;">Ch. ${s[0]} · Surah ${s[2]}</span><span style="font-size:0.78rem;color:var(--mut);">${s[1]}</span></div><div class="arabic">${s[3]}</div><div class="trans">"${s[4]}"</div><div class="note-box"><strong>Application:</strong> ${s[5]}</div></div>
     `).join('');
 
-    function toggleAccordion(idx) {
-      const list = document.getElementById(`partList${idx}`);
-      list.style.display = list.style.display === 'none' ? 'block' : 'none';
-    }
-
-    /* -------------------------------------------------------------
-       8. TAB 8: DYNAMIC CHANGING HEADING & SECRET SOCIETIES DOSSIERS
-       ------------------------------------------------------------- */
-    const secretSocietiesData = [
-      {
-        name: "The Bavarian Illuminati (1776)",
-        era: "Ingolstadt, Bavaria · Founded May 1, 1776",
-        conspiracyTheory: "Popularized in internet culture as an omnipotent, mystical cabal controlling every modern pop star and election from the shadows.",
-        documentedArchive: "Founded by canon law professor Adam Weishaupt. In 1785–1787, the Elector of Bavaria Karl Theodor raided the homes of senior members (such as Xavier von Zwack), seizing and publishing original internal correspondence ('Original Writings of the Order and Sect of the Illuminati').",
-        exposedAgenda: "The seized state archives documented a structured cell network designed to infiltrate universities, judicial courts, and Masonic lodges across Europe to abolish monarchical rule, organized religion, and family inheritance in favor of secular technocratic rule."
-      },
-      {
-        name: "Salonica Masonic Lodges (Macedonia Risorta & Veritas)",
-        era: "Ottoman Salonica · Late 19th Century – 1908",
-        conspiracyTheory: "Often dismissed by mainstream textbooks as harmless gentlemen's clubs, or exaggerated by polemicists as the sole cause of Ottoman collapse.",
-        documentedArchive: "Operated under the Grand Orient of Italy and Grand Orient of France. Because of the Ottoman Capitulations (extraterritorial legal immunity treaties for European powers), Ottoman police were legally barred from entering foreign-chartered Masonic lodges in Salonica.",
-        exposedAgenda: "Provided inviolable physical sanctuary, encrypted courier channels, and diplomatic protection for the Young Turk (CUP) revolutionaries—including Emmanuel Carasso and Talat Pasha—culminating in the 1908 coup and the 1909 deposition of Sultan Abdulhamid II."
-      },
-      {
-        name: "The Order of Skull & Bones (Chapter 322)",
-        era: "Yale University, USA · Founded 1832",
-        conspiracyTheory: "Speculated in sensationalist media as a cult practicing macabre graveyard thefts and shadowy world domination.",
-        documentedArchive: "Co-founded by William Huntington Russell and Alphonso Taft following Russell's stay in Germany. Incorporated legally as the Russell Trust Association, which holds the society's financial assets and Deer Island retreat.",
-        exposedAgenda: "Documented by historian Antony C. Sutton using Yale biographical archives: a generational recruitment pipeline placing initiates (only 15 seniors tapped per year) into the apex of the U.S. State Department, CIA, Wall Street investment houses, and war-making policy boards."
-      },
-      {
-        name: "The Tavistock Institute of Human Relations",
-        era: "London & Sussex, UK · Founded 1921 / 1947",
-        conspiracyTheory: "Portrayed in fringe circles as a mind-control laboratory using sci-fi telepathy to hypnotize the public.",
-        documentedArchive: "Evolved from the Tavistock Clinic (1921) and formally incorporated in 1947 with a grant from the Rockefeller Foundation, led by British Army psychiatric warfare director Brigadier John Rawlings Rees.",
-        exposedAgenda: "Published extensively in its own journal 'Human Relations': pioneered 'turbulent field' social engineering, mass trauma conditioning, and cultural paradigm shifts used to break traditional religious and family norms across post-war societies."
-      },
-      {
-        name: "The Bohemian Grove (Cremation of Care)",
-        era: "Monte Rio, California · Established 1872",
-        conspiracyTheory: "Rumored in underground forums to be a site of literal ancient Canaanite blood rituals in the redwood forest.",
-        documentedArchive: "A private 2,700-acre encampment hosted every July by the Bohemian Club of San Francisco. Confirmed by presidential memoirs (including Richard Nixon and Herbert Hoover) and documented on video in 2000.",
-        exposedAgenda: "Features the theatrical 'Cremation of Care' ceremony before a 40-foot stone Owl shrine (symbolizing Molech/Minerva) where heads of state, defense contractors, and central bankers symbolically burn 'Dull Care' (conscience) before conducting off-the-record policy lakeside talks (such as the 1942 Manhattan Project planning)."
-      },
-      {
-        name: "The Bilderberg Group & Trilateral Commission",
-        era: "Hotel de Bilderberg (1954) & New York (1973)",
-        conspiracyTheory: "Depicts annual meetings as a secret world parliament issuing binding global decrees.",
-        documentedArchive: "Founded in 1954 by Prince Bernhard of the Netherlands, Józef Retinger, and David Rockefeller; operating under Chatham House Rules where attendees are forbidden from disclosing who said what.",
-        exposedAgenda: "Declassified minutes released via Wikileaks and national archives reveal supranational coordination of European currency integration, NATO intervention postures, energy pricing, and the sidelining of national parliamentary sovereignty."
-      },
-      {
-        name: "International Central Banking & Petrodollar Cartels",
-        era: "Jekyll Island (1910), Bretton Woods (1944) & 1974",
-        conspiracyTheory: "Often muddied with tropes that obscure the actual mathematical mechanics of fractional-reserve banking.",
-        documentedArchive: "Documented in Paul Warburg's memoirs, the 1910 Jekyll Island secret draft of the Federal Reserve Act, and declassified 1974 U.S.–Saudi Treasury agreements establishing petrodollar recycling.",
-        exposedAgenda: "Replaced asset-backed gold/silver trade with interest-bearing (Riba) fiat credit, forcing developing and Muslim-majority nations into perpetual IMF debt servicing and structural surrender of resource sovereignty."
-      }
+    /* 8. Tab 6: All 26 Chapters Accordion */
+    const parts = [
+      ["Part I: From Deserts to Superpowers","Chapters 1–5",["Ch 1: The Pre-Islamic World in Collapse — Byzantium, Sassanids, and Arab Tribalism","Ch 2: How Allah Changes History — The Spiritual Engine of Radical Social Transformation","Ch 3: The Qur'anic Blueprint for Change — The Four Pillars of Surah Al-Asr","Ch 4: Jihad, Justice, and Deterrence — Why Muslim Military Power Expanded Ethically","Ch 5: How the Qur'an Paved the Way for the Scientific Golden Age"]],
+      ["Part II: Why Superpowers Collapse","Chapters 6–9",["Ch 6: When Power & Knowledge Were United — The Golden Age Synthesis","Ch 7: When a Nation Forgets the Legacy of Its Ancestors — Luxury and Moral Decay","Ch 8: Political Fragmentation and the Loss of Empirical Sciences","Ch 9: Qur'anic Warnings on the Inevitable Fall of Corrupted Empires"]],
+      ["Part III: The Great Game Unveiled","Chapters 10–14",["Ch 10: From Empire to the Nation-State — Cartographic Warfare and Sykes-Picot","Ch 11: The Multipolar World: A Civilizational Trap or an Opportunity?","Ch 12: The Creation of Israel: The Balfour Declaration and Working in the Shadows","Ch 13: Central Banking, Interest, and the Architecture of Modern Debt Subjugation","Ch 14: The Normalization of Institutional Deception in Media & Statecraft"]],
+      ["Part IV: Hidden Powers & The Inversion","Chapters 15–18",["Ch 15: Secret Societies, the Bavarian Illuminati, and Salonica Masonic Lodges","Ch 16: The New World Order: The 1924 Demolition of the Ottoman Khilafah","Ch 17: What Satanism Really Is: Baal Worship, Molech Sacrifices & Media Normalization","Ch 18: Why Modern Muslims Feel Strategically Encircled and Mentally Paralyzed"]],
+      ["Part V: The Question of Khilafat & Revival","Chapters 19–23",["Ch 19: What Khilafat Actually Means: Institutional Shield vs. Dictatorial Slogans","Ch 20: The Khilafat and the Divine Cosmic Commission of Man","Ch 21: Principled Leadership, Accountability, and Collective Discipline","Ch 22: Why a Renewed Islamic Economic and Social Order Is Crucial Today","Ch 23: Pakistan and the Question of Revival: The Unfinished Mission of 1947"]],
+      ["Part VI: Escape and the Future","Chapters 24–26",["Ch 24: Direct Qur'anic Warnings for the 21st-Century Generation","Ch 25: The Eschatological Climax: Prophecy, Reckoning, and the Demise of False Gods","Ch 26: Conclusion: The Practical Steps Toward an Islamic Civilizational Dawn"]]
     ];
-
-    // Render all 7 Dossier Cards
-    const dossiersContainer = document.getElementById('dossiersContainer');
-    dossiersContainer.innerHTML = secretSocietiesData.map((soc, i) => `
-      <article class="card dossier-card reveal-item" id="dossierCard${i}">
-        <div>
-          <div class="dossier-meta">
-            <span>Dossier #0${i + 1}</span>
-            <span>${soc.era}</span>
-          </div>
-          <h3 style="font-size:1.55rem; margin-bottom:14px; color:var(--gold-light);">${soc.name}</h3>
-          
-          <div class="dossier-block theory">
-            <strong>Popular Conspiracy Claim</strong>
-            ${soc.conspiracyTheory}
-          </div>
-
-          <div class="dossier-block archive">
-            <strong>Declassified &amp; Documented Archive</strong>
-            ${soc.documentedArchive}
-          </div>
-
-          <div class="dossier-block">
-            <strong>How The Book Exposes Their Mechanism</strong>
-            ${soc.exposedAgenda}
-          </div>
-        </div>
-      </article>
+    document.getElementById('partsContainer').innerHTML = parts.map((p, i) => `
+      <div class="acc-item"><div class="acc-head" onclick="const el=this.nextElementSibling;el.style.display=el.style.display==='none'?'block':'none';"><span>${p[0]}</span><span style="font-size:0.86rem;color:var(--mut);font-family:'Inter',sans-serif;">${p[1]} ▼</span></div><ol class="acc-list">${p[2].map(c => `<li>${c}</li>`).join('')}</ol></div>
     `).join('');
 
-    // Typewriter / Changing Heading Animation for Secret Societies
-    const changingTitleEl = document.getElementById('changingSocietyTitle');
-    const pillButtons = document.querySelectorAll('.society-pill');
-    let currentSocietyIdx = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingTimer = null;
+    /* 9. Tab 8: Secret Societies Dynamic Heading & Dossiers */
+    const societies = [
+      ["The Bavarian Illuminati (1776)", "Ingolstadt, Bavaria · 1776", "Popularized online as an omnipotent cabal controlling every pop star and election.", "Founded by Adam Weishaupt. In 1785–1787, Bavarian state police raided senior members' homes (Xavier von Zwack), seizing and publishing original internal correspondence.", "Seized state archives proved a structured cell network built to infiltrate universities, courts, and lodges to abolish religion, monarchy, and family inheritance."],
+      ["Salonica Masonic Lodges (Veritas & Risorta)", "Ottoman Salonica · 1908", "Often dismissed as harmless social clubs or exaggerated as the sole cause of Ottoman decline.", "Operated under the Grand Orient of Italy and France. Under Ottoman Capitulations treaties, Ottoman police were legally barred from entering foreign-chartered lodges.", "Provided inviolable sanctuary, encrypted couriers, and financing for Young Turk (CUP) revolutionaries who deposed Sultan Abdulhamid II in 1909."],
+      ["The Order of Skull & Bones (Chapter 322)", "Yale University · 1832", "Speculated in sensationalist media as a college fraternity practicing macabre rituals.", "Co-founded by William Huntington Russell and Alphonso Taft; legally incorporated as the Russell Trust Association.", "Documented by historian Antony C. Sutton via Yale archives: a recruitment pipeline placing 15 initiates a year into the U.S. State Department, CIA, and Wall Street."],
+      ["The Tavistock Institute of Human Relations", "London, UK · 1921 / 1947", "Portrayed in fringe circles as a sci-fi telepathic mind-control laboratory.", "Formally incorporated in 1947 with a Rockefeller Foundation grant, directed by British Army psychiatric warfare head Brig. John Rawlings Rees.", "Published in its own journal 'Human Relations': pioneered mass trauma conditioning and 'turbulent field' social engineering to erode traditional family values."],
+      ["The Bohemian Grove (Cremation of Care)", "California, USA · 1872", "Rumored in underground forums as an ancient forest blood-ritual site.", "A private 2,700-acre redwood encampment confirmed by presidential memoirs (Nixon, Hoover) and video documentation.", "Features the 'Cremation of Care' ceremony before a 40-foot stone Owl shrine (Molech) where heads of state and defense contractors conduct off-the-record policy planning."],
+      ["Bilderberg Group & Trilateral Commission", "Europe & New York · 1954 / 1973", "Depicted as a secret world parliament issuing binding global laws.", "Founded in 1954 by Prince Bernhard, Józef Retinger, and David Rockefeller; operates under strict Chatham House confidentiality rules.", "Declassified minutes reveal supranational coordination of currency integration, NATO postures, and energy pricing outside parliamentary oversight."],
+      ["Central Banking & Petrodollar Cartels", "Jekyll Island (1910) & 1974", "Often obscured by tropes that hide the mathematical reality of fractional-reserve banking.", "Documented in Paul Warburg's memoirs, the 1910 Jekyll Island Federal Reserve draft, and declassified 1974 U.S.–Saudi Treasury accords.", "Replaced asset-backed gold/silver trade with interest-bearing (Riba) fiat credit, locking developing nations into perpetual IMF debt servitude."]
+    ];
+    document.getElementById('socPills').innerHTML = societies.map((s, i) => `<button class="soc-pill ${i===0?'act':''}" onclick="selectSoc(${i})">${s[0].split(' (')[0]}</button>`).join('');
+    document.getElementById('dossiersGrid').innerHTML = societies.map((s, i) => `
+      <article class="card" id="dosCard${i}"><div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--bdr);padding-bottom:8px;margin-bottom:12px;font-size:0.76rem;color:var(--gold);font-weight:700;text-transform:uppercase;"><span>Dossier #0${i+1}</span><span>${s[1]}</span></div><h3 style="font-size:1.5rem;color:var(--gold-lt);margin-bottom:12px;">${s[0]}</h3><div class="dos-blk th"><strong>Popular Conspiracy Theory</strong>${s[2]}</div><div class="dos-blk ar"><strong>Documented Historical Archive</strong>${s[3]}</div><div class="dos-blk"><strong>How The Book Exposes Them</strong>${s[4]}</div></article>
+    `).join('');
 
-    function runTypewriter() {
-      const fullText = secretSocietiesData[currentSocietyIdx].name;
-
-      if (!isDeleting) {
-        charIndex++;
-        changingTitleEl.textContent = fullText.substring(0, charIndex);
-        if (charIndex === fullText.length) {
-          isDeleting = true;
-          typingTimer = setTimeout(runTypewriter, 2400);
-          return;
-        }
-        typingTimer = setTimeout(runTypewriter, 55);
-      } else {
-        charIndex--;
-        changingTitleEl.textContent = fullText.substring(0, charIndex);
-        if (charIndex === 0) {
-          isDeleting = false;
-          currentSocietyIdx = (currentSocietyIdx + 1) % secretSocietiesData.length;
-          updateActivePill(currentSocietyIdx);
-          typingTimer = setTimeout(runTypewriter, 250);
-          return;
-        }
-        typingTimer = setTimeout(runTypewriter, 28);
-      }
+    let sIdx = 0, cIdx = 0, del = false, tTimer;
+    const dynEl = document.getElementById('dynSocName'), pillEls = document.querySelectorAll('.soc-pill');
+    function typeLoop() {
+      const txt = societies[sIdx][0];
+      cIdx += del ? -1 : 1;
+      dynEl.textContent = txt.substring(0, cIdx);
+      if (!del && cIdx === txt.length) { del = true; tTimer = setTimeout(typeLoop, 2200); }
+      else if (del && cIdx === 0) { del = false; sIdx = (sIdx + 1) % societies.length; pillEls.forEach((p, i) => p.classList.toggle('act', i === sIdx)); tTimer = setTimeout(typeLoop, 250); }
+      else tTimer = setTimeout(typeLoop, del ? 25 : 50);
     }
-
-    function updateActivePill(idx) {
-      pillButtons.forEach((btn, i) => btn.classList.toggle('active-pill', i === idx));
+    function selectSoc(i) {
+      clearTimeout(tTimer); sIdx = i; cIdx = societies[i][0].length; del = true;
+      dynEl.textContent = societies[i][0];
+      pillEls.forEach((p, idx) => p.classList.toggle('act', idx === i));
+      document.getElementById(`dosCard${i}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+      tTimer = setTimeout(typeLoop, 2800);
     }
+    typeLoop();
 
-    pillButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        clearTimeout(typingTimer);
-        currentSocietyIdx = parseInt(btn.dataset.index);
-        updateActivePill(currentSocietyIdx);
-        changingTitleEl.textContent = secretSocietiesData[currentSocietyIdx].name;
-        charIndex = secretSocietiesData[currentSocietyIdx].name.length;
-        isDeleting = true;
-        const targetCard = document.getElementById(`dossierCard${currentSocietyIdx}`);
-        if (targetCard) targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        typingTimer = setTimeout(runTypewriter, 3000);
-      });
-    });
-
-    runTypewriter();
-
-    /* -------------------------------------------------------------
-       9. FIREBASE REVIEW SYSTEM INTEGRATION
-       ------------------------------------------------------------- */
+    /* 10. Firebase Firestore Review System */
     firebase.initializeApp({
       apiKey: "AIzaSyBxDqv7hE4LOoPF32agDN-sdlZ-pAPDCJ4",
       authDomain: "book-review-handler.firebaseapp.com",
@@ -2091,144 +702,49 @@
       messagingSenderId: "570886462510",
       appId: "1:570886462510:web:295a2943c37660f1a453bf"
     });
+    const reviewsCol = firebase.firestore().collection("reviews");
+    let rating = 5;
+    const starSpans = document.querySelectorAll('#starPicker span');
+    const setStars = r => { rating = r; starSpans.forEach(s => s.classList.toggle('sel', +s.dataset.v <= r)); };
+    setStars(5);
+    starSpans.forEach(s => s.onclick = () => setStars(+s.dataset.v));
 
-    const db = firebase.firestore();
-    const reviewsCol = db.collection("reviews");
-
-    let selectedRating = 5;
-    const starPicker = document.getElementById('starPicker');
-    const starSpans = starPicker.querySelectorAll('span');
-
-    function updateStarDisplay(rating) {
-      starSpans.forEach(s => {
-        const val = parseInt(s.dataset.val);
-        s.classList.toggle('selected', val <= rating);
-      });
-    }
-    updateStarDisplay(selectedRating);
-
-    starSpans.forEach(s => {
-      s.addEventListener('click', () => {
-        selectedRating = parseInt(s.dataset.val);
-        updateStarDisplay(selectedRating);
-      });
-    });
-
-    reviewsCol.where("approved", "==", true).onSnapshot(snapshot => {
+    const esc = s => String(s || '').replace(/[&<>'"]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+    reviewsCol.where("approved", "==", true).onSnapshot(snap => {
       const feed = document.getElementById('approvedFeed');
-      const totalCountSpan = document.getElementById('totalReviewsCount');
-      const avgDisplay = document.getElementById('avgRatingDisplay');
-
-      if (snapshot.empty) {
-        feed.innerHTML = `
-          <div class="review-item" style="text-align:center; color:var(--text-muted);">
-            No verified reviews published yet. Be the first to submit your review of the book.
-          </div>
-        `;
-        totalCountSpan.textContent = "0 verified reviews";
-        avgDisplay.textContent = "5.0";
+      if (snap.empty) {
+        feed.innerHTML = `<div class="card" style="text-align:center;color:var(--mut);">No verified reviews published yet. Be the first to submit a review!</div>`;
+        document.getElementById('totalRevs').textContent = "0 verified reviews";
         return;
       }
-
-      let totalRating = 0;
-      const reviews = [];
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        reviews.push(data);
-        totalRating += (data.rating || 5);
-      });
-
-      const avg = (totalRating / reviews.length).toFixed(1);
-      avgDisplay.textContent = avg;
-      totalCountSpan.textContent = `${reviews.length} verified reader review${reviews.length > 1 ? 's' : ''}`;
-
-      feed.innerHTML = reviews.map(r => `
-        <article class="review-item">
-          <div class="review-top">
-            <div>
-              <span class="review-name">${escapeHtml(r.name || 'Anonymous')}</span>
-              ${r.role ? `<span class="review-role"> · ${escapeHtml(r.role)}</span>` : ''}
-            </div>
-            <div style="color:var(--gold);">
-              ${'★'.repeat(r.rating || 5)}${'☆'.repeat(5 - (r.rating || 5))}
-            </div>
-          </div>
-          <div style="font-size:0.78rem; color:var(--gold); margin-bottom:8px;">
-            <span>Section: ${escapeHtml(r.engine || 'General Analysis')}</span> · 
-            <span>Impact: ${escapeHtml(r.trap || 'N/A')}</span>
-          </div>
-          <p class="review-comment">${escapeHtml(r.comment || '')}</p>
-        </article>
+      let sum = 0, list = [];
+      snap.forEach(d => { const x = d.data(); list.push(x); sum += (x.rating || 5); });
+      document.getElementById('avgRating').textContent = (sum / list.length).toFixed(1);
+      document.getElementById('totalRevs').textContent = `${list.length} verified review${list.length > 1 ? 's' : ''}`;
+      feed.innerHTML = list.map(r => `
+        <article class="card" style="margin-bottom:16px;padding:20px;"><div style="display:flex;justify-content:space-between;margin-bottom:6px;"><div><strong style="color:var(--gold);">${esc(r.name)}</strong>${r.role ? ` <span style="font-size:0.8rem;color:var(--mut);">· ${esc(r.role)}</span>` : ''}</div><span style="color:var(--gold);">${'★'.repeat(r.rating||5)}${'☆'.repeat(5-(r.rating||5))}</span></div><div style="font-size:0.76rem;color:var(--gold-lt);margin-bottom:8px;">Section: ${esc(r.engine)} · Impact: ${esc(r.trap)}</div><p style="color:var(--sub);font-size:0.92rem;">${esc(r.comment)}</p></article>
       `).join('');
-    }, err => {
-      console.warn("Firestore error:", err);
-      document.getElementById('approvedFeed').innerHTML = `
-        <div class="review-item" style="color:var(--text-muted); text-align:center;">
-          Reviews are being loaded. Please check your network connection.
-        </div>
-      `;
     });
 
-    const reviewForm = document.getElementById('reviewForm');
-    const formStatusMsg = document.getElementById('formStatusMsg');
-    const submitRevBtn = document.getElementById('submitRevBtn');
-
-    reviewForm.addEventListener('submit', async (e) => {
+    document.getElementById('reviewForm').onsubmit = async e => {
       e.preventDefault();
-      formStatusMsg.textContent = "";
-      formStatusMsg.style.color = "var(--gold)";
-
-      const name = document.getElementById('revName').value.trim();
-      const role = document.getElementById('revRole').value.trim();
-      const engine = document.getElementById('revEngine').value;
-      const trap = document.getElementById('revTrap').value;
-      const comment = document.getElementById('revComment').value.trim();
-
-      if (comment.length < 20) {
-        formStatusMsg.style.color = "var(--crimson)";
-        formStatusMsg.textContent = "Please write at least 20 characters for your review.";
-        return;
-      }
-
-      submitRevBtn.disabled = true;
-      submitRevBtn.textContent = "Submitting Review...";
-
+      const btn = document.getElementById('submitRevBtn'), msg = document.getElementById('formMsg');
+      btn.disabled = true; btn.textContent = "Submitting...";
       try {
         await reviewsCol.add({
-          name: name,
-          role: role,
-          rating: parseInt(selectedRating),
-          engine: engine,
-          trap: trap,
-          comment: comment,
-          approved: false,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          name: document.getElementById('revName').value.trim(),
+          role: document.getElementById('revRole').value.trim(),
+          rating, engine: document.getElementById('revEngine').value,
+          trap: document.getElementById('revTrap').value,
+          comment: document.getElementById('revComment').value.trim(),
+          approved: false, timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
-
-        formStatusMsg.style.color = "var(--gold)";
-        formStatusMsg.textContent = "Thank you! Your review has been received and will appear once verified.";
-        reviewForm.reset();
-        selectedRating = 5;
-        updateStarDisplay(5);
+        msg.style.color = "var(--gold)"; msg.textContent = "Review submitted! It will appear once verified.";
+        e.target.reset(); setStars(5);
       } catch (err) {
-        console.error(err);
-        formStatusMsg.style.color = "var(--crimson)";
-        formStatusMsg.textContent = "Unable to submit review. Please check your connection and try again.";
-      } finally {
-        submitRevBtn.disabled = false;
-        submitRevBtn.textContent = "Submit Review for Verification";
-      }
-    });
-
-    function escapeHtml(str) {
-      return str.replace(/[&<>'"]/g, tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-      }[tag] || tag));
-    }
+        msg.style.color = "var(--crim)"; msg.textContent = "Submission error. Check your connection.";
+      } finally { btn.disabled = false; btn.textContent = "Submit Review"; }
+    };
   </script>
 </body>
 </html>
